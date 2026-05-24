@@ -24,7 +24,7 @@ export default function About() {
         </p>
       </motion.div>
 
-      <div className="mt-12 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
+      <div className="mt-10 grid gap-4 md:grid-cols-[0.95fr_1.05fr]">
         <motion.div
           className="glass rounded-[24px] p-6 md:p-8"
           initial={{ opacity: 0, y: 28 }}
@@ -33,7 +33,7 @@ export default function About() {
           transition={{ duration: 0.7, delay: 0.1 }}
         >
           <div className="text-sm font-bold uppercase text-electric">{t.about.profileLabel}</div>
-          <p className="mt-5 text-2xl font-black leading-tight text-white md:text-3xl">
+          <p className="mt-5 text-xl font-black leading-tight text-white md:text-2xl">
             {t.about.profileTitle}
           </p>
           <p className="mt-5 leading-8 text-white/[0.62]">
@@ -90,7 +90,7 @@ export default function About() {
               whileHover={{ y: -5 }}
             >
               <Icon size={24} className="text-electric" />
-              <h3 className="mt-5 text-lg font-black text-white">{title}</h3>
+              <h3 className="mt-5 text-base font-black text-white">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-white/[0.55]">{text}</p>
             </motion.article>
             );

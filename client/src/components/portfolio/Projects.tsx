@@ -199,7 +199,7 @@ export default function Projects() {
                 <div className="text-sm font-bold uppercase text-electric">
                   {selected.category || "Project"}
                 </div>
-                <h3 className="mt-3 text-3xl font-black text-white md:text-5xl">
+                <h3 className="mt-3 text-2xl font-black text-white md:text-3xl">
                   {selected.title}
                 </h3>
                 <p className="mt-5 max-w-3xl leading-8 text-white/[0.64]">

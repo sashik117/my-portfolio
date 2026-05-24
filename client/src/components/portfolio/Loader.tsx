@@ -20,7 +20,7 @@ export default function Loader() {
           className="fixed inset-0 z-[70] grid place-items-center bg-ink px-6"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.95, ease: "easeInOut" }}
         >
           <motion.div
             className="w-full max-w-sm text-center"

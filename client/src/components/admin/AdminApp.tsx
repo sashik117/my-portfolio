@@ -273,10 +273,10 @@ export default function AdminApp() {
           <div className="grid h-14 w-14 place-items-center rounded-2xl bg-white text-ink">
             <Lock size={24} />
           </div>
-          <h1 className="mt-6 text-3xl font-black text-white">Admin CMS</h1>
+          <h1 className="mt-6 text-2xl font-black text-white">Admin CMS</h1>
           <p className="mt-3 leading-7 text-white/[0.58]">
-            Manage projects, preview images, links, descriptions, technologies,
-            and incoming contact messages.
+            A clean private workspace for projects, preview images, descriptions,
+            links, technologies, and contact messages.
           </p>
           <label className="mt-7 block">
             <span className="mb-2 block text-sm font-bold text-white/[0.62]">Email</span>
@@ -320,16 +320,18 @@ export default function AdminApp() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-6 md:px-6">
+    <main className="min-h-screen px-4 py-5 md:px-6">
       <div className="mx-auto w-full max-w-7xl">
-        <header className="glass flex flex-col gap-4 rounded-[26px] p-4 md:flex-row md:items-center md:justify-between md:p-5">
+        <header className="glass flex flex-col gap-4 rounded-[22px] p-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-ink">
               <LayoutDashboard size={22} />
             </div>
             <div>
-              <h1 className="text-2xl font-black text-white">Portfolio CMS</h1>
-              <p className="text-sm font-semibold text-white/[0.50]">Projects and messages</p>
+              <h1 className="text-xl font-black text-white md:text-2xl">Portfolio CMS</h1>
+              <p className="text-sm font-semibold text-white/[0.50]">
+                Manage content without touching code
+              </p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -350,11 +352,14 @@ export default function AdminApp() {
           </div>
         </header>
 
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
           {stats.map((stat) => (
-            <div key={stat.label} className="rounded-[22px] border border-white/[0.10] bg-white/[0.06] p-5 backdrop-blur-xl">
-              <div className="text-sm font-bold text-white/[0.48]">{stat.label}</div>
-              <div className="mt-2 text-4xl font-black text-white">{stat.value}</div>
+            <div
+              key={stat.label}
+              className="rounded-[18px] border border-white/[0.10] bg-white/[0.06] p-4 backdrop-blur-xl"
+            >
+              <div className="text-xs font-black uppercase text-white/[0.42]">{stat.label}</div>
+              <div className="mt-1 text-2xl font-black text-white">{stat.value}</div>
             </div>
           ))}
         </div>
@@ -389,14 +394,16 @@ export default function AdminApp() {
         )}
 
         {activeTab === "projects" ? (
-          <div className="mt-4 grid gap-4 xl:grid-cols-[420px_1fr]">
-            <form onSubmit={saveProject} className="glass h-fit rounded-[26px] p-5">
+          <div className="mt-4 grid gap-4 xl:grid-cols-[430px_1fr]">
+            <form onSubmit={saveProject} className="glass h-fit rounded-[22px] p-5 xl:sticky xl:top-5">
               <div className="mb-5 flex items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-black text-white">
+                  <h2 className="text-lg font-black text-white">
                     {editing ? "Edit project" : "Add project"}
                   </h2>
-                  <p className="mt-1 text-sm text-white/[0.48]">No code edits needed.</p>
+                  <p className="mt-1 text-sm text-white/[0.48]">
+                    Change cards, links and images from one place.
+                  </p>
                 </div>
                 {editing && (
                   <button
@@ -424,7 +431,7 @@ export default function AdminApp() {
                 <label>
                   <span className="mb-2 block text-sm font-bold text-white/[0.62]">Short description</span>
                   <textarea
-                    className="input min-h-24"
+                    className="input min-h-24 resize-y"
                     value={form.description}
                     onChange={(event) =>
                       setForm((value) => ({ ...value, description: event.target.value }))
@@ -435,7 +442,7 @@ export default function AdminApp() {
                 <label>
                   <span className="mb-2 block text-sm font-bold text-white/[0.62]">Details</span>
                   <textarea
-                    className="input min-h-28"
+                    className="input min-h-28 resize-y"
                     value={form.longDescription}
                     onChange={(event) =>
                       setForm((value) => ({ ...value, longDescription: event.target.value }))
@@ -543,18 +550,18 @@ export default function AdminApp() {
               </button>
             </form>
 
-            <div className="grid h-fit gap-4 md:grid-cols-2">
+            <div className="grid h-fit gap-4 md:grid-cols-2 2xl:grid-cols-3">
               {projects.map((project) => (
                 <article
                   key={project._id}
                   className="overflow-hidden rounded-[24px] border border-white/[0.10] bg-white/[0.06] backdrop-blur-xl"
                 >
-                  <div className="aspect-[1.7] bg-white/[0.07]">
+                  <div className="aspect-[1.7] bg-[#08101c] p-3">
                     {project.imageUrl ? (
                       <img
                         src={mediaUrl(project.imageUrl)}
                         alt={project.title}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full rounded-2xl object-contain"
                       />
                     ) : (
                       <div className="grid h-full place-items-center text-sm font-bold text-white/[0.38]">

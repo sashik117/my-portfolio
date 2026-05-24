@@ -9,6 +9,7 @@ export default function Navbar() {
   const { locale, t, toggleLocale } = useLanguage();
   const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [activeHref, setActiveHref] = useState("");
   const localeLabel = locale === "uk" ? "UA" : "EN";
 
   const links = [
@@ -22,6 +23,13 @@ export default function Navbar() {
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
+
+      const current = links.reduce((active, link) => {
+        const section = document.querySelector(link.href);
+        if (!(section instanceof HTMLElement)) return active;
+        return window.scrollY >= section.offsetTop - 170 ? link.href : active;
+      }, "");
+      setActiveHref(current);
     };
     onScroll();
     window.addEventListener("scroll", onScroll);
@@ -66,7 +74,12 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-xl px-4 py-2 text-sm font-semibold text-white/[0.72] transition hover:bg-white/[0.08] hover:text-white"
+              className={clsx(
+                "rounded-xl px-4 py-2 text-sm font-semibold transition",
+                activeHref === link.href
+                  ? "bg-white text-ink shadow-glow"
+                  : "text-white/[0.72] hover:bg-white/[0.08] hover:text-white"
+              )}
             >
               {link.label}
             </a>
@@ -101,7 +114,12 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block rounded-xl px-4 py-3 text-sm font-bold text-white/[0.78] hover:bg-white/[0.08]"
+              className={clsx(
+                "block rounded-xl px-4 py-3 text-sm font-bold",
+                activeHref === link.href
+                  ? "bg-white text-ink"
+                  : "text-white/[0.78] hover:bg-white/[0.08]"
+              )}
             >
               {link.label}
             </a>

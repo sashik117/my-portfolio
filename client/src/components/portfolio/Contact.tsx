@@ -2,16 +2,16 @@
 
 import { portfolioApi } from "@/lib/api";
 import { motion } from "framer-motion";
-import { Clock3, Github, Instagram, Mail, Send, SendHorizonal } from "lucide-react";
+import { Github, Instagram, Mail, Send, SendHorizonal } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
 const socials = [
-  { label: "GitHub", value: "@sashik117", href: "https://github.com/sashik117", icon: Github },
-  { label: "Telegram", value: "@Cinnamonroll69", href: "https://t.me/Cinnamonroll69", icon: Send },
-  { label: "Email", value: "sanyoklolik@gmail.com", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
-  { label: "Instagram", value: "@_o.suhova", href: "https://www.instagram.com/_o.suhova/", icon: Instagram }
+  { label: "GitHub", href: "https://github.com/sashik117", icon: Github },
+  { label: "Telegram", href: "https://t.me/Cinnamonroll69", icon: Send },
+  { label: "Email", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
+  { label: "Instagram", href: "https://www.instagram.com/_o.suhova/", icon: Instagram }
 ];
 
 export default function Contact() {
@@ -50,10 +50,6 @@ export default function Contact() {
           <p className="section-copy">
             {t.contact.copy}
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 rounded-2xl border border-white/[0.10] bg-white/[0.06] px-4 py-3 text-sm font-bold text-white/[0.70]">
-            <Clock3 size={17} className="text-electric" />
-            {t.contact.timezone}
-          </div>
           <div className="mt-6 flex flex-wrap gap-3">
             {socials.map((social) => (
               <a
@@ -69,19 +65,8 @@ export default function Contact() {
               </a>
             ))}
           </div>
-          <div className="mt-5 grid gap-2">
-            {socials.map((social) => (
-              <a
-                key={social.value}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between gap-3 rounded-2xl border border-white/[0.10] bg-white/[0.05] px-4 py-3 text-sm transition hover:border-electric/[0.40] hover:bg-electric/[0.08]"
-              >
-                <span className="font-bold text-white/[0.56]">{social.label}</span>
-                <span className="font-black text-white">{social.value}</span>
-              </a>
-            ))}
+          <div className="mt-5 rounded-2xl border border-white/[0.10] bg-white/[0.05] p-4 text-sm leading-6 text-white/[0.56]">
+            {t.contact.footerNote}
           </div>
         </motion.div>
 

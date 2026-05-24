@@ -84,17 +84,4 @@ export const fallbackProjects: Project[] = [
     featured: false,
     status: "published"
   },
-  {
-    _id: "parsing-pdr",
-    title: "PDR PDF Parser",
-    description:
-      "Python parser for driving-theory PDFs that extracts questions, answers, images, and structured JSON datasets.",
-    longDescription:
-      "A practical data-processing tool for the PDR ecosystem. It uses Python, pdfplumber, PyMuPDF, Pillow, and pandas to parse PDFs, extract question images, split large datasets, and generate structured JSON ready for import into the exam platform.",
-    technologies: ["Python", "pdfplumber", "PyMuPDF", "Pillow", "pandas", "JSON"],
-    imageUrl: "/assets/parsing-pdr.svg",
-    category: "Python Tool",
-    featured: false,
-    status: "published"
-  }
 ];

@@ -26,7 +26,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="section-shell">
-      <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export default function Skills() {
           <p className="section-copy">
             {t.skills.copy}
           </p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {t.skills.groups.map(([title, text], index) => {
               const Icon = groupIcons[index];
 
@@ -67,11 +67,11 @@ export default function Skills() {
           </div>
         </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           {skills.map((skill, index) => (
             <motion.article
               key={skill.name}
-              className="group rounded-[22px] border border-white/[0.10] bg-white/[0.06] p-5 backdrop-blur-xl transition hover:border-electric/[0.35] hover:bg-white/[0.09]"
+              className="group rounded-[20px] border border-white/[0.10] bg-white/[0.06] p-4 backdrop-blur-xl transition hover:border-electric/[0.35] hover:bg-white/[0.09]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -79,10 +79,13 @@ export default function Skills() {
               whileHover={{ y: -6 }}
             >
               <div className="flex items-center justify-between gap-4">
-                <h3 className="text-lg font-black text-white">{skill.name}</h3>
+                <h3 className="text-sm font-black text-white md:text-base">{skill.name}</h3>
                 <span className="text-sm font-bold text-white/[0.52]">{skill.level}%</span>
               </div>
-              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/[0.10]">
+              <p className="mt-3 min-h-[72px] text-sm leading-6 text-white/[0.56]">
+                {t.skills.details[index]}
+              </p>
+              <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/[0.10]">
                 <motion.div
                   className={`h-full rounded-full ${skill.color}`}
                   initial={{ width: 0 }}
@@ -91,11 +94,18 @@ export default function Skills() {
                   transition={{ duration: 1, ease: "easeOut", delay: index * 0.05 }}
                 />
               </div>
-              <div className="mt-4 h-10 rounded-xl border border-white/[0.08] bg-black/[0.18] p-2">
-                <div className="h-full rounded-lg bg-gradient-to-r from-white/[0.12] via-white/[0.04] to-transparent transition group-hover:from-electric/[0.22]" />
-              </div>
             </motion.article>
           ))}
+          <motion.div
+            className="rounded-[20px] border border-electric/[0.18] bg-electric/[0.08] p-4 sm:col-span-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.55, delay: 0.12 }}
+          >
+            <h3 className="text-sm font-black uppercase text-electric">{t.skills.workflowTitle}</h3>
+            <p className="mt-2 text-sm leading-6 text-white/[0.62]">{t.skills.workflow}</p>
+          </motion.div>
         </div>
       </div>
     </section>
