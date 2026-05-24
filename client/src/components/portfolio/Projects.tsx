@@ -9,6 +9,24 @@ import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
+const preserveUppercase = new Set(["ai", "api", "cms", "crud", "jwt", "mvs", "pdr", "ui", "ux"]);
+
+function formatCategory(category?: string) {
+  if (!category) return "Project";
+
+  return category
+    .trim()
+    .replace(/\s+/g, " ")
+    .split(" ")
+    .map((word) => {
+      const lower = word.toLowerCase();
+      if (preserveUppercase.has(lower)) return lower.toUpperCase();
+
+      return `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`;
+    })
+    .join(" ");
+}
+
 export default function Projects() {
   const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>(fallbackProjects);
@@ -71,7 +89,7 @@ export default function Projects() {
                   : "border-white/[0.12] bg-white/[0.06] text-white/[0.68] hover:border-electric/[0.42]"
               }`}
             >
-              {filter === "All" ? t.projects.all : filter}
+              {filter === "All" ? t.projects.all : formatCategory(filter)}
             </button>
           ))}
         </div>
@@ -102,7 +120,7 @@ export default function Projects() {
                   loading="lazy"
                 />
                 <div className="absolute left-4 top-4 rounded-full border border-white/[0.14] bg-black/[0.42] px-3 py-1 text-xs font-black text-white backdrop-blur-md">
-                  {project.category || "Project"}
+                  {formatCategory(project.category)}
                 </div>
               </div>
               <div className="p-5">
@@ -197,7 +215,7 @@ export default function Projects() {
               </div>
               <div className="p-6 md:p-8">
                 <div className="text-sm font-bold uppercase text-electric">
-                  {selected.category || "Project"}
+                  {formatCategory(selected.category)}
                 </div>
                 <h3 className="mt-3 text-2xl font-black text-white md:text-3xl">
                   {selected.title}

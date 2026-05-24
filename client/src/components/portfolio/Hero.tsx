@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
-const words = ["React", "Laravel", "Flutter", "FastAPI", "Clean UI"];
+const currentWork = "React";
 const stackIcons: LucideIcon[] = [Server, Database, Smartphone, Code2];
 
 function PreviewPanel({
@@ -105,26 +105,20 @@ function PreviewPanel({
 
 export default function Hero() {
   const { t } = useLanguage();
-  const [wordIndex, setWordIndex] = useState(0);
   const [letters, setLetters] = useState("");
 
   useEffect(() => {
-    const word = words[wordIndex];
     let cursor = 0;
     const typing = window.setInterval(() => {
       cursor += 1;
-      setLetters(word.slice(0, cursor));
-      if (cursor >= word.length) {
+      setLetters(currentWork.slice(0, cursor));
+      if (cursor >= currentWork.length) {
         window.clearInterval(typing);
-        window.setTimeout(() => {
-          setWordIndex((index) => (index + 1) % words.length);
-          setLetters("");
-        }, 2600);
       }
     }, 96);
 
     return () => window.clearInterval(typing);
-  }, [wordIndex]);
+  }, []);
 
   return (
     <section

@@ -24,7 +24,7 @@ export default function About() {
         </p>
       </motion.div>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-[0.95fr_1.05fr]">
+      <div className="mt-10 grid gap-4 md:grid-cols-[0.95fr_1.05fr] md:items-start">
         <motion.div
           className="glass rounded-[24px] p-6 md:p-8"
           initial={{ opacity: 0, y: 28 }}
@@ -75,23 +75,23 @@ export default function About() {
           </div>
         </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid self-start gap-3 sm:grid-cols-2 lg:gap-4">
           {t.about.interests.map(([title, text], index) => {
             const Icon = interestIcons[index];
 
             return (
             <motion.article
               key={title}
-              className="rounded-[22px] border border-white/[0.10] bg-white/[0.06] p-5 backdrop-blur-xl transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
+              className="rounded-[20px] border border-white/[0.10] bg-white/[0.06] p-4 backdrop-blur-xl transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-120px" }}
               transition={{ duration: 0.55, delay: index * 0.05 }}
               whileHover={{ y: -5 }}
             >
-              <Icon size={24} className="text-electric" />
-              <h3 className="mt-5 text-base font-black text-white">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/[0.55]">{text}</p>
+              <Icon size={20} className="text-electric" />
+              <h3 className="mt-2.5 text-base font-black text-white">{title}</h3>
+              <p className="mt-1.5 text-[0.82rem] leading-5 text-white/[0.55]">{text}</p>
             </motion.article>
             );
           })}
