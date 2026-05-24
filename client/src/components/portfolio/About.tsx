@@ -51,28 +51,6 @@ export default function About() {
               )
             )}
           </div>
-          <div className="mt-7 rounded-2xl border border-white/[0.10] bg-black/[0.20] p-4">
-            <div className="flex items-center gap-2 text-sm font-black uppercase text-electric">
-              <Braces size={17} />
-              {t.about.principlesTitle}
-            </div>
-            <div className="mt-4 grid gap-3">
-              {t.about.principles.map((principle, index) => (
-                <motion.div
-                  key={principle}
-                  className="group flex gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3 transition hover:border-mint/[0.35] hover:bg-mint/[0.08]"
-                  whileHover={{ x: 4 }}
-                >
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-xs font-black text-ink">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-sm leading-6 text-white/[0.62] group-hover:text-white/[0.78]">
-                    {principle}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </motion.div>
 
         <div className="grid self-start gap-3 sm:grid-cols-2 lg:gap-4">
@@ -97,6 +75,35 @@ export default function About() {
           })}
         </div>
       </div>
+
+      <motion.div
+        className="mt-5 rounded-[24px] border border-white/[0.10] bg-[#0b111d] p-4 shadow-lift md:p-6"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-120px" }}
+        transition={{ duration: 0.7, delay: 0.08 }}
+      >
+        <div className="flex items-center gap-2 text-sm font-black uppercase text-electric">
+          <Braces size={17} />
+          {t.about.principlesTitle}
+        </div>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {t.about.principles.map((principle, index) => (
+            <motion.div
+              key={principle}
+              className="group flex gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.045] p-3.5 transition hover:border-mint/[0.35] hover:bg-mint/[0.08] sm:p-4"
+              whileHover={{ x: 4 }}
+            >
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white text-xs font-black text-ink">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <p className="text-sm leading-6 text-white/[0.62] group-hover:text-white/[0.78]">
+                {principle}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
