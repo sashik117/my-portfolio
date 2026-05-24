@@ -6,9 +6,11 @@ import type { Project } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, Github, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>(fallbackProjects);
   const [selected, setSelected] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState("All");
@@ -51,12 +53,10 @@ export default function Projects() {
         transition={{ duration: 0.7 }}
       >
         <div>
-          <div className="eyebrow">Projects</div>
-          <h2 className="section-title">Real apps from music and fitness to AI nutrition and exam prep.</h2>
+          <div className="eyebrow">{t.projects.eyebrow}</div>
+          <h2 className="section-title">{t.projects.title}</h2>
           <p className="section-copy">
-            These projects come from the Apps folder: fullstack web products,
-            mobile-first apps, backend APIs, AI features, and Python data tools.
-            The admin CMS can still manage new projects later.
+            {t.projects.copy}
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export default function Projects() {
                   : "border-white/[0.12] bg-white/[0.06] text-white/[0.68] hover:border-electric/[0.42]"
               }`}
             >
-              {filter}
+              {filter === "All" ? t.projects.all : filter}
             </button>
           ))}
         </div>
@@ -110,7 +110,7 @@ export default function Projects() {
                   <h3 className="text-xl font-black text-white">{project.title}</h3>
                   {project.featured && (
                     <span className="rounded-full bg-mint px-2.5 py-1 text-[0.68rem] font-black uppercase text-ink">
-                      Featured
+                      {t.projects.featured}
                     </span>
                   )}
                 </div>
@@ -158,7 +158,7 @@ export default function Projects() {
                 className="ml-auto rounded-xl border border-white/[0.10] bg-white/[0.06] px-4 py-2 text-sm font-bold text-white/[0.72] transition hover:border-electric/[0.40]"
                 onClick={() => setSelected(project)}
               >
-                Details
+                {t.projects.details}
               </button>
             </div>
           </motion.article>
@@ -216,9 +216,7 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  {selected.liveUrl && (
-                    <MagneticButton href={selected.liveUrl}>Live Demo</MagneticButton>
-                  )}
+                  {selected.liveUrl && <MagneticButton href={selected.liveUrl}>{t.projects.live}</MagneticButton>}
                   {selected.githubUrl && (
                     <MagneticButton href={selected.githubUrl} variant="secondary">
                       GitHub

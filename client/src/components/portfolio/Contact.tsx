@@ -2,18 +2,20 @@
 
 import { portfolioApi } from "@/lib/api";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send, SendHorizonal } from "lucide-react";
+import { Clock3, Github, Instagram, Mail, Send, SendHorizonal } from "lucide-react";
 import { FormEvent, useState } from "react";
+import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
 const socials = [
-  { label: "GitHub", href: "https://github.com/sashik117", icon: Github },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
-  { label: "Email", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
-  { label: "Telegram", href: "https://t.me/", icon: Send }
+  { label: "GitHub", value: "@sashik117", href: "https://github.com/sashik117", icon: Github },
+  { label: "Telegram", value: "@Cinnamonroll69", href: "https://t.me/Cinnamonroll69", icon: Send },
+  { label: "Email", value: "sanyoklolik@gmail.com", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
+  { label: "Instagram", value: "@_o.suhova", href: "https://www.instagram.com/_o.suhova/", icon: Instagram }
 ];
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
@@ -26,11 +28,11 @@ export default function Contact() {
     try {
       await portfolioApi.sendMessage(form);
       setState("success");
-      setFeedback("Message sent. I will reply soon.");
+      setFeedback(t.contact.success);
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
       setState("error");
-      setFeedback(error instanceof Error ? error.message : "Could not send message.");
+      setFeedback(error instanceof Error ? error.message : t.contact.error);
     }
   };
 
@@ -43,13 +45,16 @@ export default function Contact() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7 }}
         >
-          <div className="eyebrow">Contact</div>
-          <h2 className="section-title">Let&apos;s build something that feels expensive.</h2>
+          <div className="eyebrow">{t.contact.eyebrow}</div>
+          <h2 className="section-title">{t.contact.title}</h2>
           <p className="section-copy">
-            Send a message through the backend-powered form or jump straight to
-            socials. Contact messages are stored in the admin dashboard.
+            {t.contact.copy}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 inline-flex items-center gap-2 rounded-2xl border border-white/[0.10] bg-white/[0.06] px-4 py-3 text-sm font-bold text-white/[0.70]">
+            <Clock3 size={17} className="text-electric" />
+            {t.contact.timezone}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
             {socials.map((social) => (
               <a
                 key={social.label}
@@ -61,6 +66,20 @@ export default function Contact() {
                 aria-label={social.label}
               >
                 <social.icon size={18} />
+              </a>
+            ))}
+          </div>
+          <div className="mt-5 grid gap-2">
+            {socials.map((social) => (
+              <a
+                key={social.value}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between gap-3 rounded-2xl border border-white/[0.10] bg-white/[0.05] px-4 py-3 text-sm transition hover:border-electric/[0.40] hover:bg-electric/[0.08]"
+              >
+                <span className="font-bold text-white/[0.56]">{social.label}</span>
+                <span className="font-black text-white">{social.value}</span>
               </a>
             ))}
           </div>
@@ -76,7 +95,7 @@ export default function Contact() {
         >
           <div className="grid gap-4 md:grid-cols-2">
             <label>
-              <span className="mb-2 block text-sm font-bold text-white/[0.62]">Name</span>
+              <span className="mb-2 block text-sm font-bold text-white/[0.62]">{t.contact.name}</span>
               <input
                 className="input"
                 required
@@ -85,11 +104,11 @@ export default function Contact() {
                 onChange={(event) =>
                   setForm((value) => ({ ...value, name: event.target.value }))
                 }
-                placeholder="Your name"
+                placeholder={t.contact.namePlaceholder}
               />
             </label>
             <label>
-              <span className="mb-2 block text-sm font-bold text-white/[0.62]">Email</span>
+              <span className="mb-2 block text-sm font-bold text-white/[0.62]">{t.contact.email}</span>
               <input
                 className="input"
                 required
@@ -98,12 +117,12 @@ export default function Contact() {
                 onChange={(event) =>
                   setForm((value) => ({ ...value, email: event.target.value }))
                 }
-                placeholder="you@email.com"
+                placeholder={t.contact.emailPlaceholder}
               />
             </label>
           </div>
           <label className="mt-4 block">
-            <span className="mb-2 block text-sm font-bold text-white/[0.62]">Message</span>
+            <span className="mb-2 block text-sm font-bold text-white/[0.62]">{t.contact.message}</span>
             <textarea
               className="input min-h-40 resize-y"
               required
@@ -112,13 +131,13 @@ export default function Contact() {
               onChange={(event) =>
                 setForm((value) => ({ ...value, message: event.target.value }))
               }
-              placeholder="Tell me about your idea"
+              placeholder={t.contact.messagePlaceholder}
             />
           </label>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <MagneticButton type="submit" disabled={state === "loading"}>
-              {state === "loading" ? "Sending" : "Send Message"}
+              {state === "loading" ? t.contact.sending : t.contact.send}
             </MagneticButton>
             {feedback && (
               <div

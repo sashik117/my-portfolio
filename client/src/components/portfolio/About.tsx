@@ -2,17 +2,13 @@
 
 import { motion } from "framer-motion";
 import { AppWindow, Bot, Dumbbell, GraduationCap, Languages, Smartphone } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
-const interests = [
-  { icon: AppWindow, title: "Fullstack web", text: "React, APIs, databases" },
-  { icon: Smartphone, title: "Mobile apps", text: "Flutter and Compose flows" },
-  { icon: Bot, title: "AI products", text: "Gemini and enrichment logic" },
-  { icon: Dumbbell, title: "Fitness tools", text: "workouts and analytics" },
-  { icon: Languages, title: "Language learning", text: "SRS, speaking, context" },
-  { icon: GraduationCap, title: "Exam platforms", text: "tests, progress, content" }
-];
+const interestIcons = [AppWindow, Smartphone, Bot, Dumbbell, Languages, GraduationCap];
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="section-shell">
       <motion.div
@@ -21,12 +17,10 @@ export default function About() {
         viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.7 }}
       >
-        <div className="eyebrow">About Me</div>
-        <h2 className="section-title">I build real product-style projects across web, mobile, AI, and backend systems.</h2>
+        <div className="eyebrow">{t.about.eyebrow}</div>
+        <h2 className="section-title">{t.about.title}</h2>
         <p className="section-copy">
-          My projects are not just landing pages. They include music playback,
-          fitness tracking, nutrition AI, language learning, exam platforms,
-          PDF parsing, auth, databases, mobile apps, and deployable APIs.
+          {t.about.copy}
         </p>
       </motion.div>
 
@@ -38,14 +32,12 @@ export default function About() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <div className="text-sm font-bold uppercase text-electric">Profile</div>
+          <div className="text-sm font-bold uppercase text-electric">{t.about.profileLabel}</div>
           <p className="mt-5 text-2xl font-black leading-tight text-white md:text-3xl">
-            I build portfolio-grade products that feel like real apps, not homework.
+            {t.about.profileTitle}
           </p>
           <p className="mt-5 leading-8 text-white/[0.62]">
-            The goal is to show range: polished UI, mobile-first thinking,
-            backend architecture, data pipelines, AI integrations, and enough
-            detail that each project feels like something people could actually use.
+            {t.about.profileCopy}
           </p>
           <div className="mt-7 flex flex-wrap gap-2">
             {["React", "Vite", "Node.js", "FastAPI", "PostgreSQL", "Flutter", "Kotlin", "Gemini AI"].map(
@@ -62,9 +54,12 @@ export default function About() {
         </motion.div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {interests.map((item, index) => (
+          {t.about.interests.map(([title, text], index) => {
+            const Icon = interestIcons[index];
+
+            return (
             <motion.article
-              key={item.title}
+              key={title}
               className="rounded-[22px] border border-white/[0.10] bg-white/[0.06] p-5 backdrop-blur-xl transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,11 +67,12 @@ export default function About() {
               transition={{ duration: 0.55, delay: index * 0.05 }}
               whileHover={{ y: -5 }}
             >
-              <item.icon size={24} className="text-electric" />
-              <h3 className="mt-5 text-lg font-black text-white">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/[0.55]">{item.text}</p>
+              <Icon size={24} className="text-electric" />
+              <h3 className="mt-5 text-lg font-black text-white">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-white/[0.55]">{text}</p>
             </motion.article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

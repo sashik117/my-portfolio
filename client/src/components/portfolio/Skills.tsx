@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "./LanguageProvider";
 
 const skills = [
   { name: "React / Vite", level: 93, color: "bg-electric" },
@@ -16,6 +17,8 @@ const skills = [
 ];
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section id="skills" className="section-shell">
       <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
@@ -25,12 +28,10 @@ export default function Skills() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7 }}
         >
-          <div className="eyebrow">Skills</div>
-          <h2 className="section-title">Frontend polish, mobile apps, APIs, AI features, and data-heavy tooling.</h2>
+          <div className="eyebrow">{t.skills.eyebrow}</div>
+          <h2 className="section-title">{t.skills.title}</h2>
           <p className="section-copy">
-            This stack is pulled from real projects in the Apps folder:
-            music, fitness, nutrition, language learning, exam prep, and PDF
-            parsing tools.
+            {t.skills.copy}
           </p>
         </motion.div>
 

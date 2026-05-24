@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Fullstack Developer Portfolio",
+  title: "Oleksandra | Fullstack Developer Portfolio",
   description:
-    "Premium interactive fullstack developer portfolio with CMS, animations, projects and contact integration.",
+    "Premium interactive portfolio of Oleksandra, a beginner fullstack developer from Ukraine.",
   keywords: [
     "fullstack developer",
     "portfolio",
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     "MongoDB"
   ],
   openGraph: {
-    title: "Fullstack Developer Portfolio",
-    description: "Building modern web and mobile experiences.",
+    title: "Oleksandra | Fullstack Developer Portfolio",
+    description: "Beginner fullstack developer from Ukraine building modern web and mobile experiences.",
     type: "website"
   }
 };
@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="uk" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

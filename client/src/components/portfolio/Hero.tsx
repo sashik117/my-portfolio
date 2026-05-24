@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Code2, Database, Server, Smartphone } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
 const words = ["React", "FastAPI", "Flutter", "Gemini AI", "Clean APIs"];
@@ -15,6 +16,7 @@ const stackCards: Array<{ icon: LucideIcon; title: string; text: string }> = [
 ];
 
 export default function Hero() {
+  const { t } = useLanguage();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 700], [0, 140]);
   const opacity = useTransform(scrollY, [0, 620], [1, 0.2]);
@@ -55,7 +57,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            Premium Fullstack Developer Experience
+            {t.hero.eyebrow}
           </motion.div>
           <motion.h1
             className="max-w-4xl text-[2.55rem] font-black leading-[0.94] tracking-normal min-[420px]:text-5xl sm:text-6xl md:text-7xl lg:text-[4.25rem] xl:text-[4.9rem]"
@@ -63,9 +65,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Fullstack Developer
-            <span className="block gradient-text">Modern web &amp; mobile</span>
-            <span className="block">experiences.</span>
+            {t.hero.titleName}
+            <span className="block gradient-text">{t.hero.titleRole}</span>
+            <span className="block">{t.hero.titlePlace}</span>
           </motion.h1>
           <motion.p
             className="mt-7 max-w-2xl text-base leading-8 text-white/[0.68] md:text-lg"
@@ -73,8 +75,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.44 }}
           >
-            I design and build sharp frontend interfaces, reliable backend APIs,
-            and content systems that keep projects editable without touching code.
+            {t.hero.intro}
           </motion.p>
 
           <motion.div
@@ -83,9 +84,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.56 }}
           >
-            <MagneticButton href="#projects">View Projects</MagneticButton>
+            <MagneticButton href="#projects">{t.hero.projectsCta}</MagneticButton>
             <MagneticButton href="#contact" variant="secondary">
-              Contact Me
+              {t.hero.contactCta}
             </MagneticButton>
           </motion.div>
 
@@ -95,11 +96,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.66 }}
           >
-            {[
-              ["6+", "real projects"],
-              ["Mobile", "apps + PWA"],
-              ["AI", "Gemini + APIs"]
-            ].map(([value, label]) => (
+            {t.hero.stats.map(([value, label]) => (
               <div key={label} className="min-w-0 rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 sm:p-4">
                 <div className="text-lg font-black text-white sm:text-xl">{value}</div>
                 <div className="mt-1 text-white/[0.54]">{label}</div>
@@ -130,7 +127,7 @@ export default function Hero() {
                 <div className="mb-5 flex items-center justify-between">
                   <div>
                     <p className="text-xs font-bold uppercase text-electric">
-                      Current stack
+                      {t.hero.stackLabel}
                     </p>
                     <h2 className="mt-2 text-2xl font-black text-white">
                       {letters}
@@ -140,14 +137,18 @@ export default function Hero() {
                   <Code2 className="text-electric" size={28} />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  {stackCards.map(({ icon: Icon, title, text }) => (
+                  {stackCards.map(({ icon: Icon }, index) => (
                     <div
-                      key={title}
+                      key={t.hero.stackCards[index][0]}
                       className="rounded-2xl border border-white/[0.10] bg-white/[0.06] p-4"
                     >
                       <Icon size={20} className="mb-3 text-mint" />
-                      <div className="text-sm font-black text-white">{title}</div>
-                      <div className="mt-1 text-xs text-white/[0.50]">{text}</div>
+                      <div className="text-sm font-black text-white">
+                        {t.hero.stackCards[index][0]}
+                      </div>
+                      <div className="mt-1 text-xs text-white/[0.50]">
+                        {t.hero.stackCards[index][1]}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -156,7 +157,7 @@ export default function Hero() {
               <div className="grid grid-cols-[1fr_0.75fr] gap-4">
                 <div className="rounded-2xl border border-white/[0.10] bg-white/[0.07] p-5">
                   <div className="mb-4 text-xs font-bold uppercase text-white/[0.48]">
-                    Deploy flow
+                    {t.hero.deploy}
                   </div>
                   <div className="space-y-3">
                     {["Vercel", "Render", "Mongo Atlas"].map((item, index) => (
@@ -172,7 +173,7 @@ export default function Hero() {
                 <div className="rounded-2xl border border-electric/[0.25] bg-electric/[0.10] p-5">
                   <div className="text-4xl font-black text-white">99</div>
                   <div className="mt-2 text-sm font-bold text-white/[0.58]">
-                    performance-minded interactions
+                    {t.hero.performance}
                   </div>
                 </div>
               </div>

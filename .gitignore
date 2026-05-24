@@ -12,6 +12,7 @@ yarn-error.log*
 pnpm-debug.log*
 *.tsbuildinfo
 .npm-cache
+.chrome-cdp-*
 .chrome-profile*
 logs
 output

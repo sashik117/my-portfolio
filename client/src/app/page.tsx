@@ -3,6 +3,7 @@ import Contact from "@/components/portfolio/Contact";
 import CustomCursor from "@/components/portfolio/CustomCursor";
 import Hero from "@/components/portfolio/Hero";
 import InteractiveBackground from "@/components/portfolio/InteractiveBackground";
+import { LanguageProvider } from "@/components/portfolio/LanguageProvider";
 import Loader from "@/components/portfolio/Loader";
 import Navbar from "@/components/portfolio/Navbar";
 import Projects from "@/components/portfolio/Projects";
@@ -11,7 +12,7 @@ import TerminalPanel from "@/components/portfolio/TerminalPanel";
 
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
       <Loader />
       <InteractiveBackground />
       <CustomCursor />
@@ -24,6 +25,6 @@ export default function Home() {
         <TerminalPanel />
         <Contact />
       </main>
-    </>
+    </LanguageProvider>
   );
 }

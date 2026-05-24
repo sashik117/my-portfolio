@@ -1,20 +1,22 @@
 "use client";
 
 import clsx from "clsx";
-import { Menu, Moon, Sparkles, Sun, X } from "lucide-react";
+import { Languages, Menu, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
-
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" }
-];
+import { useLanguage } from "./LanguageProvider";
 
 export default function Navbar() {
+  const { locale, t, toggleLocale } = useLanguage();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [light, setLight] = useState(false);
+  const localeLabel = locale === "uk" ? "UA" : "EN";
+
+  const links = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.contact, href: "#contact" }
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -22,10 +24,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = light ? "light" : "dark";
-  }, [light]);
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 px-3 pt-3 md:px-6">
@@ -41,7 +39,7 @@ export default function Navbar() {
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-ink">
             <Sparkles size={19} aria-hidden="true" />
           </span>
-          <span className="hidden sm:block">Fullstack Portfolio</span>
+          <span className="hidden sm:block">{t.nav.brand}</span>
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -58,16 +56,17 @@ export default function Navbar() {
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <button
-            className="icon-button"
-            aria-label="Toggle color theme"
-            title="Theme"
-            onClick={() => setLight((value) => !value)}
+            className="inline-flex h-11 min-w-16 items-center justify-center gap-2 rounded-xl border border-white/[0.10] bg-white/[0.06] px-3 text-sm font-black text-white transition hover:border-electric/[0.40] hover:bg-electric/[0.10]"
+            aria-label={t.nav.switchLabel}
+            title={t.nav.switchLabel}
+            onClick={toggleLocale}
           >
-            {light ? <Moon size={18} /> : <Sun size={18} />}
+            <Languages size={17} />
+            {localeLabel}
           </button>
           <button
             className="icon-button md:hidden"
-            aria-label="Open navigation"
+            aria-label={t.nav.menuLabel}
             title="Menu"
             onClick={() => setOpen((value) => !value)}
           >
