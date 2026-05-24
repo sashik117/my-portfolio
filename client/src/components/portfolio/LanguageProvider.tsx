@@ -18,28 +18,28 @@ const dictionary = {
     loader: {
       label: "Готую портфоліо",
       name: "Oleksandra",
-      note: "UI, код, адмінка, адаптивність"
+      note: "UX, backend, mobile, CMS"
     },
     hero: {
-      eyebrow: "beginner fullstack developer",
+      eyebrow: "Junior Fullstack · Mobile First · Clean UI/UX · Product Thinking",
       titleName: "Oleksandra",
-      titleRole: "web, mobile",
-      titlePlace: "& backend builder",
+      titleRole: "Web, Mobile",
+      titlePlace: "& Backend Builder",
       intro:
-        "Я початківець у fullstack, але підходжу до роботи як до маленького продукту: продумую сценарій, стан інтерфейсу, структуру даних і те, як усе буде виглядати на телефоні.",
+        "Створюю цифрові продукти з фокусом на UX, логічну архітектуру та мобільну адаптивність. Не просто пишу код, а проектую інтерфейси, які відчуваються цілісно.",
       note:
-        "Мені подобається робити сайти й застосунки не просто “щоб було”, а щоб вони мали характер: акуратну візуальну систему, зрозумілі форми, нормальний backend, адмінку, адаптивність і відчуття, що за інтерфейсом хтось уважно стояв.",
+        "Мій фокус — охайна візуальна система, продумані користувацькі сценарії, надійна логіка бекенду та деталі, які роблять сайт живим: стани, анімації, валідація, адмінка і плавний досвід на телефоні.",
       projectsCta: "Дивитись проєкти",
       contactCta: "Написати",
       stats: [
-        ["Junior", "рівень росту"],
-        ["CMS", "контент без коду"],
-        ["Mobile", "перший тест UX"]
+        ["UX", "цілісний досвід"],
+        ["API", "логіка і дані"],
+        ["CMS", "контент без коду"]
       ],
       identity: [
-        ["Країна", "Україна"],
-        ["Часовий пояс", "Europe/Kyiv"],
-        ["Діапазон", "web · mobile · backend · UI"]
+        ["Junior Fullstack", "web · backend · mobile"],
+        ["Mobile First", "адаптивність з першого екрану"],
+        ["Product Thinking", "інтерфейс як готовий продукт"]
       ],
       stackLabel: "Що зараз у роботі",
       stackCards: [
@@ -49,67 +49,65 @@ const dictionary = {
         ["Frontend", "React, Tailwind, motion UI"]
       ],
       deploy: "Ship path",
-      performance: "polished UI, clean states"
+      performance: "clean UI, stable states"
     },
     about: {
       eyebrow: "Про мене",
-      title: "Про мене коротко, але по суті.",
+      title: "Про мене",
       copy:
-        "Я люблю робити сайти, красиві інтерфейси й невеликі застосунки, які виглядають охайно та працюють логічно. Я ще росту як розробниця, але вже звикла думати не тільки про “написати код”, а й про те, чи зручно людині користуватись, чи легко підтримувати проєкт і чи не соромно його показати.",
-      profileLabel: "Профіль",
+        "Я розробляю веб- та мобільні застосунки, поєднуючи чисту логіку бекенду з охайним, вивіреним візуалом. Мій підхід — ставитися до кожного проекту як до готового бізнес-продукту: прораховувати користувацькі сценарії, логіку бази даних, стани помилок та кожну дрібну анімацію.",
+      profileLabel: "Підхід",
       profileTitle:
-        "Початківець з сильним ентузіазмом, хорошим смаком до UI і бажанням доводити задачі до нормального вигляду.",
+        "Прагну, щоб інтерфейс на екрані телефона виглядав не як урізана версія сайту, а як повноцінний, нативний і зручний досвід.",
       profileCopy:
-        "Я відповідально ставлюся до деталей, швидко розбираюся в нових задачах і стараюся не залишати інтерфейс “сирим”. Мені цікаво збирати все разом: сторінку, форму, API, базу даних, завантаження файлів, повідомлення, стани помилок і дрібні анімації. Особливо люблю, коли на телефоні все виглядає не як урізана версія, а як повноцінний досвід.",
+        "Швидко занурююсь у нові технології, ціную конструктивний фідбек і люблю доводити код та UI до ідеального балансу. Мені важливо, щоб продукт виглядав професійно, працював передбачувано і залишав відчуття, що кожен блок має сенс.",
       principlesTitle: "Як я працюю",
       principles: [
-        "Спочатку розумію сценарій: хто відкриє сторінку, що він має побачити і яку дію зробити.",
-        "Пишу інтерфейс так, щоб він не ламався на маленькому екрані й не виглядав роздутим на desktop.",
-        "Додаю backend тільки там, де він реально потрібен: auth, CRUD, повідомлення, завантаження, збереження даних.",
-        "Люблю чистий візуал: менше шуму, більше повітря, зрозумілі акценти й нормальні стани."
+        "01 / Проектування сценарію — аналізую шлях користувача: хто відкриє сторінку, яку дію має виконати і як зробити цей процес безшовним.",
+        "02 / Mobile-First адаптивність — верстаю так, щоб інтерфейс масштабувався: нічого не злипається під пальцем на смартфоні й не розмивається на десктопі.",
+        "03 / Ефективний Backend — проектую надійну логіку: від авторизації та валідації форм до CRUD-операцій, запитів до БД та інтеграції AI.",
+        "04 / Естетика та мікроінтеракції — мінімум візуального шуму, максимум повітря, плавні hover-ефекти, лоадери та empty-states."
       ],
       interests: [
-        ["Сайти й інтерфейси", "Люблю збирати сучасні сторінки з темною естетикою, плавними рухами й акуратною типографікою."],
-        ["Мобільний UX", "Перевіряю, щоб кнопки були зручні пальцем, текст не злипався, а блоки не виглядали обрізаними."],
-        ["Backend логіка", "Цікавлять API, авторизація, форми, база даних і все, що робить сайт не просто красивою картинкою."],
-        ["UI/UX деталі", "Помічаю відступи, ритм, контраст, hover-стани, порожні стани й те, як сторінка відчувається в русі."],
-        ["Корисні застосунки", "Мені подобаються продукти для навчання, звичок, фітнесу, організації даних і маленьких щоденних задач."],
-        ["Ріст і практика", "Я ще вчуся, але дуже заряджена: беру складне, розкладаю на частини й поступово доводжу до результату."]
+        ["Web products", "Люблю створювати сайти, які виглядають не як шаблон, а як продуманий цифровий продукт."],
+        ["Mobile experience", "Особливо уважно ставлюся до телефону: розміри, відступи, кнопки, читабельність і відчуття нативності."],
+        ["Backend logic", "Цікавлять API, авторизація, валідація, база даних, завантаження файлів і стабільна структура."],
+        ["UI craft", "Працюю з типографікою, контрастом, ритмом, hover-станами й акуратними мікроанімаціями."],
+        ["Product thinking", "Думаю не тільки про код, а й про те, як людина реально користуватиметься продуктом."],
+        ["Fast learning", "Швидко входжу в задачі, нормально приймаю фідбек і люблю рухати проєкт до завершеного вигляду."]
       ]
     },
     skills: {
       eyebrow: "Навички",
-      title: "Навички, з якими я зараз працюю.",
+      title: "Skills & Tech Stack",
       copy:
-        "Мій стек ще росте, але він уже не про одну кнопку на сторінці. Я вчуся бачити повну картину: інтерфейс, дані, запити, адаптивність, адмінку, валідацію, деплой і нормальну структуру проєкту.",
+        "Мій стек сформований навколо ідеї повного циклу розробки. Я розумію, як пов'язати інтерфейс, дані, API та деплой в єдину стабільну систему.",
       groups: [
-        ["Frontend", "Компоненти, адаптивні секції, форми, стани, анімації, темна UI-система."],
-        ["Backend", "REST API, CRUD, auth, файли, повідомлення, валідація і зрозумілі маршрути."],
-        ["Mobile", "Flutter, Compose і mobile-first мислення навіть у web-інтерфейсах."],
-        ["Data & AI", "Бази даних, структуровані дані, парсинг, AI-підказки й автоматизація рутини."]
+        ["Frontend", "Компонентна архітектура, адаптивні екрани, контроль станів і акуратна дизайн-система."],
+        ["Backend", "REST API, авторизація, CRUD, форми, завантаження файлів і захищені маршрути."],
+        ["Mobile", "Кросплатформенні й нативні підходи з фокусом на сценарій користувача."],
+        ["Data & AI", "Структура даних, запити до бази, інтелектуальні підказки й автоматизація рутини."]
       ],
       details: [
-        "Збираю компоненти, сторінки й стани так, щоб інтерфейс не виглядав випадковим.",
-        "Пишу логіку на JavaScript/TypeScript і поступово звикаю до більш чистої структури коду.",
-        "Розумію, як будувати API, обробляти запити, зберігати дані й підключати frontend до backend.",
-        "Використовую Python для backend-задач, парсингу, обробки даних і швидких утиліт.",
-        "Працюю з Laravel/PHP у backend-логіці, формах, CRUD-підході та адмінських сценаріях.",
-        "Вчуся правильно думати про схеми, зв'язки, локальне збереження й стабільні дані.",
-        "Люблю Tailwind за швидкість, а motion додаю обережно, щоб було плавно, а не дешево.",
-        "Пишу мобільні інтерфейси й переношу це мислення в web: менше хаосу, більше зручності.",
-        "Пробую нативні підходи, компоненти й логіку екранів, щоб краще розуміти mobile UX.",
-        "Додаю AI там, де це робить продукт розумнішим, а не просто модним словом.",
-        "Працюю з Git як з нормальною історією проєкту: зміни, коміти, пуші, порядок."
+        "Проектую компонентну архітектуру, керую станами та створюю передбачувані інтерфейси.",
+        "Створюю адаптивну верстку та додаю акуратну, ненав'язливу анімацію.",
+        "Будую REST API, обробляю запити та забезпечую зв'язок фронтенду з базою.",
+        "Використовую для швидких бекенд-сервісів, парсингу даних та інтеграції ШІ.",
+        "Реалізую класичні CRUD-сценарії, роботу з формами та адмін-панелі.",
+        "Проектую схеми даних, зв'язки та оптимізую збереження інформації.",
+        "Розробляю кросплатформенні та нативні мобільні інтерфейси з фокусом на UX.",
+        "Інтегрую інтелектуальні підказки та автоматизую рутинні завдання користувача.",
+        "Веду чисту історію комітів, керую гілками та налаштовую деплой через Vercel, Render і Atlas."
       ],
       workflowTitle: "Мій робочий підхід",
       workflow:
-        "Я швидко збираю першу версію, потім проходжуся по деталях: відступи, responsive, порожні стани, помилки, тексти, hover, loading і те, як усе виглядає після десяти хвилин реального користування."
+        "Швидко збираю першу стабільну версію, а потім проходжуся по деталях: responsive, loading, empty-states, помилки, тексти, hover-ефекти, структура даних і те, як продукт відчувається після реального користування."
     },
     projects: {
       eyebrow: "Проєкти",
       title: "Мої проєкти",
       copy:
-        "Тут уже конкретні роботи: різні ідеї, різні стеки, різні задачі. Я залишила проєкти саме в цій секції, щоб портфоліо не повторювало одне й те саме в кожному блоці.",
+        "Тут зібрані роботи, які показують різні частини мого стеку: frontend, backend, mobile, AI, CMS-логіку та продуктове мислення. Кожен проєкт має свою задачу, стек і сценарій використання.",
       all: "Всі",
       featured: "Featured",
       details: "Деталі",
@@ -117,21 +115,21 @@ const dictionary = {
     },
     terminal: {
       eyebrow: "Fullstack signal",
-      title: "Портфоліо має поводитись як маленький продукт.",
+      title: "Портфоліо — це не статична візитка, а інженерний продукт.",
       copy:
-        "Тому тут є не тільки красивий перший екран, а й CMS, контактна форма, upload pipeline, auth, fallback data, адаптивність і структура, яку можна розвивати далі.",
+        "Усередині є CMS, контактна форма, upload pipeline, auth, fallback data, адаптивна сітка та структура, яку можна розвивати без ручного редагування коду.",
       lines: [
-        ["ui", "responsive layout, motion, clean dark visual system"],
-        ["api", "forms, auth, uploads, messages, admin actions"],
-        ["cms", "projects can be changed without editing code"],
-        ["care", "mobile checks, readable content, less visual noise"]
+        ["ui", "сучасна темна дизайн-система, плавна інтерактивність та адаптивна сітка"],
+        ["api", "безпечна обробка форм, захищені маршрути, завантаження файлів та адмін-панель"],
+        ["cms", "динамічне керування контентом без прямого втручання в код сайту"],
+        ["care", "ретельна перевірка мобільного UX, відсутність візуального хаосу та фокус на читанні"]
       ]
     },
     contact: {
       eyebrow: "Контакти",
-      title: "Можна написати мені напряму.",
+      title: "Зв'язатися зі мною",
       copy:
-        "Відкрита до практики, junior/fullstack задач, стажування, pet-проєктів і всього, де треба не просто накидати код, а подумати про користувача, вигляд і логіку. Я чуйна в комунікації, нормально ставлюся до фідбеку й люблю, коли задача рухається швидко та акуратно.",
+        "Відкрита до junior/fullstack позицій, стажування, командних pet-проектів та фріланс-задач. Якщо вам потрібен розробник, який не просто пише код, а занурюється в продукт і дбає про фінальний досвід користувача — давайте створимо щось круте разом.",
       name: "Ім'я",
       email: "Email",
       message: "Повідомлення",
@@ -142,13 +140,14 @@ const dictionary = {
       sending: "Надсилаю",
       success: "Повідомлення відправлено.",
       error: "Не вийшло відправити повідомлення.",
-      footerNote: "Built by Oleksandra with React, Node and a lot of careful UI polishing."
+      footerNote:
+        "Комунікація, увага до деталей і повага до дедлайнів для мене такі ж важливі, як чистий код і красивий інтерфейс."
     },
     footer: {
       status: "Open to junior/fullstack opportunities",
       stack: "React · Node · FastAPI · Laravel · Flutter",
       note:
-        "Зроблено як живе портфоліо: з CMS, адаптивністю, контактною формою і контентом, який можна розвивати без ручного редагування коду.",
+        "Портфоліо оформлене як живий продукт: CMS, адаптивність, контактна форма, продуманий контент і охайний UX без зайвого візуального шуму.",
       backTop: "Вгору"
     }
   },
@@ -165,28 +164,28 @@ const dictionary = {
     loader: {
       label: "Preparing portfolio",
       name: "Oleksandra",
-      note: "UI, code, CMS, responsive polish"
+      note: "UX, backend, mobile, CMS"
     },
     hero: {
-      eyebrow: "beginner fullstack developer",
+      eyebrow: "Junior Fullstack · Mobile First · Clean UI/UX · Product Thinking",
       titleName: "Oleksandra",
-      titleRole: "web, mobile",
-      titlePlace: "& backend builder",
+      titleRole: "Web, Mobile",
+      titlePlace: "& Backend Builder",
       intro:
-        "I am a beginner in fullstack development, but I approach work like a small product: user flow, interface states, data structure, and how everything feels on a phone.",
+        "I create digital products with a focus on UX, logical architecture, and mobile responsiveness. I do not just write code — I design interfaces that feel cohesive.",
       note:
-        "I like building sites and apps that have character: a clean visual system, thoughtful forms, a real backend, admin tools, responsive layout, and the feeling that someone cared about the details.",
+        "My focus is a clean visual system, thoughtful user flows, reliable backend logic, and the details that make a site feel alive: states, animation, validation, admin tools, and a smooth phone experience.",
       projectsCta: "View Projects",
       contactCta: "Contact Me",
       stats: [
-        ["Junior", "growth level"],
-        ["CMS", "content without code"],
-        ["Mobile", "first UX test"]
+        ["UX", "cohesive experience"],
+        ["API", "logic and data"],
+        ["CMS", "content without code"]
       ],
       identity: [
-        ["Country", "Ukraine"],
-        ["Timezone", "Europe/Kyiv"],
-        ["Range", "web · mobile · backend · UI"]
+        ["Junior Fullstack", "web · backend · mobile"],
+        ["Mobile First", "responsive from the first screen"],
+        ["Product Thinking", "interface as a finished product"]
       ],
       stackLabel: "Currently building with",
       stackCards: [
@@ -196,67 +195,65 @@ const dictionary = {
         ["Frontend", "React, Tailwind, motion UI"]
       ],
       deploy: "Ship path",
-      performance: "polished UI, clean states"
+      performance: "clean UI, stable states"
     },
     about: {
       eyebrow: "About",
-      title: "Short, honest, and to the point.",
+      title: "About me",
       copy:
-        "I enjoy building websites, clean interfaces, and small apps that look polished and behave logically. I am still growing as a developer, but I already think beyond just writing code: usability, maintainability, and whether the result is good enough to show.",
-      profileLabel: "Profile",
+        "I develop web and mobile applications by combining clean backend logic with polished visual execution. My approach is to treat every project as a real business product: user flows, database logic, error states, and small animations all matter.",
+      profileLabel: "Approach",
       profileTitle:
-        "A beginner with strong enthusiasm, good UI taste, and a habit of making tasks feel finished.",
+        "I want the phone version to feel like a complete, native, comfortable experience — not a cropped copy of a desktop site.",
       profileCopy:
-        "I care about details, learn new tasks quickly, and try not to leave interfaces raw. I like connecting the whole flow: page, form, API, database, file upload, messages, error states, and subtle animation. I especially care about mobile, because a phone quickly shows whether the design is truly usable.",
+        "I learn new technologies quickly, value constructive feedback, and enjoy bringing code and UI into balance. I care about products that look professional, behave predictably, and make every block feel intentional.",
       principlesTitle: "How I work",
       principles: [
-        "I start with the user flow: what should be visible, clear, and easy to do.",
-        "I build layouts that do not break on small screens or feel oversized on desktop.",
-        "I add backend logic where it matters: auth, CRUD, messages, uploads, saved data.",
-        "I prefer clean visuals: less noise, more breathing room, clear accents, useful states."
+        "01 / User journey design — I analyze who opens the page, what action they need, and how to make the path seamless.",
+        "02 / Mobile-first responsiveness — I build interfaces that scale cleanly: nothing sticks together on phones or feels stretched on desktop.",
+        "03 / Efficient backend — I design reliable logic: auth, validation, CRUD operations, database requests, and AI integration.",
+        "04 / Aesthetics and microinteractions — less visual noise, more breathing room, smooth hover effects, loaders, and empty states."
       ],
       interests: [
-        ["Web interfaces", "Modern pages with dark aesthetics, smooth motion, and careful typography."],
-        ["Mobile UX", "Touch-friendly controls, readable spacing, and layouts that do not feel cropped."],
-        ["Backend logic", "APIs, auth, forms, databases, and the parts that make a site actually work."],
-        ["UI/UX details", "Spacing, rhythm, contrast, hover states, empty states, and how motion feels."],
-        ["Useful apps", "Products for learning, habits, fitness, data organization, and daily tasks."],
-        ["Practice & growth", "I am still learning, but I am very motivated and like breaking difficult tasks down."]
+        ["Web products", "I like creating sites that feel like thoughtful digital products, not generic templates."],
+        ["Mobile experience", "I pay close attention to phones: sizing, spacing, buttons, readability, and a native feel."],
+        ["Backend logic", "APIs, auth, validation, databases, file uploads, and stable structure interest me."],
+        ["UI craft", "Typography, contrast, rhythm, hover states, and small interactions shape how the product feels."],
+        ["Product thinking", "I think about real usage, not only implementation."],
+        ["Fast learning", "I get into new tasks quickly, handle feedback well, and like moving projects toward a finished state."]
       ]
     },
     skills: {
       eyebrow: "Skills",
-      title: "Skills I am working with now.",
+      title: "Skills & Tech Stack",
       copy:
-        "My stack is still growing, but it is already bigger than one button on a page. I am learning to see the full picture: UI, data, requests, responsiveness, admin flows, validation, deploy, and project structure.",
+        "My stack is built around the idea of a full development cycle. I understand how to connect interface, data, API, and deployment into one stable system.",
       groups: [
-        ["Frontend", "Components, responsive sections, forms, states, animation, dark UI systems."],
-        ["Backend", "REST APIs, CRUD, auth, files, messages, validation, readable routes."],
-        ["Mobile", "Flutter, Compose, and mobile-first thinking even inside web interfaces."],
-        ["Data & AI", "Databases, structured data, parsing, AI helpers, and routine automation."]
+        ["Frontend", "Component architecture, responsive screens, state control, and a clean design system."],
+        ["Backend", "REST APIs, auth, CRUD, forms, file uploads, and protected routes."],
+        ["Mobile", "Cross-platform and native approaches focused on user experience."],
+        ["Data & AI", "Data structure, database queries, intelligent helpers, and routine automation."]
       ],
       details: [
-        "I build components, pages, and states so the interface feels intentional.",
-        "I use JavaScript/TypeScript for app logic and keep improving code structure.",
-        "I understand how to connect APIs, requests, saved data, and frontend behavior.",
-        "I use Python for backend tasks, parsing, data processing, and utilities.",
-        "I work with Laravel/PHP for backend logic, forms, CRUD, and admin scenarios.",
-        "I think about schemas, relationships, local storage, and stable data.",
-        "Tailwind helps me move fast; motion is used carefully so it feels premium.",
-        "Mobile UI helps me think about comfort, hierarchy, and real usage.",
-        "Native-style components help me understand mobile screens more deeply.",
-        "I add AI only when it makes the product smarter, not just trendy.",
-        "I use Git/GitHub for history, commits, pushes, and project order."
+        "I design component architecture, manage states, and create predictable interfaces.",
+        "I build responsive layouts and add subtle, non-intrusive animation.",
+        "I create REST APIs, handle requests, and connect frontend flows with databases.",
+        "I use it for fast backend services, data parsing, and AI integrations.",
+        "I implement classic CRUD scenarios, forms, and admin panels.",
+        "I design data schemas, relationships, and stable information storage.",
+        "I build cross-platform and native mobile interfaces with a focus on UX.",
+        "I integrate intelligent helpers and automate routine user tasks.",
+        "I keep clean commit history, manage branches, and configure deployment with Vercel, Render, and Atlas."
       ],
       workflowTitle: "Working approach",
       workflow:
-        "I build the first version quickly, then polish the things people actually feel: spacing, responsive behavior, empty states, errors, loading, copy, hover, and how the page behaves after real use."
+        "I quickly assemble the first stable version, then polish the details: responsive behavior, loading, empty states, errors, copy, hover effects, data structure, and how the product feels after real use."
     },
     projects: {
       eyebrow: "Projects",
       title: "My projects",
       copy:
-        "This section is where the actual work lives: different ideas, stacks, and product problems. Project names stay here so the rest of the portfolio can focus on personality and approach.",
+        "These projects show different parts of my stack: frontend, backend, mobile, AI, CMS logic, and product thinking. Each one has its own task, stack, and usage scenario.",
       all: "All",
       featured: "Featured",
       details: "Details",
@@ -264,21 +261,21 @@ const dictionary = {
     },
     terminal: {
       eyebrow: "Fullstack signal",
-      title: "A portfolio should behave like a small product.",
+      title: "This portfolio is an engineered product, not a static card.",
       copy:
-        "So this is not just a pretty first screen: it has a CMS, contact form, upload pipeline, auth, fallback data, responsive layout, and a structure that can keep growing.",
+        "It includes a CMS, contact form, upload pipeline, auth, fallback data, responsive layout, and a structure that can grow without manual code edits.",
       lines: [
-        ["ui", "responsive layout, motion, clean dark visual system"],
-        ["api", "forms, auth, uploads, messages, admin actions"],
-        ["cms", "projects can be changed without editing code"],
-        ["care", "mobile checks, readable content, less visual noise"]
+        ["ui", "modern dark design system, smooth interaction, and responsive grid"],
+        ["api", "secure form handling, protected routes, file uploads, and admin panel"],
+        ["cms", "dynamic content management without direct code edits"],
+        ["care", "mobile UX checks, no visual chaos, and a focus on readability"]
       ]
     },
     contact: {
       eyebrow: "Contact",
-      title: "You can message me directly.",
+      title: "Get in touch",
       copy:
-        "Open to practice, junior/fullstack tasks, internships, pet projects, and work where code, product thinking, and visual taste matter together. I communicate carefully, handle feedback well, and like when tasks move quickly but neatly.",
+        "Open to junior/fullstack roles, internships, team pet projects, and freelance tasks. If you need a developer who does not just write code, but gets into the product and cares about the final user experience, let us create something strong together.",
       name: "Name",
       email: "Email",
       message: "Message",
@@ -289,13 +286,14 @@ const dictionary = {
       sending: "Sending",
       success: "Message sent.",
       error: "Could not send message.",
-      footerNote: "Built by Oleksandra with React, Node and a lot of careful UI polishing."
+      footerNote:
+        "Communication, attention to detail, and respect for deadlines matter to me as much as clean code and polished UI."
     },
     footer: {
       status: "Open to junior/fullstack opportunities",
       stack: "React · Node · FastAPI · Laravel · Flutter",
       note:
-        "Built as a living portfolio: CMS, responsive design, a contact form, and content that can grow without manual code edits.",
+        "Built as a living portfolio: CMS, responsive design, contact form, thoughtful content, and clean UX without visual noise.",
       backTop: "Back top"
     }
   }

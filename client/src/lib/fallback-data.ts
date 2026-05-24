@@ -5,9 +5,9 @@ export const fallbackProjects: Project[] = [
     _id: "dreamtune",
     title: "DreamTune",
     description:
-      "Fullstack music player with Spotify playlist import, YouTube audio sourcing, offline playback, collaborative playlists, and Android-ready UI.",
+      "Full-stack music platform featuring Spotify playlist synchronization, automated YouTube audio sourcing, and offline playback.",
     longDescription:
-      "DreamTune is a fullstack music experience built with React, Vite, Tailwind, Node/Express, PostgreSQL, Capacitor, Spotify import flows, YouTube audio sourcing, offline-ready playback, and a polished mobile-first interface.",
+      "DreamTune is a full-stack music platform featuring Spotify playlist synchronization, automated YouTube audio sourcing, offline playback, collaborative playlists, and an Android-optimized, gesture-driven UI. The project focuses on a product-style listening experience rather than a simple audio demo.",
     technologies: ["React", "Vite", "Tailwind", "Node.js", "Express", "PostgreSQL", "Capacitor"],
     githubUrl: "https://github.com/sashik117/DreamTune",
     liveUrl: "https://huggingface.co/spaces/dreamtune7/dreamtune-api",
@@ -20,9 +20,9 @@ export const fallbackProjects: Project[] = [
     _id: "gymengine",
     title: "GymEngine",
     description:
-      "Mobile-first strength training app for fast workout logging, structured plans, offline data, analytics, and backend sync foundations.",
+      "Mobile-first strength training companion focused on rapid workout logging, structured routines, and offline-ready local storage.",
     longDescription:
-      "GymEngine is a product-style fitness app built with Flutter and Dart, supported by a Node/NestJS TypeScript backend. It includes authentication flows, SQLite/Drift offline storage, training plans, active workout mode, rest timers, analytics, localization, and a premium dark mobile UI.",
+      "GymEngine is a mobile-first strength training companion focused on rapid workout logging, structured routines, and offline-ready local storage with seamless cloud synchronization foundations. It combines Flutter/Dart mobile UX with backend planning for authentication, analytics, and long-term progress tracking.",
     technologies: ["Flutter", "Dart", "NestJS", "TypeScript", "SQLite", "Node.js"],
     githubUrl: "https://github.com/sashik117/GymEngine",
     imageUrl: "/assets/gymengine.png",
@@ -34,9 +34,9 @@ export const fallbackProjects: Project[] = [
     _id: "nutriai",
     title: "NutriAI",
     description:
-      "AI nutrition tracker with food logging, smart calorie goals, Gemini meal analysis, meal planning, rewards, and PostgreSQL persistence.",
+      "Smart nutrition platform featuring automated meal analysis via Gemini AI, calorie tracking, rewards, and PostgreSQL persistence.",
     longDescription:
-      "NutriAI is a mobile-first fullstack nutrition product using React, Vite, Tailwind, Node/Express, PostgreSQL, and Gemini AI. The project shows food tracking, intelligent meal analysis, weekly meal planning, water tracking, rewards, and a PWA-style phone interface.",
+      "NutriAI is a smart nutrition platform featuring automated meal analysis via Gemini AI, calorie tracking, gamified rewards, meal planning, and dynamic data persistence with PostgreSQL. The interface is designed around mobile food logging, fast decisions, and a more motivating daily health flow.",
     technologies: ["React", "Vite", "Tailwind", "Node.js", "Express", "PostgreSQL", "Gemini AI"],
     githubUrl: "https://github.com/sashik117/NutriAI",
     imageUrl: "/assets/nutriai.png",
@@ -48,9 +48,9 @@ export const fallbackProjects: Project[] = [
     _id: "pajamatalk",
     title: "PajamaTalk",
     description:
-      "Cozy language learning app with Kotlin Compose Multiplatform UI, FastAPI backend, JWT auth, SRS scheduling, and speaking WebSocket.",
+      "Cozy language learning tool with Kotlin Compose Multiplatform UI, FastAPI backend, JWT auth, SRS scheduling, and WebSockets.",
     longDescription:
-      "PajamaTalk is a mobile-first language learning product concept. The frontend is Kotlin Compose Multiplatform with Android-ready structure and desktop preview, while the backend is FastAPI with JWT auth, word storage, AI enrichment stubs, spaced repetition, context analysis, grammar drops, and realtime speaking practice.",
+      "PajamaTalk is a cozy language learning tool with a Kotlin Compose Multiplatform frontend, powered by a FastAPI backend. It features JWT authentication, Spaced Repetition scheduling, word storage, AI enrichment direction, and WebSockets for real-time speech practice.",
     technologies: ["Kotlin", "Compose", "FastAPI", "Python", "JWT", "WebSocket"],
     imageUrl: "/assets/pajamatalk.svg",
     category: "Language App",
@@ -61,9 +61,9 @@ export const fallbackProjects: Project[] = [
     _id: "driveprep",
     title: "DrivePrep / PDRPrep",
     description:
-      "Ukrainian driving theory exam platform with tests, MVS exam simulation, theory, tickets, progress, friends, chats, battles, and premium access.",
+      "Comprehensive Ukrainian driving theory exam platform with official MVS simulations, progress analytics, battles, and premium access.",
     longDescription:
-      "DrivePrep is a fullstack exam-prep platform for Ukrainian driving theory. It combines React/Vite/Tailwind and Framer Motion on the frontend with FastAPI, Python, PostgreSQL-style architecture, content import scripts, LiqPay-ready payments, progress analytics, social features, and a responsive mobile-first exam experience.",
+      "DrivePrep / PDRPrep is a comprehensive Ukrainian driving theory exam platform. It implements official MVS test simulations, interactive progress analytics, peer-to-peer battles, theory content, social features, and a premium tier architecture with a responsive mobile-first exam experience.",
     technologies: ["React", "Vite", "Tailwind", "FastAPI", "Python", "PostgreSQL", "Framer Motion"],
     githubUrl: "https://github.com/sashik117/pdr_prep",
     imageUrl: "/assets/driveprep.svg",
@@ -75,9 +75,9 @@ export const fallbackProjects: Project[] = [
     _id: "menu-portal",
     title: "Menu Portal",
     description:
-      "Laravel/PHP menu-management portal with admin-style CRUD flows, structured menu content, validation, and a practical CMS direction.",
+      "Enterprise-ready menu management system built with Laravel, featuring admin CRUD flows, validation, and a custom CMS direction.",
     longDescription:
-      "Menu Portal adds the PHP/Laravel side of the stack: a backend-focused menu management project with CRUD thinking, structured restaurant/menu data, form validation, admin editing flows, and a realistic content-management use case. It fits the portfolio because it shows that Oleksandra is not locked into one stack and can move between JavaScript, Python, mobile, and Laravel-style backend work.",
+      "Menu Portal is an enterprise-ready menu management system built with Laravel. It features role-based admin CRUD flows, strict request validation, structured menu content, form handling, and an intuitive custom CMS direction for managing restaurant-style data without editing source code.",
     technologies: ["PHP", "Laravel", "Blade", "MySQL", "CRUD", "Admin Panel"],
     imageUrl: "/assets/menu-portal.svg",
     category: "Laravel App",

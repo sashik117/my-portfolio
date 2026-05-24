@@ -6,17 +6,15 @@ import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
 const skills = [
-  { name: "React / Vite", level: 93, color: "bg-electric" },
-  { name: "JavaScript / TypeScript", level: 88, color: "bg-solar" },
+  { name: "React / Vite / TS / JS", level: 93, color: "bg-electric" },
+  { name: "Tailwind / Framer Motion", level: 92, color: "bg-electric" },
   { name: "Node.js / Express / NestJS", level: 86, color: "bg-mint" },
   { name: "Python / FastAPI", level: 82, color: "bg-electric" },
   { name: "PHP / Laravel", level: 74, color: "bg-mint" },
-  { name: "PostgreSQL / SQLite", level: 80, color: "bg-mint" },
-  { name: "Tailwind / Framer Motion", level: 92, color: "bg-electric" },
-  { name: "Flutter / Dart", level: 78, color: "bg-coral" },
-  { name: "Kotlin Compose", level: 70, color: "bg-solar" },
-  { name: "AI integrations", level: 76, color: "bg-coral" },
-  { name: "Git / GitHub", level: 88, color: "bg-white" }
+  { name: "PostgreSQL / SQLite / MongoDB", level: 80, color: "bg-mint" },
+  { name: "Flutter / Dart / Compose", level: 78, color: "bg-coral" },
+  { name: "AI Integrations / Gemini", level: 76, color: "bg-coral" },
+  { name: "Git / GitHub / CI/CD", level: 88, color: "bg-white" }
 ];
 
 const groupIcons: LucideIcon[] = [Code2, Server, Smartphone, Database];

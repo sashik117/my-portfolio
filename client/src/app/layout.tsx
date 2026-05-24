@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Oleksandra | Fullstack Developer Portfolio",
+  title: "Oleksandra | Web, Mobile & Backend Builder",
   description:
-    "Premium interactive portfolio of Oleksandra, a beginner fullstack developer from Ukraine.",
+    "Interactive portfolio of Oleksandra, a junior fullstack developer focused on UX, mobile-first interfaces, backend logic, and product thinking.",
   keywords: [
     "fullstack developer",
     "portfolio",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     "Flutter"
   ],
   openGraph: {
-    title: "Oleksandra | Fullstack Developer Portfolio",
-    description: "Beginner fullstack developer from Ukraine building modern web and mobile experiences.",
+    title: "Oleksandra | Web, Mobile & Backend Builder",
+    description: "Junior fullstack developer building modern web and mobile experiences with clean UI/UX.",
     type: "website"
   }
 };
