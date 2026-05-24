@@ -25,8 +25,20 @@ export default function Contact() {
     setState("loading");
     setFeedback("");
 
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      message: form.message.trim()
+    };
+
+    if (payload.name.length < 2 || payload.message.length < 10) {
+      setState("error");
+      setFeedback(t.contact.error);
+      return;
+    }
+
     try {
-      await portfolioApi.sendMessage(form);
+      await portfolioApi.sendMessage(payload);
       setState("success");
       setFeedback(t.contact.success);
       setForm({ name: "", email: "", message: "" });
@@ -85,6 +97,7 @@ export default function Contact() {
                 className="input"
                 required
                 minLength={2}
+                maxLength={80}
                 value={form.name}
                 onChange={(event) =>
                   setForm((value) => ({ ...value, name: event.target.value }))
@@ -98,6 +111,7 @@ export default function Contact() {
                 className="input"
                 required
                 type="email"
+                maxLength={160}
                 value={form.email}
                 onChange={(event) =>
                   setForm((value) => ({ ...value, email: event.target.value }))
@@ -112,6 +126,7 @@ export default function Contact() {
               className="input min-h-40 resize-y"
               required
               minLength={10}
+              maxLength={1800}
               value={form.message}
               onChange={(event) =>
                 setForm((value) => ({ ...value, message: event.target.value }))

@@ -95,7 +95,7 @@ export default function Skills() {
             </motion.article>
           ))}
           <motion.div
-            className="rounded-[20px] border border-electric/[0.18] bg-electric/[0.08] p-4 sm:col-span-2"
+            className="rounded-[20px] border border-electric/[0.18] bg-electric/[0.08] p-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
