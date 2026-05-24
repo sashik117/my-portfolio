@@ -91,13 +91,13 @@ export default function About() {
           {t.about.principles.map((principle, index) => (
             <motion.div
               key={principle}
-              className="group flex gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.045] p-3.5 transition hover:border-mint/[0.35] hover:bg-mint/[0.08] sm:p-4"
+              className="group flex gap-3.5 rounded-2xl border border-white/[0.08] bg-white/[0.045] p-4 transition hover:border-mint/[0.35] hover:bg-mint/[0.08] sm:p-5"
               whileHover={{ x: 4 }}
             >
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white text-xs font-black text-ink">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-sm font-black text-ink">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <p className="text-sm leading-6 text-white/[0.62] group-hover:text-white/[0.78]">
+              <p className="text-[0.95rem] leading-7 text-white/[0.68] group-hover:text-white/[0.82] md:text-base md:leading-7">
                 {principle}
               </p>
             </motion.div>
