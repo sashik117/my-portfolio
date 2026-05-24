@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Code2, Database, Server, Smartphone } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
 const skills = [
@@ -8,6 +10,7 @@ const skills = [
   { name: "JavaScript / TypeScript", level: 88, color: "bg-solar" },
   { name: "Node.js / Express / NestJS", level: 86, color: "bg-mint" },
   { name: "Python / FastAPI", level: 82, color: "bg-electric" },
+  { name: "PHP / Laravel", level: 74, color: "bg-mint" },
   { name: "PostgreSQL / SQLite", level: 80, color: "bg-mint" },
   { name: "Tailwind / Framer Motion", level: 92, color: "bg-electric" },
   { name: "Flutter / Dart", level: 78, color: "bg-coral" },
@@ -15,6 +18,8 @@ const skills = [
   { name: "AI integrations", level: 76, color: "bg-coral" },
   { name: "Git / GitHub", level: 88, color: "bg-white" }
 ];
+
+const groupIcons: LucideIcon[] = [Code2, Server, Smartphone, Database];
 
 export default function Skills() {
   const { t } = useLanguage();
@@ -33,6 +38,33 @@ export default function Skills() {
           <p className="section-copy">
             {t.skills.copy}
           </p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {t.skills.groups.map(([title, text], index) => {
+              const Icon = groupIcons[index];
+
+              return (
+                <motion.article
+                  key={title}
+                  className="group rounded-2xl border border-white/[0.10] bg-[#0b111d] p-4 transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
+                  initial={{ opacity: 0, x: -18 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.06 }}
+                  whileHover={{ x: 4 }}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-ink transition group-hover:bg-electric">
+                      <Icon size={18} />
+                    </span>
+                    <div>
+                      <h3 className="text-sm font-black uppercase text-white">{title}</h3>
+                      <p className="mt-1 text-sm leading-6 text-white/[0.56]">{text}</p>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
         </motion.div>
 
         <div className="grid gap-4 sm:grid-cols-2">

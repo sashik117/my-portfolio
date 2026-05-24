@@ -20,7 +20,7 @@ export default function CustomCursor() {
       x = event.clientX;
       y = event.clientY;
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        dotRef.current.style.transform = `translate3d(${x - 4}px, ${y - 4}px, 0)`;
       }
     };
 
@@ -28,7 +28,7 @@ export default function CustomCursor() {
       ringX += (x - ringX) * 0.18;
       ringY += (y - ringY) * 0.18;
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+        ringRef.current.style.transform = `translate3d(${ringX - 20}px, ${ringY - 20}px, 0)`;
       }
       frame = requestAnimationFrame(animate);
     };
@@ -46,12 +46,12 @@ export default function CustomCursor() {
     <>
       <div
         ref={ringRef}
-        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-10 w-10 -translate-x-1/[0.02] -translate-y-1/[0.02] rounded-full border border-electric/[0.35] mix-blend-screen md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-10 w-10 rounded-full border border-electric/[0.35] mix-blend-screen md:block"
         aria-hidden="true"
       />
       <div
         ref={dotRef}
-        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-2 w-2 -translate-x-1/[0.02] -translate-y-1/[0.02] rounded-full bg-electric shadow-glow md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-2 w-2 rounded-full bg-electric shadow-glow md:block"
         aria-hidden="true"
       />
     </>

@@ -34,9 +34,9 @@ export default function Hero() {
         window.setTimeout(() => {
           setWordIndex((index) => (index + 1) % words.length);
           setLetters("");
-        }, 1200);
+        }, 2200);
       }
-    }, 72);
+    }, 90);
 
     return () => window.clearInterval(typing);
   }, [wordIndex]);
@@ -44,7 +44,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-28 md:px-6"
+      className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-32 md:px-6"
     >
       <motion.div
         className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]"
@@ -77,6 +77,33 @@ export default function Hero() {
           >
             {t.hero.intro}
           </motion.p>
+          <motion.p
+            className="mt-4 max-w-2xl text-sm leading-7 text-white/[0.56] md:text-base"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            {t.hero.note}
+          </motion.p>
+
+          <motion.div
+            className="mt-6 grid gap-2 sm:grid-cols-3"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.54 }}
+          >
+            {t.hero.identity.map(([label, value]) => (
+              <div
+                key={label}
+                className="rounded-2xl border border-white/[0.10] bg-[#0b111d] px-4 py-3"
+              >
+                <div className="text-[0.68rem] font-black uppercase text-electric">
+                  {label}
+                </div>
+                <div className="mt-1 text-sm font-black text-white">{value}</div>
+              </div>
+            ))}
+          </motion.div>
 
           <motion.div
             className="mt-8 flex flex-col gap-3 sm:flex-row"

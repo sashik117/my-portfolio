@@ -94,11 +94,11 @@ export default function Projects() {
               className="block w-full text-left"
               aria-label={`Open ${project.title}`}
             >
-              <div className="relative aspect-[1.42] overflow-hidden border-b border-white/[0.10] bg-white/[0.08]">
+              <div className="relative aspect-[1.42] overflow-hidden border-b border-white/[0.10] bg-[#08101c] p-3">
                 <img
                   src={mediaUrl(project.imageUrl) || "/assets/project-aurora.svg"}
                   alt={project.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full rounded-2xl object-contain transition duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
                 <div className="absolute left-4 top-4 rounded-full border border-white/[0.14] bg-black/[0.42] px-3 py-1 text-xs font-black text-white backdrop-blur-md">
@@ -181,11 +181,11 @@ export default function Projects() {
               exit={{ opacity: 0, y: 16, scale: 0.98 }}
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="relative aspect-[1.9] min-h-[220px] overflow-hidden border-b border-white/[0.10]">
+              <div className="relative aspect-[1.9] min-h-[220px] overflow-hidden border-b border-white/[0.10] bg-[#08101c] p-3">
                 <img
                   src={mediaUrl(selected.imageUrl) || "/assets/project-aurora.svg"}
                   alt={selected.title}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full rounded-2xl object-contain"
                 />
                 <button
                   className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full border border-white/[0.12] bg-black/[0.45] text-white backdrop-blur"

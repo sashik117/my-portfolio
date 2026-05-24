@@ -72,6 +72,19 @@ export const fallbackProjects: Project[] = [
     status: "published"
   },
   {
+    _id: "menu-portal",
+    title: "Menu Portal",
+    description:
+      "Laravel/PHP menu-management portal with admin-style CRUD flows, structured menu content, validation, and a practical CMS direction.",
+    longDescription:
+      "Menu Portal adds the PHP/Laravel side of the stack: a backend-focused menu management project with CRUD thinking, structured restaurant/menu data, form validation, admin editing flows, and a realistic content-management use case. It fits the portfolio because it shows that Oleksandra is not locked into one stack and can move between JavaScript, Python, mobile, and Laravel-style backend work.",
+    technologies: ["PHP", "Laravel", "Blade", "MySQL", "CRUD", "Admin Panel"],
+    imageUrl: "/assets/menu-portal.svg",
+    category: "Laravel App",
+    featured: false,
+    status: "published"
+  },
+  {
     _id: "parsing-pdr",
     title: "PDR PDF Parser",
     description:

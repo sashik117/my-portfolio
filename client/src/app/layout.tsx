@@ -12,7 +12,10 @@ export const metadata: Metadata = {
     "Next.js",
     "Node.js",
     "Express",
-    "MongoDB"
+    "MongoDB",
+    "Laravel",
+    "PHP",
+    "Flutter"
   ],
   openGraph: {
     title: "Oleksandra | Fullstack Developer Portfolio",

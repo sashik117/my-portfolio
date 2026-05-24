@@ -2,13 +2,13 @@
 
 import clsx from "clsx";
 import { Languages, Menu, Sparkles, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { PointerEvent, useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 
 export default function Navbar() {
   const { locale, t, toggleLocale } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
   const localeLabel = locale === "uk" ? "UA" : "EN";
 
   const links = [
@@ -19,20 +19,39 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
+  const moveGlow = (event: PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--nav-x", `${event.clientX - rect.left}px`);
+  };
+
   return (
-    <header className="fixed left-0 right-0 top-0 z-40 px-3 pt-3 md:px-6">
+    <header
+      className="fixed left-0 right-0 top-0 z-40 border-b border-white/[0.10] bg-[#080d16] shadow-[0_18px_60px_rgba(0,0,0,0.38)]"
+      onPointerMove={moveGlow}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-80"
+        style={{
+          background:
+            "radial-gradient(420px circle at var(--nav-x, 50%) 0%, rgba(110,231,249,0.12), transparent 48%)"
+        }}
+      />
       <nav
         className={clsx(
-          "mx-auto flex h-16 w-full max-w-6xl items-center justify-between rounded-2xl border px-4 transition md:px-5",
-          scrolled
-            ? "border-white/[0.12] bg-ink/[0.70] shadow-lift backdrop-blur-xl"
-            : "border-white/[0.08] bg-white/[0.05] backdrop-blur-md"
+          "relative mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between px-4 transition md:px-5"
         )}
       >
         <a href="#top" className="flex min-w-0 items-center gap-3 font-black">
@@ -76,7 +95,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="mx-auto mt-2 w-full max-w-6xl rounded-2xl border border-white/[0.12] bg-ink/[0.92] p-2 shadow-lift backdrop-blur-xl md:hidden">
+        <div className="relative mx-auto w-full max-w-6xl border-t border-white/[0.08] bg-[#080d16] p-2 shadow-lift md:hidden">
           {links.map((link) => (
             <a
               key={link.href}
@@ -89,6 +108,7 @@ export default function Navbar() {
           ))}
         </div>
       )}
+      <div className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-electric via-mint to-coral" style={{ width: `${progress}%` }} />
     </header>
   );
 }

@@ -1,6 +1,7 @@
 import About from "@/components/portfolio/About";
 import Contact from "@/components/portfolio/Contact";
 import CustomCursor from "@/components/portfolio/CustomCursor";
+import Footer from "@/components/portfolio/Footer";
 import Hero from "@/components/portfolio/Hero";
 import InteractiveBackground from "@/components/portfolio/InteractiveBackground";
 import { LanguageProvider } from "@/components/portfolio/LanguageProvider";
@@ -25,6 +26,7 @@ export default function Home() {
         <TerminalPanel />
         <Contact />
       </main>
+      <Footer />
     </LanguageProvider>
   );
 }
