@@ -107,7 +107,7 @@ const dictionary = {
       eyebrow: "Проєкти",
       title: "Мої проєкти",
       copy:
-        "Тут зібрані роботи, які показують різні частини мого стеку: frontend, backend, mobile, AI, CMS-логіку та продуктове мислення. Кожен проєкт має свою задачу, стек і сценарій використання.",
+        "Тут зібрані роботи, які показують різні частини мого стеку: frontend, backend, mobile, AI, CMS-логіку та продуктове мислення. Фільтри зверху працюють по мовах і технологіях, а тип продукту винесений прямо на картку проєкту, щоб одразу було видно і стек, і реальний сценарій використання.",
       all: "Всі",
       featured: "Featured",
       details: "Деталі",
@@ -254,7 +254,7 @@ const dictionary = {
       eyebrow: "Projects",
       title: "My projects",
       copy:
-        "These projects show different parts of my stack: frontend, backend, mobile, AI, CMS logic, and product thinking. Each one has its own task, stack, and usage scenario.",
+        "These projects show different parts of my stack: frontend, backend, mobile, AI, CMS logic, and product thinking. The filters are based on languages and technologies, while the product type stays directly on each project card, so the stack and the real usage scenario are clear at the same time.",
       all: "All",
       featured: "Featured",
       details: "Details",
