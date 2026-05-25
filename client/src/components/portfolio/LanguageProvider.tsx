@@ -81,7 +81,7 @@ const dictionary = {
       eyebrow: "Навички",
       title: "Skills & Tech Stack",
       copy:
-        "Мій стек сформований навколо ідеї повного циклу розробки. Я розумію, як пов'язати інтерфейс, дані, API та деплой в єдину стабільну систему.",
+        "Мій стек сформований навколо ідеї повного циклу розробки. Я розумію, як пов'язати інтерфейс, дані, API та деплой в єдину стабільну систему. Мені подобається не просто вчити технології окремо, а збирати з них готовий досвід: продумати екран, прописати логіку, зберегти дані, обробити помилки й довести все до акуратного вигляду. Я швидко розбираюсь у нових інструментах, уважно ставлюся до деталей і люблю, коли навіть junior-проєкт виглядає зібрано, відповідально та по-дорослому.",
       groups: [
         ["Frontend", "Компонентна архітектура, адаптивні екрани, контроль станів і акуратна дизайн-система."],
         ["Backend", "REST API, авторизація, CRUD, форми, завантаження файлів і захищені маршрути."],
@@ -100,7 +100,7 @@ const dictionary = {
       ],
       workflowTitle: "Мій робочий підхід",
       workflow:
-        "Починаю зі стабільної робочої версії, а далі доводжу її до відчуття готового продукту: перевіряю мобільні сценарії, стани завантаження, помилки, empty-states, тексти, hover-ефекти й структуру даних. Мені важливо, щоб після першого кліку було зрозуміло: тут не просто написали код, тут подумали про людину.",
+        "Починаю зі стабільної робочої версії, потім швидко проходжу responsive, loading, empty-states, помилки й фінальний polish.",
       workflowSteps: ["MVP", "mobile QA", "states", "polish"]
     },
     projects: {
@@ -228,7 +228,7 @@ const dictionary = {
       eyebrow: "Skills",
       title: "Skills & Tech Stack",
       copy:
-        "My stack is built around the idea of a full development cycle. I understand how to connect interface, data, API, and deployment into one stable system.",
+        "My stack is built around the idea of a full development cycle. I understand how to connect interface, data, API, and deployment into one stable system. I like learning technologies as part of a real product flow: designing the screen, writing the logic, storing data, handling errors, and polishing the final experience. I learn quickly, care about details, and want even a junior-level project to feel structured, responsible, and ready to grow.",
       groups: [
         ["Frontend", "Component architecture, responsive screens, state control, and a clean design system."],
         ["Backend", "REST APIs, auth, CRUD, forms, file uploads, and protected routes."],
@@ -247,7 +247,7 @@ const dictionary = {
       ],
       workflowTitle: "Working approach",
       workflow:
-        "I start with a stable working version, then polish it into a product-like experience: mobile flows, loading states, errors, empty states, copy, hover effects, and data structure. I want the first click to feel like someone cared about the person using the product.",
+        "I start with a stable working version, then quickly check responsiveness, loading, empty states, errors, and final polish.",
       workflowSteps: ["MVP", "mobile QA", "states", "polish"]
     },
     projects: {
