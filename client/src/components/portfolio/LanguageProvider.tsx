@@ -95,7 +95,7 @@ const dictionary = {
         "Використовую Python і FastAPI для швидких бекенд-сервісів, парсингу даних та інтеграції ШІ. Це допомагає швидко збирати корисні інструменти й автоматизувати рутину.",
         "Реалізую класичні CRUD-сценарії, роботу з формами та адмін-панелі. Laravel допомагає мені будувати зрозумілу логіку керування контентом без ручного редагування коду.",
         "Проєктую схеми даних, зв'язки та оптимізую збереження інформації. Мені подобається, коли база підтримує продуктову логіку, а не просто десь зберігає поля.",
-        "Розробляю кросплатформенні та нативні мобільні інтерфейси з фокусом на UX. Особливо уважно дивлюся на розміри, натискання, темп дій і відчуття нативності.",
+        "Розробляю мобільні інтерфейси з фокусом на UX, зручні натискання й відчуття нативності.",
         "Інтегрую інтелектуальні підказки та автоматизую рутинні завдання користувача. AI для мене — це не модне слово, а спосіб зробити застосунок кориснішим і швидшим."
       ],
       workflowTitle: "Мій робочий підхід",
@@ -242,7 +242,7 @@ const dictionary = {
         "I use Python and FastAPI for fast backend services, data parsing, and AI integrations. It helps me build useful tools quickly and automate repetitive work.",
         "I implement classic CRUD scenarios, forms, and admin panels. Laravel helps me build clear content-management logic without manual code edits.",
         "I design data schemas, relationships, and stable information storage. I like when the database supports the product logic instead of only storing fields.",
-        "I build cross-platform and native mobile interfaces with a focus on UX. I pay attention to sizing, touch targets, rhythm, and a native feeling.",
+        "I build mobile interfaces with a focus on UX, comfortable touch targets, and a native feeling.",
         "I integrate intelligent helpers and automate routine user tasks. For me, AI is not just a buzzword, but a way to make an app more useful and faster."
       ],
       workflowTitle: "Working approach",
