@@ -262,22 +262,10 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="mt-7 flex flex-col gap-3 sm:flex-row"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.62 }}
-          >
-            <MagneticButton href="#projects">{t.hero.projectsCta}</MagneticButton>
-            <MagneticButton href="#contact" variant="secondary">
-              {t.hero.contactCta}
-            </MagneticButton>
-          </motion.div>
-
-          <motion.div
             className="mt-7 grid grid-cols-3 gap-2 text-xs sm:max-w-xl sm:gap-3"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.68 }}
+            transition={{ duration: 0.8, delay: 0.62 }}
           >
             {t.hero.stats.map(([value, label], index) => (
               <motion.div
@@ -292,6 +280,18 @@ export default function Hero() {
                 <div className="mt-1 text-white/[0.54]">{label}</div>
               </motion.div>
             ))}
+          </motion.div>
+
+          <motion.div
+            className="mt-7 flex flex-col gap-3 sm:flex-row"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.68 }}
+          >
+            <MagneticButton href="#projects">{t.hero.projectsCta}</MagneticButton>
+            <MagneticButton href="#contact" variant="secondary">
+              {t.hero.contactCta}
+            </MagneticButton>
           </motion.div>
         </div>
 

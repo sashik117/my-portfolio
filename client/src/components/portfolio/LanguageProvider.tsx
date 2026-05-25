@@ -129,7 +129,7 @@ const dictionary = {
       eyebrow: "Контакти",
       title: "Зв'язатися зі мною",
       copy:
-        "Відкрита до junior/fullstack позицій, стажування, командних pet-проєктів та фріланс-задач. Якщо вам потрібен розробник, який не просто пише код, а занурюється в продукт і дбає про фінальний досвід користувача — давайте створимо щось круте разом.",
+        "Відкрита до junior/fullstack позицій, стажування, командних pet-проєктів та фріланс-задач, де важливі не тільки дедлайни, а й охайний інтерфейс, логіка під капотом і нормальне відчуття продукту на телефоні. Я не просто беру задачу і мовчки пишу код: мені цікаво зрозуміти мету, сценарій користувача, слабкі місця і зробити так, щоб результат виглядав продумано, працював стабільно та був зрозумілий команді. Якщо вам потрібна розробниця, яка швидко вчиться, уважно ставиться до деталей, не боїться фідбеку і реально хоче доводити продукт до красивого фінального стану — давайте створимо щось сильне разом.",
       name: "Ім'я",
       email: "Email",
       message: "Повідомлення",
@@ -276,7 +276,7 @@ const dictionary = {
       eyebrow: "Contact",
       title: "Get in touch",
       copy:
-        "Open to junior/fullstack roles, internships, team pet projects, and freelance tasks. If you need a developer who does not just write code, but gets into the product and cares about the final user experience, let us create something strong together.",
+        "Open to junior/fullstack roles, internships, team pet projects, and freelance tasks where careful UI, reliable logic, and a polished mobile experience matter. I do not just take a task and quietly write code: I like to understand the goal, the user path, the weak spots, and how the feature should feel after a real person opens it on a phone. If you need a developer who learns quickly, listens to feedback, pays attention to details, and genuinely wants to move the product toward a clean finished state, let us create something strong together.",
       name: "Name",
       email: "Email",
       message: "Message",
