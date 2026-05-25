@@ -109,9 +109,9 @@ button {
 .section-copy {
   max-width: 720px;
   margin-top: 20px;
-  color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1.05rem;
+  line-height: 1.9;
 }
 
 .glass {
@@ -193,6 +193,11 @@ button {
   .section-title {
     font-size: 1.65rem;
     line-height: 1.14;
+  }
+
+  .section-copy {
+    font-size: 1rem;
+    line-height: 1.82;
   }
 }
 

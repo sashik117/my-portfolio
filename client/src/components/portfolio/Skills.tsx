@@ -128,7 +128,7 @@ export default function Skills() {
               <BadgeCheck size={18} className="text-electric" />
               {t.skills.workflowTitle}
             </div>
-            <p className="mt-3 text-base leading-7 text-white/[0.78] md:text-lg md:leading-8">
+            <p className="mt-3 text-sm leading-6 text-white/[0.68] md:text-base md:leading-7">
               {t.skills.workflow}
             </p>
           </div>
@@ -145,8 +145,8 @@ export default function Skills() {
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="text-[0.68rem] font-black uppercase text-electric">
-                  {String(index + 1).padStart(2, "0")}
+                <div className="grid h-8 w-8 place-items-center rounded-xl border border-electric/[0.28] bg-electric/[0.10] text-electric">
+                  <BadgeCheck size={16} />
                 </div>
                 <div className="mt-1 text-sm font-bold text-white/[0.82]">{step}</div>
               </motion.div>

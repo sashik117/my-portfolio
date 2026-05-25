@@ -1,10 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AppWindow, Bot, Braces, Dumbbell, GraduationCap, Languages, Smartphone } from "lucide-react";
+import {
+  AppWindow,
+  Bot,
+  Braces,
+  Dumbbell,
+  GraduationCap,
+  Languages,
+  Route,
+  ServerCog,
+  Smartphone,
+  WandSparkles
+} from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
 const interestIcons = [AppWindow, Smartphone, Bot, Dumbbell, Languages, GraduationCap];
+const principleIcons = [Route, Smartphone, ServerCog, WandSparkles];
 const interestThemes = [
   "hover:border-electric/[0.35] hover:bg-electric/[0.08]",
   "hover:border-mint/[0.35] hover:bg-mint/[0.08]",
@@ -19,7 +31,12 @@ const principleThemes = [
   "hover:border-coral/[0.38] hover:bg-coral/[0.08]",
   "hover:border-solar/[0.38] hover:bg-solar/[0.08]"
 ];
-const principleBadgeColors = ["bg-electric", "bg-mint", "bg-coral", "bg-solar"];
+const principleOrbStyles = [
+  "border-electric/[0.35] bg-electric/[0.12] text-electric shadow-[0_0_26px_rgba(110,231,249,0.16)]",
+  "border-mint/[0.35] bg-mint/[0.12] text-mint shadow-[0_0_26px_rgba(74,222,128,0.14)]",
+  "border-coral/[0.35] bg-coral/[0.12] text-coral shadow-[0_0_26px_rgba(251,113,133,0.14)]",
+  "border-solar/[0.35] bg-solar/[0.12] text-solar shadow-[0_0_26px_rgba(250,204,21,0.13)]"
+];
 
 export default function About() {
   const { t } = useLanguage();
@@ -54,7 +71,7 @@ export default function About() {
           <p className="relative mt-5 text-xl font-black leading-tight text-white md:text-2xl">
             {t.about.profileTitle}
           </p>
-          <p className="relative mt-5 leading-8 text-white/[0.70]">
+          <p className="relative mt-5 text-base leading-8 text-white/[0.80] md:text-[1.05rem]">
             {t.about.profileCopy}
           </p>
           <div className="relative mt-7 flex flex-wrap gap-2">
@@ -117,21 +134,26 @@ export default function About() {
           {t.about.principlesTitle}
         </div>
         <div className="relative mt-4 grid gap-3 md:grid-cols-2">
-          {t.about.principles.map((principle, index) => (
+          {t.about.principles.map((principle, index) => {
+            const Icon = principleIcons[index];
+
+            return (
             <motion.div
               key={principle}
-              className={`group flex gap-3.5 rounded-2xl border border-white/[0.08] bg-white/[0.045] p-4 transition ${principleThemes[index]} sm:p-5`}
+              className={`group relative overflow-hidden flex gap-3.5 rounded-2xl border border-white/[0.08] bg-white/[0.045] p-4 transition ${principleThemes[index]} sm:p-5`}
               whileHover={{ x: 4 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl text-sm font-black text-ink ${principleBadgeColors[index]}`}>
-                {String(index + 1).padStart(2, "0")}
+              <div className="absolute inset-y-5 left-[35px] w-px bg-gradient-to-b from-white/[0.20] to-transparent" />
+              <span className={`relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl border backdrop-blur ${principleOrbStyles[index]}`}>
+                <Icon size={21} />
               </span>
               <p className="text-[0.95rem] leading-7 text-white/[0.68] group-hover:text-white/[0.82] md:text-base md:leading-7">
                 {principle}
               </p>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </motion.div>
     </section>

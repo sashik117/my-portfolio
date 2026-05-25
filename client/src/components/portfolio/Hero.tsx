@@ -211,7 +211,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            className="mt-7 max-w-2xl text-sm leading-7 text-white/[0.68] md:text-base md:leading-8"
+            className="mt-7 max-w-2xl text-[1rem] leading-8 text-white/[0.84] md:text-[1.08rem] md:leading-9"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.44 }}
@@ -219,7 +219,7 @@ export default function Hero() {
             {t.hero.intro}
           </motion.p>
           <motion.p
-            className="mt-4 max-w-2xl text-sm leading-7 text-white/[0.56]"
+            className="mt-4 max-w-2xl text-[0.96rem] leading-8 text-white/[0.74] md:text-[1.02rem]"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52 }}
