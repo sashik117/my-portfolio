@@ -2,7 +2,7 @@
 
 import { portfolioApi } from "@/lib/api";
 import { motion } from "framer-motion";
-import { Github, Instagram, Mail, Send, SendHorizonal } from "lucide-react";
+import { Github, Instagram, Mail, MessageCircle, Send, SendHorizonal, ShieldCheck, Sparkles } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
@@ -13,6 +13,8 @@ const socials = [
   { label: "Email", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
   { label: "Instagram", href: "https://www.instagram.com/_o.suhova/", icon: Instagram }
 ];
+
+const badgeIcons = [Sparkles, ShieldCheck, MessageCircle];
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -77,24 +79,55 @@ export default function Contact() {
               </a>
             ))}
           </div>
-          <div className="mt-5 rounded-2xl border border-white/[0.10] bg-white/[0.05] p-4 text-sm leading-6 text-white/[0.56]">
-            {t.contact.footerNote}
+          <div className="group relative mt-5 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.05] p-4 text-sm leading-6 text-white/[0.66] transition hover:border-electric/[0.30] hover:bg-electric/[0.07]">
+            <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-electric/[0.10] blur-2xl transition group-hover:bg-mint/[0.12]" />
+            <div className="relative flex gap-3">
+              <Mail size={18} className="mt-1 shrink-0 text-electric" />
+              <span>{t.contact.footerNote}</span>
+            </div>
           </div>
         </motion.div>
 
         <motion.form
           onSubmit={submit}
-          className="glass rounded-[26px] p-5 md:p-7"
+          className="glass relative overflow-hidden rounded-[26px] p-5 md:p-7"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7, delay: 0.1 }}
+          whileHover={{ y: -4 }}
         >
+          <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-electric/[0.10] blur-3xl" />
+          <div className="absolute -bottom-20 left-8 h-40 w-40 rounded-full bg-coral/[0.08] blur-3xl" />
+          <div className="relative mb-5 flex flex-wrap gap-2">
+            {t.contact.formBadges.map((badge, index) => {
+              const Icon = badgeIcons[index];
+
+              return (
+                <motion.span
+                  key={badge}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.06] px-3 py-2 text-xs font-bold text-white/[0.72]"
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{ y: -2 }}
+                >
+                  <Icon size={14} className={index === 0 ? "text-electric" : index === 1 ? "text-mint" : "text-coral"} />
+                  {badge}
+                </motion.span>
+              );
+            })}
+          </div>
           <div className="grid gap-4 md:grid-cols-2">
-            <label>
+            <motion.label
+              className="group block rounded-2xl border border-white/[0.08] bg-white/[0.045] p-3 transition focus-within:border-electric/[0.45] focus-within:bg-electric/[0.07] hover:border-electric/[0.28]"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.99 }}
+            >
               <span className="mb-2 block text-sm font-bold text-white/[0.62]">{t.contact.name}</span>
               <input
-                className="input"
+                className="input bg-black/[0.18]"
                 required
                 minLength={2}
                 maxLength={80}
@@ -104,11 +137,15 @@ export default function Contact() {
                 }
                 placeholder={t.contact.namePlaceholder}
               />
-            </label>
-            <label>
+            </motion.label>
+            <motion.label
+              className="group block rounded-2xl border border-white/[0.08] bg-white/[0.045] p-3 transition focus-within:border-mint/[0.45] focus-within:bg-mint/[0.07] hover:border-mint/[0.28]"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.99 }}
+            >
               <span className="mb-2 block text-sm font-bold text-white/[0.62]">{t.contact.email}</span>
               <input
-                className="input"
+                className="input bg-black/[0.18]"
                 required
                 type="email"
                 maxLength={160}
@@ -118,12 +155,16 @@ export default function Contact() {
                 }
                 placeholder={t.contact.emailPlaceholder}
               />
-            </label>
+            </motion.label>
           </div>
-          <label className="mt-4 block">
+          <motion.label
+            className="group mt-4 block rounded-2xl border border-white/[0.08] bg-white/[0.045] p-3 transition focus-within:border-coral/[0.45] focus-within:bg-coral/[0.07] hover:border-coral/[0.28]"
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.99 }}
+          >
             <span className="mb-2 block text-sm font-bold text-white/[0.62]">{t.contact.message}</span>
             <textarea
-              className="input min-h-40 resize-y"
+              className="input min-h-40 resize-y bg-black/[0.18]"
               required
               minLength={10}
               maxLength={1800}
@@ -133,9 +174,9 @@ export default function Contact() {
               }
               placeholder={t.contact.messagePlaceholder}
             />
-          </label>
+          </motion.label>
 
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <MagneticButton type="submit" disabled={state === "loading"}>
               {state === "loading" ? t.contact.sending : t.contact.send}
             </MagneticButton>

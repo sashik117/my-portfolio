@@ -89,19 +89,18 @@ const dictionary = {
         ["Data & AI", "Структура даних, запити до бази, інтелектуальні підказки й автоматизація рутини."]
       ],
       details: [
-        "Проєктую компонентну архітектуру, керую станами та створюю передбачувані інтерфейси.",
-        "Створюю адаптивну верстку та додаю акуратну, ненав'язливу анімацію.",
-        "Будую REST API, обробляю запити та забезпечую зв'язок фронтенду з базою.",
-        "Використовую для швидких бекенд-сервісів, парсингу даних та інтеграції ШІ.",
-        "Реалізую класичні CRUD-сценарії, роботу з формами та адмін-панелі.",
-        "Проєктую схеми даних, зв'язки та оптимізую збереження інформації.",
-        "Розробляю кросплатформенні та нативні мобільні інтерфейси з фокусом на UX.",
-        "Інтегрую інтелектуальні підказки та автоматизую рутинні завдання користувача.",
-        "Веду чисту історію комітів, керую гілками та налаштовую деплой через Vercel, Render і Atlas."
+        "Проєктую компонентну архітектуру, керую станами та створюю передбачувані інтерфейси. Люблю, коли екран складається з охайних блоків, а не з випадкового набору кнопок.",
+        "Створюю адаптивну верстку та додаю акуратну, ненав'язливу анімацію. Для мене важливо, щоб рух підкреслював дію користувача, а не просто блищав заради ефекту.",
+        "Будую REST API, обробляю запити та забезпечую зв'язок фронтенду з базою. Думаю про валідацію, зрозумілі помилки та структуру, яку легко підтримувати.",
+        "Використовую Python і FastAPI для швидких бекенд-сервісів, парсингу даних та інтеграції ШІ. Це допомагає швидко збирати корисні інструменти й автоматизувати рутину.",
+        "Реалізую класичні CRUD-сценарії, роботу з формами та адмін-панелі. Laravel допомагає мені будувати зрозумілу логіку керування контентом без ручного редагування коду.",
+        "Проєктую схеми даних, зв'язки та оптимізую збереження інформації. Мені подобається, коли база підтримує продуктову логіку, а не просто десь зберігає поля.",
+        "Розробляю кросплатформенні та нативні мобільні інтерфейси з фокусом на UX. Особливо уважно дивлюся на розміри, натискання, темп дій і відчуття нативності.",
+        "Інтегрую інтелектуальні підказки та автоматизую рутинні завдання користувача. AI для мене — це не модне слово, а спосіб зробити застосунок кориснішим і швидшим."
       ],
       workflowTitle: "Мій робочий підхід",
       workflow:
-        "Починаю зі стабільної робочої версії, а далі доводжу її до відчуття готового продукту: перевіряю мобільні сценарії, стани завантаження, помилки, empty-states, тексти, hover-ефекти й структуру даних.",
+        "Починаю зі стабільної робочої версії, а далі доводжу її до відчуття готового продукту: перевіряю мобільні сценарії, стани завантаження, помилки, empty-states, тексти, hover-ефекти й структуру даних. Мені важливо, щоб після першого кліку було зрозуміло: тут не просто написали код, тут подумали про людину.",
       workflowSteps: ["MVP", "mobile QA", "states", "polish"]
     },
     projects: {
@@ -118,7 +117,7 @@ const dictionary = {
       eyebrow: "Fullstack signal",
       title: "Сайт одразу показує, як я думаю про продукт.",
       copy:
-        "Це не просто сторінка з красивими картками. Усередині є логіка, яку реально оцінить клієнт або команда: контент керується через CMS, форма має валідацію, зображення проходять upload pipeline, а структура готова до розвитку без ручного редагування коду.",
+        "Це не просто сторінка з красивими картками, а маленький доказ того, як я підходжу до задачі: спочатку продумую сценарій, потім збираю стабільну логіку, а вже після цього доводжу UI до приємного стану. Усередині є речі, які реально оцінить клієнт або команда: контент керується через CMS, форма має валідацію, зображення проходять upload pipeline, є fallback data, auth і структура, яку можна розвивати без ручного редагування коду. Я початківець, але дуже уважна до деталей, швидко входжу в задачі й люблю, коли результат виглядає завершено, а не “і так зійде”.",
       lines: [
         ["ui", "premium dark UI, який однаково впевнено виглядає на телефоні та ПК"],
         ["cms", "проєкти можна додавати, редагувати й оновлювати без правок у коді"],
@@ -137,6 +136,7 @@ const dictionary = {
       namePlaceholder: "Ваше ім'я",
       emailPlaceholder: "you@email.com",
       messagePlaceholder: "Напишіть ідею, питання або просто привіт",
+      formBadges: ["Відповім уважно", "Люблю чіткі задачі", "Можу підхопити pet-проєкт"],
       send: "Надіслати",
       sending: "Надсилаю",
       success: "Повідомлення відправлено.",
@@ -236,19 +236,18 @@ const dictionary = {
         ["Data & AI", "Data structure, database queries, intelligent helpers, and routine automation."]
       ],
       details: [
-        "I design component architecture, manage states, and create predictable interfaces.",
-        "I build responsive layouts and add subtle, non-intrusive animation.",
-        "I create REST APIs, handle requests, and connect frontend flows with databases.",
-        "I use it for fast backend services, data parsing, and AI integrations.",
-        "I implement classic CRUD scenarios, forms, and admin panels.",
-        "I design data schemas, relationships, and stable information storage.",
-        "I build cross-platform and native mobile interfaces with a focus on UX.",
-        "I integrate intelligent helpers and automate routine user tasks.",
-        "I keep clean commit history, manage branches, and configure deployment with Vercel, Render, and Atlas."
+        "I design component architecture, manage state, and create predictable interfaces. I like screens that feel composed from intentional pieces, not random buttons placed together.",
+        "I build responsive layouts and add subtle, non-intrusive animation. Motion should support the user's action and make the product feel smoother, not noisy.",
+        "I create REST APIs, handle requests, and connect frontend flows with databases. I care about validation, readable errors, and backend structure that can be maintained.",
+        "I use Python and FastAPI for fast backend services, data parsing, and AI integrations. It helps me build useful tools quickly and automate repetitive work.",
+        "I implement classic CRUD scenarios, forms, and admin panels. Laravel helps me build clear content-management logic without manual code edits.",
+        "I design data schemas, relationships, and stable information storage. I like when the database supports the product logic instead of only storing fields.",
+        "I build cross-platform and native mobile interfaces with a focus on UX. I pay attention to sizing, touch targets, rhythm, and a native feeling.",
+        "I integrate intelligent helpers and automate routine user tasks. For me, AI is not just a buzzword, but a way to make an app more useful and faster."
       ],
       workflowTitle: "Working approach",
       workflow:
-        "I start with a stable working version, then polish it into a product-like experience: mobile flows, loading states, errors, empty states, copy, hover effects, and data structure.",
+        "I start with a stable working version, then polish it into a product-like experience: mobile flows, loading states, errors, empty states, copy, hover effects, and data structure. I want the first click to feel like someone cared about the person using the product.",
       workflowSteps: ["MVP", "mobile QA", "states", "polish"]
     },
     projects: {
@@ -265,7 +264,7 @@ const dictionary = {
       eyebrow: "Fullstack signal",
       title: "This site shows how I think about product work.",
       copy:
-        "It is not just a page with nice cards. It includes product logic a client or team can actually value: CMS-managed content, validated contact flow, upload pipeline, fallback data, and a structure that can grow without manual code edits.",
+        "It is not just a page with nice cards, but a small proof of how I approach a task: first I think through the scenario, then I build stable logic, and after that I polish the UI until it feels pleasant to use. It includes product logic a client or team can actually value: CMS-managed content, validated contact flow, upload pipeline, fallback data, auth, and a structure that can grow without manual code edits. I am early in my career, but I care about details, learn quickly, and like shipping work that feels finished.",
       lines: [
         ["ui", "premium dark UI that feels solid on both phone and desktop"],
         ["cms", "projects can be added, edited, and updated without code changes"],
@@ -284,6 +283,7 @@ const dictionary = {
       namePlaceholder: "Your name",
       emailPlaceholder: "you@email.com",
       messagePlaceholder: "Tell me about your idea, question, or just say hi",
+      formBadges: ["Thoughtful reply", "Clear tasks welcome", "Pet projects too"],
       send: "Send Message",
       sending: "Sending",
       success: "Message sent.",

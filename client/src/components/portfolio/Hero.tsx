@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
-const currentWork = "React";
+const workWords = ["React", "Laravel", "Flutter", "FastAPI", "Node.js", "Tailwind", "PostgreSQL", "Gemini AI"];
 const stackIcons: LucideIcon[] = [Server, Database, Smartphone, Code2];
 const identityStyles: { Icon: LucideIcon; accent: string; hover: string; line: string }[] = [
   {
@@ -134,19 +134,34 @@ function PreviewPanel({
 export default function Hero() {
   const { t } = useLanguage();
   const [letters, setLetters] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    let cursor = 0;
-    const typing = window.setInterval(() => {
-      cursor += 1;
-      setLetters(currentWork.slice(0, cursor));
-      if (cursor >= currentWork.length) {
-        window.clearInterval(typing);
-      }
-    }, 96);
+    const word = workWords[wordIndex];
+    const finishedTyping = !deleting && letters === word;
+    const finishedDeleting = deleting && letters === "";
+    const delay = finishedTyping ? 1400 : deleting ? 42 : 88;
 
-    return () => window.clearInterval(typing);
-  }, []);
+    const timer = window.setTimeout(() => {
+      if (finishedTyping) {
+        setDeleting(true);
+        return;
+      }
+
+      if (finishedDeleting) {
+        setDeleting(false);
+        setWordIndex((index) => (index + 1) % workWords.length);
+        return;
+      }
+
+      setLetters((value) =>
+        deleting ? word.slice(0, Math.max(value.length - 1, 0)) : word.slice(0, value.length + 1)
+      );
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [deleting, letters, wordIndex]);
 
   return (
     <section

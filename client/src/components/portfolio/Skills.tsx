@@ -13,8 +13,7 @@ const skills = [
   { name: "PHP / Laravel", level: 74, accent: "text-coral", dot: "bg-coral", bar: "from-coral to-solar", hover: "hover:border-coral/[0.38] hover:bg-coral/[0.07]" },
   { name: "PostgreSQL / SQLite / MongoDB", level: 80, accent: "text-mint", dot: "bg-mint", bar: "from-mint to-solar", hover: "hover:border-mint/[0.38] hover:bg-mint/[0.07]" },
   { name: "Flutter / Dart / Compose", level: 78, accent: "text-electric", dot: "bg-electric", bar: "from-electric to-solar", hover: "hover:border-electric/[0.38] hover:bg-electric/[0.07]" },
-  { name: "AI Integrations / Gemini", level: 76, accent: "text-coral", dot: "bg-coral", bar: "from-coral to-electric", hover: "hover:border-coral/[0.38] hover:bg-coral/[0.07]" },
-  { name: "Git / GitHub / CI/CD", level: 88, accent: "text-white", dot: "bg-white", bar: "from-white to-electric", hover: "hover:border-white/[0.30] hover:bg-white/[0.09]" }
+  { name: "AI Integrations / Gemini", level: 76, accent: "text-coral", dot: "bg-coral", bar: "from-coral to-electric", hover: "hover:border-coral/[0.38] hover:bg-coral/[0.07]" }
 ];
 
 const groupIcons: LucideIcon[] = [Code2, Server, Smartphone, Database];
@@ -95,7 +94,7 @@ export default function Skills() {
                   {skill.level}%
                 </span>
               </div>
-              <p className="mt-3 min-h-[72px] text-sm leading-6 text-white/[0.56]">
+              <p className="mt-3 min-h-[112px] text-[0.95rem] leading-7 text-white/[0.78]">
                 {t.skills.details[index]}
               </p>
               <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/[0.10]">
@@ -109,38 +108,52 @@ export default function Skills() {
               </div>
             </motion.article>
           ))}
-          <motion.div
-            className="relative overflow-hidden rounded-[20px] border border-mint/[0.22] bg-[#0b111d] p-4 shadow-glow"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.55, delay: 0.12 }}
-            whileHover={{ y: -6 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <div className="absolute right-4 top-4 h-16 w-16 rounded-full bg-mint/[0.08] blur-2xl" />
-            <div className="relative flex items-start justify-between gap-3">
-              <h3 className="text-sm font-black uppercase text-mint">{t.skills.workflowTitle}</h3>
-              <BadgeCheck size={18} className="shrink-0 text-electric" />
-            </div>
-            <p className="relative mt-3 text-sm leading-6 text-white/[0.66]">{t.skills.workflow}</p>
-            <div className="relative mt-4 flex flex-wrap gap-2">
-              {t.skills.workflowSteps.map((step, index) => (
-                <motion.span
-                  key={step}
-                  className="rounded-full border border-white/[0.10] bg-white/[0.06] px-3 py-1.5 text-[0.7rem] font-bold text-white/[0.70]"
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                >
-                  {step}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
+
+      <motion.div
+        className="relative mt-6 overflow-hidden rounded-[24px] border border-mint/[0.22] bg-[#0b111d] p-5 shadow-glow md:p-6"
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        whileHover={{ y: -5 }}
+        whileTap={{ scale: 0.99 }}
+      >
+        <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-mint/[0.10] blur-3xl" />
+        <div className="absolute -bottom-16 left-8 h-36 w-36 rounded-full bg-electric/[0.08] blur-3xl" />
+        <div className="relative grid gap-5 md:grid-cols-[0.62fr_1fr] md:items-center">
+          <div>
+            <div className="flex items-center gap-2 text-sm font-black uppercase text-mint">
+              <BadgeCheck size={18} className="text-electric" />
+              {t.skills.workflowTitle}
+            </div>
+            <p className="mt-3 text-base leading-7 text-white/[0.78] md:text-lg md:leading-8">
+              {t.skills.workflow}
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-4">
+            {t.skills.workflowSteps.map((step, index) => (
+              <motion.div
+                key={step}
+                className="group rounded-2xl border border-white/[0.10] bg-white/[0.06] p-4 transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="text-[0.68rem] font-black uppercase text-electric">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-1 text-sm font-bold text-white/[0.82]">{step}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
