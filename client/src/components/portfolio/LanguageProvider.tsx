@@ -89,14 +89,14 @@ const dictionary = {
         ["Data & AI", "Структура даних, запити до бази, інтелектуальні підказки й автоматизація рутини."]
       ],
       details: [
-        "Проєктую компонентну архітектуру, керую станами та створюю передбачувані інтерфейси. Люблю, коли екран складається з охайних блоків, а не з випадкового набору кнопок.",
-        "Створюю адаптивну верстку та додаю акуратну, ненав'язливу анімацію. Для мене важливо, щоб рух підкреслював дію користувача, а не просто блищав заради ефекту.",
-        "Будую REST API, обробляю запити та забезпечую зв'язок фронтенду з базою. Думаю про валідацію, зрозумілі помилки та структуру, яку легко підтримувати.",
-        "Використовую Python і FastAPI для швидких бекенд-сервісів, парсингу даних та інтеграції ШІ. Це допомагає швидко збирати корисні інструменти й автоматизувати рутину.",
-        "Реалізую класичні CRUD-сценарії, роботу з формами та адмін-панелі. Laravel допомагає мені будувати зрозумілу логіку керування контентом без ручного редагування коду.",
-        "Проєктую схеми даних, зв'язки та оптимізую збереження інформації. Мені подобається, коли база підтримує продуктову логіку, а не просто десь зберігає поля.",
+        "Компонентна архітектура, стани та передбачувані інтерфейси без хаосу в UI.",
+        "Адаптивна верстка, hover-стани й акуратна motion-анімація без зайвого шуму.",
+        "REST API, запити, валідація та стабільний зв'язок фронтенду з базою.",
+        "Швидкі backend-сервіси, парсинг даних і корисні AI-інтеграції.",
+        "CRUD, форми, адмін-панелі та зрозуміле керування контентом через Laravel.",
+        "Схеми даних, зв'язки, збереження інформації та продуктова логіка бази.",
         "Розробляю мобільні інтерфейси з фокусом на UX, зручні натискання й відчуття нативності.",
-        "Інтегрую інтелектуальні підказки та автоматизую рутинні завдання користувача. AI для мене — це не модне слово, а спосіб зробити застосунок кориснішим і швидшим."
+        "Інтелектуальні підказки й автоматизація рутини через Gemini AI."
       ],
       workflowTitle: "Мій робочий підхід",
       workflow:
@@ -236,14 +236,14 @@ const dictionary = {
         ["Data & AI", "Data structure, database queries, intelligent helpers, and routine automation."]
       ],
       details: [
-        "I design component architecture, manage state, and create predictable interfaces. I like screens that feel composed from intentional pieces, not random buttons placed together.",
-        "I build responsive layouts and add subtle, non-intrusive animation. Motion should support the user's action and make the product feel smoother, not noisy.",
-        "I create REST APIs, handle requests, and connect frontend flows with databases. I care about validation, readable errors, and backend structure that can be maintained.",
-        "I use Python and FastAPI for fast backend services, data parsing, and AI integrations. It helps me build useful tools quickly and automate repetitive work.",
-        "I implement classic CRUD scenarios, forms, and admin panels. Laravel helps me build clear content-management logic without manual code edits.",
-        "I design data schemas, relationships, and stable information storage. I like when the database supports the product logic instead of only storing fields.",
+        "Component architecture, state management, and predictable UI without visual chaos.",
+        "Responsive layouts, hover states, and clean motion without extra noise.",
+        "REST APIs, validation, requests, and stable frontend-to-database flow.",
+        "Fast backend services, data parsing, and useful AI integrations.",
+        "CRUD, forms, admin panels, and clear content management with Laravel.",
+        "Data schemas, relationships, storage, and product-aware database logic.",
         "I build mobile interfaces with a focus on UX, comfortable touch targets, and a native feeling.",
-        "I integrate intelligent helpers and automate routine user tasks. For me, AI is not just a buzzword, but a way to make an app more useful and faster."
+        "Smart helpers and routine automation with Gemini AI."
       ],
       workflowTitle: "Working approach",
       workflow:

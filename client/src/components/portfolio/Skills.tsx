@@ -94,7 +94,7 @@ export default function Skills() {
                   {skill.level}%
                 </span>
               </div>
-              <p className="mt-3 min-h-[112px] text-[0.95rem] leading-7 text-white/[0.78]">
+              <p className="mt-3 min-h-[68px] text-sm leading-6 text-white/[0.74] md:min-h-[72px]">
                 {t.skills.details[index]}
               </p>
               <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/[0.10]">
