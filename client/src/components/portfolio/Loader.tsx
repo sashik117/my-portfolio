@@ -35,8 +35,8 @@ export default function Loader() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1.25, repeat: Infinity, ease: "linear" }}
               />
-              <div className="absolute inset-4 grid place-items-center rounded-full bg-white/[0.05] text-sm font-black">
-                OS
+              <div className="absolute inset-4 grid place-items-center rounded-full bg-white/[0.05] text-xl font-black text-electric">
+                ✦
               </div>
             </div>
             <div className="mt-6 text-xs font-black uppercase text-electric">

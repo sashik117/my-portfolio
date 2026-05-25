@@ -101,7 +101,8 @@ const dictionary = {
       ],
       workflowTitle: "Мій робочий підхід",
       workflow:
-        "Швидко збираю першу стабільну версію, а потім проходжуся по деталях: responsive, loading, empty-states, помилки, тексти, hover-ефекти, структура даних і те, як продукт відчувається після реального користування."
+        "Починаю зі стабільної робочої версії, а далі доводжу її до відчуття готового продукту: перевіряю мобільні сценарії, стани завантаження, помилки, empty-states, тексти, hover-ефекти й структуру даних.",
+      workflowSteps: ["MVP", "mobile QA", "states", "polish"]
     },
     projects: {
       eyebrow: "Проєкти",
@@ -115,14 +116,14 @@ const dictionary = {
     },
     terminal: {
       eyebrow: "Fullstack signal",
-      title: "Портфоліо — це не статична візитка, а інженерний продукт.",
+      title: "Сайт одразу показує, як я думаю про продукт.",
       copy:
-        "Усередині є CMS, контактна форма, upload pipeline, auth, fallback data, адаптивна сітка та структура, яку можна розвивати без ручного редагування коду.",
+        "Це не просто сторінка з красивими картками. Усередині є логіка, яку реально оцінить клієнт або команда: контент керується через CMS, форма має валідацію, зображення проходять upload pipeline, а структура готова до розвитку без ручного редагування коду.",
       lines: [
-        ["ui", "сучасна темна дизайн-система, плавна інтерактивність та адаптивна сітка"],
-        ["api", "безпечна обробка форм, захищені маршрути, завантаження файлів та адмін-панель"],
-        ["cms", "динамічне керування контентом без прямого втручання в код сайту"],
-        ["care", "ретельна перевірка мобільного UX, відсутність візуального хаосу та фокус на читанні"]
+        ["ui", "premium dark UI, який однаково впевнено виглядає на телефоні та ПК"],
+        ["cms", "проєкти можна додавати, редагувати й оновлювати без правок у коді"],
+        ["api", "контактна форма, auth, upload pipeline і fallback data працюють як частина системи"],
+        ["care", "перевіряю мобільний UX, читабельність, стани помилок і дрібні інтеракції"]
       ]
     },
     contact: {
@@ -147,7 +148,7 @@ const dictionary = {
       status: "Open to junior/fullstack opportunities",
       stack: "React · Node · FastAPI · Laravel · Flutter",
       note:
-        "Портфоліо оформлене як живий продукт: CMS, адаптивність, контактна форма, продуманий контент і охайний UX без зайвого візуального шуму.",
+        "Зроблено як маленький fullstack-продукт: адаптивний інтерфейс, CMS, контактна форма, продуманий контент і достатньо деталей, щоб сайт відчувався живим, а не зібраним нашвидкуруч.",
       backTop: "Вгору"
     }
   },
@@ -247,7 +248,8 @@ const dictionary = {
       ],
       workflowTitle: "Working approach",
       workflow:
-        "I quickly assemble the first stable version, then polish the details: responsive behavior, loading, empty states, errors, copy, hover effects, data structure, and how the product feels after real use."
+        "I start with a stable working version, then polish it into a product-like experience: mobile flows, loading states, errors, empty states, copy, hover effects, and data structure.",
+      workflowSteps: ["MVP", "mobile QA", "states", "polish"]
     },
     projects: {
       eyebrow: "Projects",
@@ -261,14 +263,14 @@ const dictionary = {
     },
     terminal: {
       eyebrow: "Fullstack signal",
-      title: "This portfolio is an engineered product, not a static card.",
+      title: "This site shows how I think about product work.",
       copy:
-        "It includes a CMS, contact form, upload pipeline, auth, fallback data, responsive layout, and a structure that can grow without manual code edits.",
+        "It is not just a page with nice cards. It includes product logic a client or team can actually value: CMS-managed content, validated contact flow, upload pipeline, fallback data, and a structure that can grow without manual code edits.",
       lines: [
-        ["ui", "modern dark design system, smooth interaction, and responsive grid"],
-        ["api", "secure form handling, protected routes, file uploads, and admin panel"],
-        ["cms", "dynamic content management without direct code edits"],
-        ["care", "mobile UX checks, no visual chaos, and a focus on readability"]
+        ["ui", "premium dark UI that feels solid on both phone and desktop"],
+        ["cms", "projects can be added, edited, and updated without code changes"],
+        ["api", "contact form, auth, upload pipeline, and fallback data work as one system"],
+        ["care", "mobile UX, readability, error states, and small interactions are checked"]
       ]
     },
     contact: {
@@ -293,7 +295,7 @@ const dictionary = {
       status: "Open to junior/fullstack opportunities",
       stack: "React · Node · FastAPI · Laravel · Flutter",
       note:
-        "Built as a living portfolio: CMS, responsive design, contact form, thoughtful content, and clean UX without visual noise.",
+        "Built like a small fullstack product: responsive UI, CMS, contact form, thoughtful content, and enough detail to feel alive instead of rushed.",
       backTop: "Back top"
     }
   }

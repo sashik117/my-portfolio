@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Database, Server, Smartphone } from "lucide-react";
+import { Code2, Database, Layers3, Server, Smartphone, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
@@ -9,6 +9,26 @@ import MagneticButton from "./MagneticButton";
 
 const currentWork = "React";
 const stackIcons: LucideIcon[] = [Server, Database, Smartphone, Code2];
+const identityStyles: { Icon: LucideIcon; accent: string; hover: string; line: string }[] = [
+  {
+    Icon: Sparkles,
+    accent: "text-electric",
+    hover: "hover:border-electric/[0.38] hover:bg-electric/[0.08]",
+    line: "from-electric via-mint to-transparent"
+  },
+  {
+    Icon: Smartphone,
+    accent: "text-mint",
+    hover: "hover:border-mint/[0.38] hover:bg-mint/[0.08]",
+    line: "from-mint via-electric to-transparent"
+  },
+  {
+    Icon: Layers3,
+    accent: "text-coral",
+    hover: "hover:border-coral/[0.38] hover:bg-coral/[0.08]",
+    line: "from-coral via-solar to-transparent"
+  }
+];
 
 function PreviewPanel({
   letters,
@@ -60,16 +80,19 @@ function PreviewPanel({
               const Icon = stackIcons[index];
 
               return (
-                <div
+                <motion.div
                   key={title}
-                  className="rounded-2xl border border-white/[0.10] bg-white/[0.06] p-2.5 md:p-4"
+                  className="group relative overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.06] p-2.5 transition hover:border-electric/[0.30] hover:bg-white/[0.09] md:p-4"
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.98 }}
                 >
+                  <div className="absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.28] to-transparent opacity-0 transition group-hover:opacity-100" />
                   <Icon size={compact ? 15 : 18} className="mb-1.5 text-mint md:mb-3" />
-                  <div className="text-xs font-black text-white md:text-sm">{title}</div>
+                  <div className="text-xs font-bold text-white/[0.86] md:text-sm">{title}</div>
                   <div className="mt-1 text-[0.66rem] leading-4 text-white/[0.50] md:text-xs md:leading-5">
                     {text}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -82,12 +105,17 @@ function PreviewPanel({
             </div>
             <div className={compact ? "flex flex-wrap gap-1.5" : "space-y-2"}>
               {["Vercel", "Render", "Atlas"].map((item, index) => (
-                <div key={item} className="flex items-center gap-1.5 md:gap-2">
+                <motion.div
+                  key={item}
+                  className="flex items-center gap-1.5 md:gap-2"
+                  whileHover={{ x: 3 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <span className="grid h-5 w-5 place-items-center rounded-full bg-white text-[0.62rem] font-black text-ink md:h-6 md:w-6 md:text-[0.68rem]">
                     {index + 1}
                   </span>
                   <span className="text-[0.68rem] font-bold text-white/[0.72] md:text-sm">{item}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -190,17 +218,32 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.58 }}
           >
-            {t.hero.identity.map(([label, value]) => (
-              <div
+            {t.hero.identity.map(([label, value], index) => {
+              const style = identityStyles[index];
+              const Icon = style.Icon;
+
+              return (
+              <motion.article
                 key={label}
-                className="rounded-2xl border border-white/[0.10] bg-[#0b111d] px-4 py-3"
+                className={`relative overflow-hidden rounded-2xl border border-white/[0.10] bg-[#0b111d] px-4 py-3 transition ${style.hover}`}
+                whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="text-[0.68rem] font-black uppercase text-electric">
+                <motion.div
+                  className={`absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r ${style.line}`}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.12 }}
+                />
+                <div className={`flex items-center gap-1.5 text-[0.68rem] font-bold uppercase ${style.accent}`}>
+                  <Icon size={13} />
                   {label}
                 </div>
-                <div className="mt-1 text-sm font-black text-white">{value}</div>
-              </div>
-            ))}
+                <div className="mt-1.5 text-sm font-semibold leading-5 text-white/[0.72]">{value}</div>
+              </motion.article>
+              );
+            })}
           </motion.div>
 
           <motion.div
@@ -221,14 +264,18 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.68 }}
           >
-            {t.hero.stats.map(([value, label]) => (
-              <div
+            {t.hero.stats.map(([value, label], index) => (
+              <motion.div
                 key={label}
-                className="min-w-0 rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3"
+                className="group min-w-0 rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 transition hover:border-electric/[0.35] hover:bg-white/[0.09]"
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="text-base font-black text-white sm:text-lg">{value}</div>
+                <div className={index === 0 ? "text-base font-black text-electric sm:text-lg" : index === 1 ? "text-base font-black text-mint sm:text-lg" : "text-base font-black text-coral sm:text-lg"}>
+                  {value}
+                </div>
                 <div className="mt-1 text-white/[0.54]">{label}</div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>

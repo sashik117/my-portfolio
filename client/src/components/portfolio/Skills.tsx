@@ -1,20 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Database, Server, Smartphone } from "lucide-react";
+import { BadgeCheck, Code2, Database, Server, Smartphone } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
 const skills = [
-  { name: "React / Vite / TS / JS", level: 93, color: "bg-electric" },
-  { name: "Tailwind / Framer Motion", level: 92, color: "bg-electric" },
-  { name: "Node.js / Express / NestJS", level: 86, color: "bg-mint" },
-  { name: "Python / FastAPI", level: 82, color: "bg-electric" },
-  { name: "PHP / Laravel", level: 74, color: "bg-mint" },
-  { name: "PostgreSQL / SQLite / MongoDB", level: 80, color: "bg-mint" },
-  { name: "Flutter / Dart / Compose", level: 78, color: "bg-coral" },
-  { name: "AI Integrations / Gemini", level: 76, color: "bg-coral" },
-  { name: "Git / GitHub / CI/CD", level: 88, color: "bg-white" }
+  { name: "React / Vite / TS / JS", level: 93, accent: "text-electric", dot: "bg-electric", bar: "from-electric to-mint", hover: "hover:border-electric/[0.38] hover:bg-electric/[0.07]" },
+  { name: "Tailwind / Framer Motion", level: 92, accent: "text-mint", dot: "bg-mint", bar: "from-mint to-electric", hover: "hover:border-mint/[0.38] hover:bg-mint/[0.07]" },
+  { name: "Node.js / Express / NestJS", level: 86, accent: "text-solar", dot: "bg-solar", bar: "from-solar to-mint", hover: "hover:border-solar/[0.38] hover:bg-solar/[0.07]" },
+  { name: "Python / FastAPI", level: 82, accent: "text-electric", dot: "bg-electric", bar: "from-electric to-coral", hover: "hover:border-electric/[0.38] hover:bg-electric/[0.07]" },
+  { name: "PHP / Laravel", level: 74, accent: "text-coral", dot: "bg-coral", bar: "from-coral to-solar", hover: "hover:border-coral/[0.38] hover:bg-coral/[0.07]" },
+  { name: "PostgreSQL / SQLite / MongoDB", level: 80, accent: "text-mint", dot: "bg-mint", bar: "from-mint to-solar", hover: "hover:border-mint/[0.38] hover:bg-mint/[0.07]" },
+  { name: "Flutter / Dart / Compose", level: 78, accent: "text-electric", dot: "bg-electric", bar: "from-electric to-solar", hover: "hover:border-electric/[0.38] hover:bg-electric/[0.07]" },
+  { name: "AI Integrations / Gemini", level: 76, accent: "text-coral", dot: "bg-coral", bar: "from-coral to-electric", hover: "hover:border-coral/[0.38] hover:bg-coral/[0.07]" },
+  { name: "Git / GitHub / CI/CD", level: 88, accent: "text-white", dot: "bg-white", bar: "from-white to-electric", hover: "hover:border-white/[0.30] hover:bg-white/[0.09]" }
 ];
 
 const groupIcons: LucideIcon[] = [Code2, Server, Smartphone, Database];
@@ -43,13 +43,15 @@ export default function Skills() {
               return (
                 <motion.article
                   key={title}
-                  className="group rounded-2xl border border-white/[0.10] bg-[#0b111d] p-4 transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
+                  className="group relative overflow-hidden rounded-2xl border border-white/[0.10] bg-[#0b111d] p-4 transition hover:border-electric/[0.35] hover:bg-electric/[0.08]"
                   initial={{ opacity: 0, x: -18 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: index * 0.06 }}
                   whileHover={{ x: 4 }}
+                  whileTap={{ scale: 0.98 }}
                 >
+                  <div className="absolute inset-y-3 left-0 w-0.5 rounded-full bg-electric opacity-0 transition group-hover:opacity-100" />
                   <div className="flex items-start gap-3">
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-ink transition group-hover:bg-electric">
                       <Icon size={18} />
@@ -69,23 +71,36 @@ export default function Skills() {
           {skills.map((skill, index) => (
             <motion.article
               key={skill.name}
-              className="group rounded-[20px] border border-white/[0.10] bg-white/[0.06] p-4 backdrop-blur-xl transition hover:border-electric/[0.35] hover:bg-white/[0.09]"
+              className={`group relative overflow-hidden rounded-[20px] border border-white/[0.10] bg-white/[0.06] p-4 backdrop-blur-xl transition ${skill.hover}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.55, delay: index * 0.04 }}
               whileHover={{ y: -6 }}
+              whileTap={{ scale: 0.98 }}
             >
+              <motion.div
+                className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r ${skill.bar}`}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.85, delay: index * 0.04 }}
+              />
               <div className="flex items-center justify-between gap-4">
-                <h3 className="text-sm font-black text-white md:text-base">{skill.name}</h3>
-                <span className="text-sm font-bold text-white/[0.52]">{skill.level}%</span>
+                <h3 className={`flex items-center gap-2 text-sm font-black md:text-base ${skill.accent}`}>
+                  <span className={`h-2 w-2 rounded-full ${skill.dot}`} />
+                  {skill.name}
+                </h3>
+                <span className="rounded-full border border-white/[0.10] bg-white/[0.06] px-2 py-1 text-xs font-bold text-white/[0.62]">
+                  {skill.level}%
+                </span>
               </div>
               <p className="mt-3 min-h-[72px] text-sm leading-6 text-white/[0.56]">
                 {t.skills.details[index]}
               </p>
               <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/[0.10]">
                 <motion.div
-                  className={`h-full rounded-full ${skill.color}`}
+                  className={`h-full rounded-full bg-gradient-to-r ${skill.bar}`}
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
                   viewport={{ once: true }}
@@ -95,14 +110,34 @@ export default function Skills() {
             </motion.article>
           ))}
           <motion.div
-            className="rounded-[20px] border border-electric/[0.18] bg-electric/[0.08] p-4"
+            className="relative overflow-hidden rounded-[20px] border border-mint/[0.22] bg-[#0b111d] p-4 shadow-glow"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.55, delay: 0.12 }}
+            whileHover={{ y: -6 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <h3 className="text-sm font-black uppercase text-electric">{t.skills.workflowTitle}</h3>
-            <p className="mt-2 text-sm leading-6 text-white/[0.62]">{t.skills.workflow}</p>
+            <div className="absolute right-4 top-4 h-16 w-16 rounded-full bg-mint/[0.08] blur-2xl" />
+            <div className="relative flex items-start justify-between gap-3">
+              <h3 className="text-sm font-black uppercase text-mint">{t.skills.workflowTitle}</h3>
+              <BadgeCheck size={18} className="shrink-0 text-electric" />
+            </div>
+            <p className="relative mt-3 text-sm leading-6 text-white/[0.66]">{t.skills.workflow}</p>
+            <div className="relative mt-4 flex flex-wrap gap-2">
+              {t.skills.workflowSteps.map((step, index) => (
+                <motion.span
+                  key={step}
+                  className="rounded-full border border-white/[0.10] bg-white/[0.06] px-3 py-1.5 text-[0.7rem] font-bold text-white/[0.70]"
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                >
+                  {step}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
