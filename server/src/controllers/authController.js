@@ -1,8 +1,15 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { z } from "zod";
-import { env } from "../config/env.js";
 import Admin from "../models/Admin.js";
+import {
+  clearRefreshCookie,
+  createAccessToken,
+  createRefreshSession,
+  getRefreshCookie,
+  revokeRefreshSession,
+  rotateRefreshSession,
+  setRefreshCookie
+} from "../utils/authTokens.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -28,9 +35,9 @@ export async function login(req, res) {
     return res.status(401).json({ message: "Invalid credentials." });
   }
 
-  const token = jwt.sign({ id: admin._id, role: admin.role }, env.jwtSecret, {
-    expiresIn: env.adminTokenExpiresIn
-  });
+  const token = createAccessToken(admin);
+  const refresh = await createRefreshSession(admin, req);
+  setRefreshCookie(res, refresh.token);
 
   res.json({
     token,
@@ -48,4 +55,25 @@ export async function me(req, res) {
       role: req.admin.role
     }
   });
+}
+
+export async function refresh(req, res) {
+  const currentRefreshToken = getRefreshCookie(req);
+  const session = await rotateRefreshSession(currentRefreshToken, req);
+  const token = createAccessToken(session.admin);
+  setRefreshCookie(res, session.refreshToken);
+
+  res.json({
+    token,
+    admin: {
+      email: session.admin.email,
+      role: session.admin.role
+    }
+  });
+}
+
+export async function logout(req, res) {
+  await revokeRefreshSession(getRefreshCookie(req));
+  clearRefreshCookie(res);
+  res.json({ message: "Signed out." });
 }

@@ -15,6 +15,7 @@ let app;
 let mongo;
 let Project;
 let Message;
+let RefreshToken;
 let seedAdmin;
 let toUploadPath;
 let uploadRoot;
@@ -74,6 +75,7 @@ describe("portfolio API", () => {
       import("../src/utils/seedAdmin.js"),
       import("../src/models/Project.js"),
       import("../src/models/Message.js"),
+      import("../src/models/RefreshToken.js"),
       import("../src/utils/uploadFiles.js")
     ]);
 
@@ -82,14 +84,16 @@ describe("portfolio API", () => {
     seedAdmin = modules[2].seedAdmin;
     Project = modules[3].default;
     Message = modules[4].default;
-    toUploadPath = modules[5].toUploadPath;
-    uploadRoot = modules[5].uploadRoot;
+    RefreshToken = modules[5].default;
+    toUploadPath = modules[6].toUploadPath;
+    uploadRoot = modules[6].uploadRoot;
     await seedAdmin();
   });
 
   beforeEach(async () => {
     await Project.deleteMany({});
     await Message.deleteMany({});
+    await RefreshToken.deleteMany({});
     await clearUploads();
   });
 
@@ -115,6 +119,40 @@ describe("portfolio API", () => {
       .expect(403);
 
     assert.match(blocked.body.message, /CORS blocked origin/);
+  });
+
+  it("rotates refresh tokens, rejects reuse, and supports logout", async () => {
+    const agent = request.agent(app);
+    const login = await agent
+      .post("/api/auth/login")
+      .send({
+        email: "admin@example.com",
+        password: "strong-password"
+      })
+      .expect(200);
+    const firstCookie = login.headers["set-cookie"]?.[0]?.split(";")[0];
+
+    assert.ok(login.body.token);
+    assert.ok(firstCookie?.startsWith("portfolio_refresh="));
+    assert.equal(await RefreshToken.countDocuments({ revokedAt: null }), 1);
+
+    const refresh = await agent.post("/api/auth/refresh").expect(200);
+    const secondCookie = refresh.headers["set-cookie"]?.[0]?.split(";")[0];
+
+    assert.ok(refresh.body.token);
+    assert.ok(secondCookie?.startsWith("portfolio_refresh="));
+    assert.notEqual(secondCookie, firstCookie);
+    assert.equal(await RefreshToken.countDocuments({ revokedAt: null }), 1);
+    assert.equal(await RefreshToken.countDocuments({ revokedAt: { $ne: null } }), 1);
+
+    await request(app)
+      .post("/api/auth/refresh")
+      .set("Cookie", firstCookie)
+      .expect(401);
+    assert.equal(await RefreshToken.countDocuments({ revokedAt: null }), 0);
+
+    await agent.post("/api/auth/logout").expect(200);
+    await agent.post("/api/auth/refresh").expect(401);
   });
 
   it("creates, updates and deletes projects while cleaning replaced upload files", async () => {

@@ -35,7 +35,10 @@ export function useAdminDashboard() {
     if (storedToken) {
       setToken(storedToken);
       void loadData(storedToken);
+      return;
     }
+
+    void refreshAdminSession(true);
   }, []);
 
   const clearSession = () => {
@@ -45,7 +48,35 @@ export function useAdminDashboard() {
     setMessages([]);
   };
 
-  const loadData = async (authToken = token) => {
+  const storeToken = (nextToken: string) => {
+    window.localStorage.setItem("portfolio-admin-token", nextToken);
+    setToken(nextToken);
+  };
+
+  const refreshAdminSession = async (silent = false) => {
+    try {
+      const data = await adminApi.refreshSession();
+      storeToken(data.token);
+      if (!silent) setFeedback(`Session refreshed for ${data.admin.email}`);
+      return data.token;
+    } catch (error) {
+      clearSession();
+      if (!silent) {
+        setFeedback(error instanceof Error ? error.message : "Session expired.");
+      }
+      return "";
+    }
+  };
+
+  const recoverToken = async (error: unknown) => {
+    if (error instanceof AdminApiError && error.status === 401) {
+      return refreshAdminSession(true);
+    }
+
+    return "";
+  };
+
+  const loadData = async (authToken = token, allowRefresh = true) => {
     if (!authToken) return;
     setLoading(true);
     setFeedback("");
@@ -55,9 +86,13 @@ export function useAdminDashboard() {
       setProjects(data.projects);
       setMessages(data.messages);
     } catch (error) {
-      if (error instanceof AdminApiError && error.status === 401) {
-        clearSession();
+      const refreshedToken = await recoverToken(error);
+
+      if (refreshedToken && allowRefresh) {
+        await loadData(refreshedToken, false);
+        return;
       }
+
       setFeedback(error instanceof Error ? error.message : "Could not load data.");
     } finally {
       setLoading(false);
@@ -71,8 +106,7 @@ export function useAdminDashboard() {
 
     try {
       const data = await adminApi.login(email, password);
-      window.localStorage.setItem("portfolio-admin-token", data.token);
-      setToken(data.token);
+      storeToken(data.token);
       setFeedback(`Signed in as ${data.admin.email}`);
       await loadData(data.token);
     } catch (error) {
@@ -82,7 +116,8 @@ export function useAdminDashboard() {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await adminApi.logout(token).catch(() => undefined);
     clearSession();
     setFeedback("");
   };
@@ -104,19 +139,37 @@ export function useAdminDashboard() {
     setLoading(true);
     setFeedback("");
 
-    try {
+    const persistProject = async (authToken: string) => {
       const payload = projectFormToPayload(form);
 
       if (editing) {
-        await adminApi.updateProject(token, editing._id, payload);
+        await adminApi.updateProject(authToken, editing._id, payload);
       } else {
-        await adminApi.createProject(token, payload);
+        await adminApi.createProject(authToken, payload);
       }
+    };
 
+    try {
+      await persistProject(token);
       setFeedback(editing ? "Project updated." : "Project created.");
       resetForm();
       await loadData();
     } catch (error) {
+      const refreshedToken = await recoverToken(error);
+
+      if (refreshedToken) {
+        try {
+          await persistProject(refreshedToken);
+          setFeedback(editing ? "Project updated." : "Project created.");
+          resetForm();
+          await loadData(refreshedToken);
+          return;
+        } catch (retryError) {
+          setFeedback(retryError instanceof Error ? retryError.message : "Could not save project.");
+          return;
+        }
+      }
+
       setFeedback(error instanceof Error ? error.message : "Could not save project.");
     } finally {
       setLoading(false);
@@ -133,6 +186,15 @@ export function useAdminDashboard() {
       await loadData();
       setFeedback("Project deleted.");
     } catch (error) {
+      const refreshedToken = await recoverToken(error);
+
+      if (refreshedToken) {
+        await adminApi.deleteProject(refreshedToken, projectId);
+        await loadData(refreshedToken);
+        setFeedback("Project deleted.");
+        return;
+      }
+
       setFeedback(error instanceof Error ? error.message : "Could not delete project.");
     } finally {
       setLoading(false);
@@ -161,6 +223,18 @@ export function useAdminDashboard() {
       setProjects(savedProjects);
       setFeedback("Project order updated.");
     } catch (error) {
+      const refreshedToken = await recoverToken(error);
+
+      if (refreshedToken) {
+        const savedProjects = await adminApi.reorderProjects(
+          refreshedToken,
+          reorderedProjects.map((item) => item._id)
+        );
+        setProjects(savedProjects);
+        setFeedback("Project order updated.");
+        return;
+      }
+
       setProjects(projects);
       setFeedback(error instanceof Error ? error.message : "Could not reorder projects.");
     }
@@ -173,6 +247,14 @@ export function useAdminDashboard() {
       await adminApi.markMessageRead(token, messageId);
       await loadData();
     } catch (error) {
+      const refreshedToken = await recoverToken(error);
+
+      if (refreshedToken) {
+        await adminApi.markMessageRead(refreshedToken, messageId);
+        await loadData(refreshedToken);
+        return;
+      }
+
       setFeedback(error instanceof Error ? error.message : "Could not update message.");
     }
   };
@@ -184,6 +266,14 @@ export function useAdminDashboard() {
       await adminApi.deleteMessage(token, messageId);
       await loadData();
     } catch (error) {
+      const refreshedToken = await recoverToken(error);
+
+      if (refreshedToken) {
+        await adminApi.deleteMessage(refreshedToken, messageId);
+        await loadData(refreshedToken);
+        return;
+      }
+
       setFeedback(error instanceof Error ? error.message : "Could not delete message.");
     }
   };

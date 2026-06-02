@@ -1,0 +1,76 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-client:
+    name: Deploy client to Vercel
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    env:
+      HAS_VERCEL: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - name: Skip Vercel deploy
+        if: env.HAS_VERCEL != 'true'
+        run: echo "Vercel deploy skipped because VERCEL_TOKEN, VERCEL_ORG_ID or VERCEL_PROJECT_ID is missing."
+        working-directory: .
+
+      - name: Checkout
+        if: env.HAS_VERCEL == 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        if: env.HAS_VERCEL == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        if: env.HAS_VERCEL == 'true'
+        run: npm ci
+        working-directory: .
+
+      - name: Pull Vercel environment
+        if: env.HAS_VERCEL == 'true'
+        run: npx vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build Vercel artifact
+        if: env.HAS_VERCEL == 'true'
+        run: npx vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy Vercel artifact
+        if: env.HAS_VERCEL == 'true'
+        run: npx vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  deploy-server:
+    name: Trigger Render server deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    env:
+      HAS_RENDER: ${{ secrets.RENDER_DEPLOY_HOOK_URL != '' }}
+    steps:
+      - name: Skip Render deploy
+        if: env.HAS_RENDER != 'true'
+        run: echo "Render deploy skipped because RENDER_DEPLOY_HOOK_URL is missing."
+
+      - name: Trigger Render deploy hook
+        if: env.HAS_RENDER == 'true'
+        run: curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"

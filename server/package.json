@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "verify:cloudinary": "node src/scripts/verifyCloudinary.js",
+    "verify:smtp": "node src/scripts/verifySmtp.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
-import type { FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 type AdminLoginFormProps = {
   email: string;
@@ -23,6 +23,12 @@ export default function AdminLoginForm({
   onPasswordChange,
   onSubmit
 }: AdminLoginFormProps) {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
   return (
     <main className="grid min-h-screen place-items-center px-4 py-16">
       <motion.form
@@ -64,10 +70,10 @@ export default function AdminLoginForm({
         </label>
         <button
           className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-ink transition hover:bg-electric disabled:opacity-60"
-          disabled={loading}
+          disabled={loading || !ready}
         >
           <Lock size={17} />
-          {loading ? "Signing in" : "Sign In"}
+          {loading ? "Signing in" : ready ? "Sign In" : "Preparing CMS"}
         </button>
         {feedback && <p className="mt-4 text-sm font-bold text-coral">{feedback}</p>}
         <a

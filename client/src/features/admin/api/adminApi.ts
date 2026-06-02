@@ -19,6 +19,7 @@ async function adminRequest<T>(
 ): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
+    credentials: "include",
     headers: {
       Authorization: `Bearer ${token}`,
       ...(options.headers || {})
@@ -39,6 +40,7 @@ async function adminRequest<T>(
 export const adminApi = {
   async login(email: string, password: string) {
     const response = await fetch(`${API_URL}/auth/login`, {
+      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -50,6 +52,28 @@ export const adminApi = {
     }
 
     return response.json() as Promise<LoginResponse>;
+  },
+
+  async refreshSession() {
+    const response = await fetch(`${API_URL}/auth/refresh`, {
+      credentials: "include",
+      method: "POST"
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({ message: "Refresh failed" }));
+      throw new AdminApiError(data.message, response.status);
+    }
+
+    return response.json() as Promise<LoginResponse>;
+  },
+
+  async logout(token?: string) {
+    await fetch(`${API_URL}/auth/logout`, {
+      credentials: "include",
+      method: "POST",
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined
+    });
   },
 
   getCurrentAdmin(token: string) {

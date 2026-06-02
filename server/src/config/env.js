@@ -22,7 +22,7 @@ function normalizeOrigin(origin = "") {
 export const env = {
   adminEmail: process.env.ADMIN_EMAIL || "",
   adminPassword: process.env.ADMIN_PASSWORD || "",
-  adminTokenExpiresIn: process.env.ADMIN_TOKEN_EXPIRES_IN || "7d",
+  adminTokenExpiresIn: process.env.ADMIN_TOKEN_EXPIRES_IN || "15m",
   clientOrigins: [
     ...splitOrigins(process.env.CLIENT_URLS || process.env.CLIENT_URL),
     ...(process.env.NODE_ENV === "production" ? [] : localClientOrigins)
@@ -33,6 +33,12 @@ export const env = {
   mongoUri: process.env.MONGODB_URI || "",
   nodeEnv: process.env.NODE_ENV || "development",
   port: Number(process.env.PORT || 5050),
+  refreshCookieName: process.env.REFRESH_COOKIE_NAME || "portfolio_refresh",
+  refreshCookieSameSite:
+    process.env.REFRESH_COOKIE_SAMESITE || (process.env.NODE_ENV === "production" ? "none" : "lax"),
+  refreshCookieSecure:
+    process.env.REFRESH_COOKIE_SECURE === "true" || process.env.NODE_ENV === "production",
+  refreshTokenExpiresDays: Number(process.env.REFRESH_TOKEN_EXPIRES_DAYS || 30),
   cloudinary: {
     apiKey: process.env.CLOUDINARY_API_KEY || "",
     apiSecret: process.env.CLOUDINARY_API_SECRET || "",

@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Server tests
+        run: npm run test:server
+
+      - name: Client typecheck
+        run: npm run lint -w client
+
+      - name: Client production build
+        run: npm run build -w client
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+        working-directory: client
+
+      - name: Client E2E tests
+        run: npm run test:e2e -w client
+
+  optional-production-checks:
+    name: Optional production integrations
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    env:
+      HAS_CLOUDINARY: ${{ secrets.CLOUDINARY_CLOUD_NAME != '' && secrets.CLOUDINARY_API_KEY != '' && secrets.CLOUDINARY_API_SECRET != '' }}
+      HAS_SMTP: ${{ secrets.SMTP_HOST != '' && secrets.SMTP_USER != '' && secrets.SMTP_PASS != '' && secrets.CONTACT_TO != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify Cloudinary
+        if: env.HAS_CLOUDINARY == 'true'
+        run: npm run verify:cloudinary
+        env:
+          FILE_STORAGE_DRIVER: cloudinary
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          CLOUDINARY_FOLDER: ${{ secrets.CLOUDINARY_FOLDER || 'portfolio-projects' }}
+
+      - name: Verify SMTP
+        if: env.HAS_SMTP == 'true'
+        run: npm run verify:smtp
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          CONTACT_TO: ${{ secrets.CONTACT_TO }}
+          SMTP_TEST_TO: ${{ secrets.SMTP_TEST_TO }}
