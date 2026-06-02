@@ -53,6 +53,13 @@ npm run test:server
 
 Server tests run against an in-memory MongoDB instance and cover auth, project CRUD, image upload cleanup, contact messages, and CORS behavior.
 
+## CMS Behavior
+
+- Projects are managed dynamically through the admin CMS.
+- Project order is stored in the database and can be changed from the admin dashboard.
+- Replacing or deleting project preview images cleans up old local upload files.
+- Admin JWT lifetime is controlled by `ADMIN_TOKEN_EXPIRES_IN` and defaults to `7d`.
+
 ## Deployment
 
 - Deploy `client` to Vercel or Netlify. If Vercel asks for the root directory, use `client`.
@@ -60,7 +67,8 @@ Server tests run against an in-memory MongoDB instance and cover auth, project C
 - Set `NEXT_PUBLIC_API_URL` on the frontend to your deployed backend URL, ending with `/api`, for example `https://your-api.onrender.com/api`.
 - Set `CLIENT_URL` on the backend to your deployed frontend URL, or `CLIENT_URLS` for multiple allowed origins separated by commas.
 - Keep `JWT_SECRET` long and private. The server refuses to start if it is shorter than 24 characters.
-- Keep uploaded images in mind: Render free filesystem is ephemeral. For a serious production version, move uploads to S3, Cloudinary, UploadThing, or another persistent file store.
+- For production uploads, set `FILE_STORAGE_DRIVER=cloudinary` and add `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, and optionally `CLOUDINARY_FOLDER`.
+- If `FILE_STORAGE_DRIVER=local`, uploaded images are stored in `server/src/uploads`. Render free filesystem is ephemeral, so Cloudinary or another persistent file store is recommended for a serious deployment.
 
 ## Notes
 

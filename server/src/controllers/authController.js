@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
+import { env } from "../config/env.js";
 import Admin from "../models/Admin.js";
 
 const loginSchema = z.object({
@@ -27,8 +28,8 @@ export async function login(req, res) {
     return res.status(401).json({ message: "Invalid credentials." });
   }
 
-  const token = jwt.sign({ id: admin._id, role: admin.role }, process.env.JWT_SECRET, {
-    expiresIn: "7d"
+  const token = jwt.sign({ id: admin._id, role: admin.role }, env.jwtSecret, {
+    expiresIn: env.adminTokenExpiresIn
   });
 
   res.json({
@@ -36,6 +37,15 @@ export async function login(req, res) {
     admin: {
       email: admin.email,
       role: admin.role
+    }
+  });
+}
+
+export async function me(req, res) {
+  res.json({
+    admin: {
+      email: req.admin.email,
+      role: req.admin.role
     }
   });
 }

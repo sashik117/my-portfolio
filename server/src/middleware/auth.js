@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { env } from "../config/env.js";
 import Admin from "../models/Admin.js";
 
 export async function requireAuth(req, res, next) {
@@ -10,7 +11,7 @@ export async function requireAuth(req, res, next) {
       return res.status(401).json({ message: "Authentication required." });
     }
 
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, env.jwtSecret);
     const admin = await Admin.findById(payload.id).select("-passwordHash");
 
     if (!admin) {

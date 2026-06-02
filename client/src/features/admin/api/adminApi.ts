@@ -2,6 +2,16 @@ import { API_URL } from "@/lib/api";
 import type { Message, Project } from "@/types";
 import type { AdminDashboardData, LoginResponse } from "../types";
 
+export class AdminApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "AdminApiError";
+    this.status = status;
+  }
+}
+
 async function adminRequest<T>(
   path: string,
   token: string,
@@ -20,7 +30,7 @@ async function adminRequest<T>(
       .json()
       .then((data) => data.message)
       .catch(() => "Request failed");
-    throw new Error(message);
+    throw new AdminApiError(message, response.status);
   }
 
   return response.json();
@@ -36,10 +46,16 @@ export const adminApi = {
 
     if (!response.ok) {
       const data = await response.json().catch(() => ({ message: "Login failed" }));
-      throw new Error(data.message);
+      throw new AdminApiError(data.message, response.status);
     }
 
     return response.json() as Promise<LoginResponse>;
+  },
+
+  getCurrentAdmin(token: string) {
+    return adminRequest<{ admin: LoginResponse["admin"] }>("/auth/me", token).then(
+      (data) => data.admin
+    );
   },
 
   async getDashboardData(token: string): Promise<AdminDashboardData> {
@@ -68,6 +84,14 @@ export const adminApi = {
   deleteProject(token: string, projectId: string) {
     return adminRequest<{ message: string }>(`/projects/${projectId}`, token, {
       method: "DELETE"
+    });
+  },
+
+  reorderProjects(token: string, projectIds: string[]) {
+    return adminRequest<Project[]>("/projects/admin/reorder", token, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ projectIds })
     });
   },
 

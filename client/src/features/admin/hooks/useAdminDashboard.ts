@@ -2,7 +2,7 @@
 
 import type { Message, Project } from "@/types";
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { adminApi } from "../api/adminApi";
+import { AdminApiError, adminApi } from "../api/adminApi";
 import { emptyProjectForm, projectFormToPayload, projectToForm } from "../data/projectForm";
 import type { AdminTab, ProjectForm } from "../types";
 
@@ -38,6 +38,13 @@ export function useAdminDashboard() {
     }
   }, []);
 
+  const clearSession = () => {
+    window.localStorage.removeItem("portfolio-admin-token");
+    setToken("");
+    setProjects([]);
+    setMessages([]);
+  };
+
   const loadData = async (authToken = token) => {
     if (!authToken) return;
     setLoading(true);
@@ -48,6 +55,9 @@ export function useAdminDashboard() {
       setProjects(data.projects);
       setMessages(data.messages);
     } catch (error) {
+      if (error instanceof AdminApiError && error.status === 401) {
+        clearSession();
+      }
       setFeedback(error instanceof Error ? error.message : "Could not load data.");
     } finally {
       setLoading(false);
@@ -73,10 +83,7 @@ export function useAdminDashboard() {
   };
 
   const logout = () => {
-    window.localStorage.removeItem("portfolio-admin-token");
-    setToken("");
-    setProjects([]);
-    setMessages([]);
+    clearSession();
     setFeedback("");
   };
 
@@ -132,6 +139,33 @@ export function useAdminDashboard() {
     }
   };
 
+  const reorderProject = async (projectId: string, direction: "up" | "down") => {
+    if (!token) return;
+
+    const currentIndex = projects.findIndex((project) => project._id === projectId);
+    const targetIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+
+    if (currentIndex < 0 || targetIndex < 0 || targetIndex >= projects.length) return;
+
+    const reorderedProjects = [...projects];
+    const [project] = reorderedProjects.splice(currentIndex, 1);
+    reorderedProjects.splice(targetIndex, 0, project);
+    setProjects(reorderedProjects);
+    setFeedback("");
+
+    try {
+      const savedProjects = await adminApi.reorderProjects(
+        token,
+        reorderedProjects.map((item) => item._id)
+      );
+      setProjects(savedProjects);
+      setFeedback("Project order updated.");
+    } catch (error) {
+      setProjects(projects);
+      setFeedback(error instanceof Error ? error.message : "Could not reorder projects.");
+    }
+  };
+
   const markMessageRead = async (messageId: string) => {
     if (!token) return;
 
@@ -171,6 +205,7 @@ export function useAdminDashboard() {
     password,
     projects,
     resetForm,
+    reorderProject,
     saveProject,
     setActiveTab,
     setEmail,

@@ -5,6 +5,7 @@ import {
   getAllProjects,
   getProject,
   getPublishedProjects,
+  reorderProjects,
   updateProject
 } from "../controllers/projectController.js";
 import { requireAuth } from "../middleware/auth.js";
@@ -15,6 +16,7 @@ const router = Router();
 
 router.get("/", asyncHandler(getPublishedProjects));
 router.get("/admin/all", requireAuth, asyncHandler(getAllProjects));
+router.patch("/admin/reorder", requireAuth, asyncHandler(reorderProjects));
 router.get("/:id", asyncHandler(getProject));
 router.post("/", requireAuth, upload.single("image"), asyncHandler(createProject));
 router.patch("/:id", requireAuth, upload.single("image"), asyncHandler(updateProject));

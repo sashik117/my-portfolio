@@ -38,6 +38,15 @@ const projectSchema = new mongoose.Schema(
       type: String,
       default: ""
     },
+    imageStorageProvider: {
+      type: String,
+      enum: ["local", "cloudinary"],
+      default: "local"
+    },
+    imageStorageKey: {
+      type: String,
+      default: ""
+    },
     category: {
       type: String,
       default: "Fullstack"
@@ -45,6 +54,10 @@ const projectSchema = new mongoose.Schema(
     featured: {
       type: Boolean,
       default: false
+    },
+    sortOrder: {
+      type: Number,
+      default: 0
     },
     status: {
       type: String,

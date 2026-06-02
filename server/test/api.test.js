@@ -31,6 +31,22 @@ async function loginAsAdmin() {
   return response.body.token;
 }
 
+async function createProject(token, title) {
+  const response = await request(app)
+    .post("/api/projects")
+    .set("Authorization", `Bearer ${token}`)
+    .field("title", title)
+    .field("description", `A polished project card for ${title}.`)
+    .field("longDescription", `A longer project description for ${title}.`)
+    .field("technologies", "React, Node.js")
+    .field("category", "Fullstack App")
+    .field("featured", "false")
+    .field("status", "published")
+    .expect(201);
+
+  return response.body;
+}
+
 async function clearUploads() {
   await fs.mkdir(uploadRoot, { recursive: true });
   const entries = await fs.readdir(uploadRoot);
@@ -104,6 +120,13 @@ describe("portfolio API", () => {
   it("creates, updates and deletes projects while cleaning replaced upload files", async () => {
     const token = await loginAsAdmin();
 
+    const session = await request(app)
+      .get("/api/auth/me")
+      .set("Authorization", `Bearer ${token}`)
+      .expect(200);
+
+    assert.equal(session.body.admin.email, "admin@example.com");
+
     await request(app)
       .post("/api/projects")
       .field("title", "No Token")
@@ -127,6 +150,8 @@ describe("portfolio API", () => {
 
     assert.equal(created.body.slug, "dream-build");
     assert.equal(created.body.featured, true);
+    assert.equal(created.body.imageStorageProvider, "local");
+    assert.ok(created.body.imageStorageKey);
     assert.ok(created.body.imageUrl.startsWith("/uploads/"));
 
     const firstImagePath = toUploadPath(created.body.imageUrl);
@@ -163,6 +188,42 @@ describe("portfolio API", () => {
       .expect(200);
 
     await assert.rejects(() => fs.access(secondImagePath), { code: "ENOENT" });
+  });
+
+  it("stores and serves admin-controlled project order", async () => {
+    const token = await loginAsAdmin();
+    const first = await createProject(token, "First Project");
+    const second = await createProject(token, "Second Project");
+    const third = await createProject(token, "Third Project");
+
+    const initial = await request(app).get("/api/projects").expect(200);
+    assert.deepEqual(
+      initial.body.map((project) => project.title),
+      ["First Project", "Second Project", "Third Project"]
+    );
+
+    const reordered = await request(app)
+      .patch("/api/projects/admin/reorder")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ projectIds: [third._id, first._id, second._id] })
+      .expect(200);
+
+    assert.deepEqual(
+      reordered.body.map((project) => project.title),
+      ["Third Project", "First Project", "Second Project"]
+    );
+
+    const publicProjects = await request(app).get("/api/projects").expect(200);
+    assert.deepEqual(
+      publicProjects.body.map((project) => project.title),
+      ["Third Project", "First Project", "Second Project"]
+    );
+
+    await request(app)
+      .patch("/api/projects/admin/reorder")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ projectIds: [third._id, third._id] })
+      .expect(400);
   });
 
   it("validates contact messages and lets admin manage inbox status", async () => {

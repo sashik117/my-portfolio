@@ -2,7 +2,11 @@ import slugify from "slugify";
 import mongoose from "mongoose";
 import { z } from "zod";
 import Project from "../models/Project.js";
-import { removeUploadedFile } from "../utils/uploadFiles.js";
+import {
+  persistUploadedFile,
+  removeStoredProjectImage,
+  removeUploadedFile
+} from "../utils/uploadFiles.js";
 
 const projectSchema = z.object({
   title: z.string().min(2).max(120),
@@ -13,13 +17,22 @@ const projectSchema = z.object({
   liveUrl: z.string().url().or(z.literal("")).optional().default(""),
   category: z.string().max(80).optional().default("Fullstack"),
   featured: z.union([z.boolean(), z.string()]).optional().default(false),
+  sortOrder: z.coerce.number().optional(),
   status: z.enum(["draft", "published"]).optional().default("published")
 });
 
-function normalizeProject(body, file) {
+const reorderSchema = z.object({
+  projectIds: z.array(z.string().refine((id) => mongoose.isValidObjectId(id), "Invalid project id.")).min(1)
+});
+
+async function normalizeProject(body, file) {
   const parsed = projectSchema.safeParse(body);
 
   if (!parsed.success) {
+    if (file) {
+      await removeUploadedFile(`/uploads/${file.filename}`);
+    }
+
     const firstError = parsed.error.issues[0]?.message || "Invalid project data.";
     const error = new Error(firstError);
     error.statusCode = 400;
@@ -35,8 +48,13 @@ function normalizeProject(body, file) {
     ...data,
     technologies,
     featured: data.featured === true || data.featured === "true",
-    ...(file ? { imageUrl: `/uploads/${file.filename}` } : {})
+    ...(file ? await persistUploadedFile(file) : {})
   };
+}
+
+async function getNextSortOrder() {
+  const lastProject = await Project.findOne().sort({ sortOrder: -1, createdAt: -1 });
+  return (lastProject?.sortOrder || 0) + 1000;
 }
 
 async function createUniqueSlug(title, existingId) {
@@ -54,6 +72,7 @@ async function createUniqueSlug(title, existingId) {
 
 export async function getPublishedProjects(_req, res) {
   const projects = await Project.find({ status: "published" }).sort({
+    sortOrder: 1,
     featured: -1,
     createdAt: -1
   });
@@ -61,7 +80,7 @@ export async function getPublishedProjects(_req, res) {
 }
 
 export async function getAllProjects(_req, res) {
-  const projects = await Project.find().sort({ createdAt: -1 });
+  const projects = await Project.find().sort({ sortOrder: 1, createdAt: -1 });
   res.json(projects);
 }
 
@@ -81,9 +100,13 @@ export async function getProject(req, res) {
 }
 
 export async function createProject(req, res) {
-  const data = normalizeProject(req.body, req.file);
+  const data = await normalizeProject(req.body, req.file);
   const slug = await createUniqueSlug(data.title);
-  const project = await Project.create({ ...data, slug });
+  const project = await Project.create({
+    ...data,
+    slug,
+    sortOrder: data.sortOrder ?? (await getNextSortOrder())
+  });
   res.status(201).json(project);
 }
 
@@ -94,7 +117,7 @@ export async function updateProject(req, res) {
     return res.status(404).json({ message: "Project not found." });
   }
 
-  const data = normalizeProject(req.body, req.file);
+  const data = await normalizeProject(req.body, req.file);
   const slug =
     data.title && data.title !== current.title
       ? await createUniqueSlug(data.title, current._id)
@@ -107,10 +130,46 @@ export async function updateProject(req, res) {
   );
 
   if (req.file && current.imageUrl && current.imageUrl !== project.imageUrl) {
-    await removeUploadedFile(current.imageUrl);
+    await removeStoredProjectImage(current);
   }
 
   res.json(project);
+}
+
+export async function reorderProjects(req, res) {
+  const parsed = reorderSchema.safeParse(req.body);
+
+  if (!parsed.success) {
+    const error = new Error(parsed.error.issues[0]?.message || "Invalid project order.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const { projectIds } = parsed.data;
+  const uniqueIds = [...new Set(projectIds)];
+
+  if (uniqueIds.length !== projectIds.length) {
+    const error = new Error("Project order contains duplicate ids.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const existingCount = await Project.countDocuments({ _id: { $in: projectIds } });
+
+  if (existingCount !== projectIds.length) {
+    const error = new Error("Project order contains unknown projects.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  await Promise.all(
+    projectIds.map((projectId, index) =>
+      Project.findByIdAndUpdate(projectId, { sortOrder: (index + 1) * 1000 })
+    )
+  );
+
+  const projects = await Project.find().sort({ sortOrder: 1, createdAt: -1 });
+  res.json(projects);
 }
 
 export async function deleteProject(req, res) {
@@ -120,7 +179,7 @@ export async function deleteProject(req, res) {
     return res.status(404).json({ message: "Project not found." });
   }
 
-  await removeUploadedFile(project.imageUrl);
+  await removeStoredProjectImage(project);
 
   res.json({ message: "Project deleted." });
 }

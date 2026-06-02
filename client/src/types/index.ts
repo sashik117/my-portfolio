@@ -8,8 +8,11 @@ export type Project = {
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
+  imageStorageProvider?: "local" | "cloudinary";
+  imageStorageKey?: string;
   category?: string;
   featured?: boolean;
+  sortOrder?: number;
   status?: "draft" | "published";
   createdAt?: string;
 };

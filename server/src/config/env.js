@@ -22,15 +22,23 @@ function normalizeOrigin(origin = "") {
 export const env = {
   adminEmail: process.env.ADMIN_EMAIL || "",
   adminPassword: process.env.ADMIN_PASSWORD || "",
+  adminTokenExpiresIn: process.env.ADMIN_TOKEN_EXPIRES_IN || "7d",
   clientOrigins: [
     ...splitOrigins(process.env.CLIENT_URLS || process.env.CLIENT_URL),
     ...(process.env.NODE_ENV === "production" ? [] : localClientOrigins)
   ],
   databaseName: process.env.MONGODB_DB || "",
+  fileStorageDriver: process.env.FILE_STORAGE_DRIVER || "local",
   jwtSecret: process.env.JWT_SECRET || "",
   mongoUri: process.env.MONGODB_URI || "",
   nodeEnv: process.env.NODE_ENV || "development",
-  port: Number(process.env.PORT || 5050)
+  port: Number(process.env.PORT || 5050),
+  cloudinary: {
+    apiKey: process.env.CLOUDINARY_API_KEY || "",
+    apiSecret: process.env.CLOUDINARY_API_SECRET || "",
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME || "",
+    folder: process.env.CLOUDINARY_FOLDER || "portfolio-projects"
+  }
 };
 
 export function isAllowedOrigin(origin) {

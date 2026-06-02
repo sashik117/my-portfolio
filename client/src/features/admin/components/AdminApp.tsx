@@ -27,6 +27,7 @@ export default function AdminApp() {
     password,
     projects,
     resetForm,
+    reorderProject,
     saveProject,
     setActiveTab,
     setEmail,
@@ -84,12 +85,15 @@ export default function AdminApp() {
             />
 
             <div className="grid h-fit gap-4 md:grid-cols-2 2xl:grid-cols-3">
-              {projects.map((project) => (
+              {projects.map((project, index) => (
                 <ProjectAdminCard
                   key={project._id}
+                  isFirst={index === 0}
+                  isLast={index === projects.length - 1}
                   project={project}
                   onDelete={deleteProject}
                   onEdit={editProject}
+                  onMove={reorderProject}
                 />
               ))}
               {!projects.length && (

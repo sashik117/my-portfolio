@@ -2,18 +2,24 @@
 
 import { mediaUrl } from "@/lib/api";
 import type { Project } from "@/types";
-import { Pencil, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, Pencil, Trash2 } from "lucide-react";
 
 type ProjectAdminCardProps = {
+  isFirst: boolean;
+  isLast: boolean;
   project: Project;
   onDelete: (projectId: string) => void;
   onEdit: (project: Project) => void;
+  onMove: (projectId: string, direction: "up" | "down") => void;
 };
 
 export default function ProjectAdminCard({
+  isFirst,
+  isLast,
   project,
   onDelete,
-  onEdit
+  onEdit,
+  onMove
 }: ProjectAdminCardProps) {
   return (
     <article className="overflow-hidden rounded-[24px] border border-white/[0.10] bg-white/[0.06] backdrop-blur-xl">
@@ -48,6 +54,24 @@ export default function ProjectAdminCard({
           {project.description}
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
+          <button
+            onClick={() => onMove(project._id, "up")}
+            disabled={isFirst}
+            className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/[0.10] bg-white/[0.06] px-3 text-sm font-bold text-white/[0.70] disabled:cursor-not-allowed disabled:opacity-35"
+            title="Move project up"
+          >
+            <ArrowUp size={15} />
+            Up
+          </button>
+          <button
+            onClick={() => onMove(project._id, "down")}
+            disabled={isLast}
+            className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/[0.10] bg-white/[0.06] px-3 text-sm font-bold text-white/[0.70] disabled:cursor-not-allowed disabled:opacity-35"
+            title="Move project down"
+          >
+            <ArrowDown size={15} />
+            Down
+          </button>
           <button
             onClick={() => onEdit(project)}
             className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/[0.10] bg-white/[0.06] px-3 text-sm font-bold text-white/[0.70]"
