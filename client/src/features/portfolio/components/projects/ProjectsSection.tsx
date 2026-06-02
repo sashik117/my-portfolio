@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLanguage } from "@/components/portfolio/LanguageProvider";
+import { useLanguage } from "../../i18n/LanguageProvider";
 import { useProjects } from "../../hooks/useProjects";
 import ProjectCard from "./ProjectCard";
 import ProjectDetailsModal from "./ProjectDetailsModal";
