@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
+import { env } from "./env.js";
 
 export async function connectDatabase() {
-  const uri = process.env.MONGODB_URI;
-
-  if (!uri) {
+  if (!env.mongoUri) {
     throw new Error("MONGODB_URI is missing. Add it to server/.env.");
   }
 
   mongoose.set("strictQuery", true);
-  await mongoose.connect(uri, {
-    dbName: process.env.MONGODB_DB || undefined
+  await mongoose.connect(env.mongoUri, {
+    dbName: env.databaseName || undefined
   });
 }

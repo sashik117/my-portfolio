@@ -5,6 +5,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { isAllowedOrigin } from "./config/env.js";
+import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
@@ -21,7 +23,16 @@ app.use(
 );
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin(origin, callback) {
+      if (isAllowedOrigin(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      const error = new Error(`CORS blocked origin: ${origin}`);
+      error.statusCode = 403;
+      callback(error);
+    },
     credentials: true
   })
 );
@@ -53,11 +64,7 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "portfolio-api" });
 });
 
-app.use((error, _req, res, _next) => {
-  console.error(error);
-  res.status(error.statusCode || 500).json({
-    message: error.message || "Server error."
-  });
-});
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;

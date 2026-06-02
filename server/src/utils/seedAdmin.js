@@ -1,9 +1,10 @@
 import bcrypt from "bcryptjs";
 import Admin from "../models/Admin.js";
+import { env } from "../config/env.js";
 
 export async function seedAdmin() {
-  const email = (process.env.ADMIN_EMAIL || "").toLowerCase();
-  const password = process.env.ADMIN_PASSWORD || "";
+  const email = env.adminEmail.toLowerCase();
+  const password = env.adminPassword;
 
   if (!email || !password) {
     console.warn("ADMIN_EMAIL or ADMIN_PASSWORD is missing. Admin login is disabled.");

@@ -37,7 +37,7 @@ MONGODB_URI=mongodb+srv://USER:PASSWORD@cluster.mongodb.net/portfolio
 npm run dev
 ```
 
-- Frontend: http://localhost:3000
+- Frontend: http://localhost:3000 (or your chosen dev port, e.g. http://localhost:3178)
 - Backend: http://localhost:5050
 - Admin: http://localhost:3000/admin
 
@@ -48,7 +48,8 @@ Default local admin credentials come from `server/.env`.
 - Deploy `client` to Vercel or Netlify.
 - Deploy `server` to Render or Railway.
 - Set `NEXT_PUBLIC_API_URL` on the frontend to your deployed backend URL, ending with `/api`.
-- Set `CLIENT_URL` on the backend to your deployed frontend URL.
+- Set `CLIENT_URL` on the backend to your deployed frontend URL, or `CLIENT_URLS` for multiple allowed origins separated by commas.
+- Keep `JWT_SECRET` long and private. The server refuses to start if it is shorter than 24 characters.
 
 ## Notes
 
