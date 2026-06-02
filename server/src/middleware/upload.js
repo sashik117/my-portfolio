@@ -1,11 +1,8 @@
 import multer from "multer";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { uploadRoot } from "../utils/uploadFiles.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const uploadRoot = path.join(__dirname, "..", "uploads");
 const allowedImageTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
 fs.mkdirSync(uploadRoot, { recursive: true });

@@ -2,6 +2,7 @@ import slugify from "slugify";
 import mongoose from "mongoose";
 import { z } from "zod";
 import Project from "../models/Project.js";
+import { removeUploadedFile } from "../utils/uploadFiles.js";
 
 const projectSchema = z.object({
   title: z.string().min(2).max(120),
@@ -105,6 +106,10 @@ export async function updateProject(req, res) {
     { new: true, runValidators: true }
   );
 
+  if (req.file && current.imageUrl && current.imageUrl !== project.imageUrl) {
+    await removeUploadedFile(current.imageUrl);
+  }
+
   res.json(project);
 }
 
@@ -114,6 +119,8 @@ export async function deleteProject(req, res) {
   if (!project) {
     return res.status(404).json({ message: "Project not found." });
   }
+
+  await removeUploadedFile(project.imageUrl);
 
   res.json({ message: "Project deleted." });
 }

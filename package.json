@@ -12,7 +12,8 @@
     "dev:server": "npm run dev -w server",
     "build": "npm run build -w client",
     "start": "npm run start -w client",
-    "lint": "npm run lint -w client"
+    "lint": "npm run lint -w client",
+    "test:server": "npm test -w server"
   },
   "overrides": {
     "postcss": "8.5.15"

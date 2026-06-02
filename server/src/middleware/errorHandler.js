@@ -8,7 +8,13 @@ export function notFound(req, res) {
 }
 
 export function errorHandler(error, _req, res, _next) {
-  console.error(error);
+  const statusCode = error.statusCode || 500;
+
+  if (statusCode >= 500) {
+    console.error(error);
+  } else {
+    console.warn(error.message);
+  }
 
   if (error instanceof multer.MulterError) {
     return res.status(400).json({
@@ -29,7 +35,7 @@ export function errorHandler(error, _req, res, _next) {
     return res.status(400).json({ message: "Invalid resource id." });
   }
 
-  res.status(error.statusCode || 500).json({
+  res.status(statusCode).json({
     message: error.message || "Server error."
   });
 }
