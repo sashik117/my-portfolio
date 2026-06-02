@@ -15,6 +15,7 @@ pnpm-debug.log*
 .chrome-cdp-*
 .chrome-profile*
 logs
+.codex-logs/
 output
 server/src/uploads/*
 !server/src/uploads/.gitkeep

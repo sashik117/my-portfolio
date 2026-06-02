@@ -1,6 +1,6 @@
 "use client";
 
-import { portfolioApi } from "@/lib/api";
+import { sendContactMessage } from "@/features/portfolio/services/contactService";
 import { motion } from "framer-motion";
 import { Github, Instagram, Mail, MessageCircle, Send, SendHorizonal, ShieldCheck, Sparkles } from "lucide-react";
 import { FormEvent, useState } from "react";
@@ -40,7 +40,7 @@ export default function Contact() {
     }
 
     try {
-      await portfolioApi.sendMessage(payload);
+      await sendContactMessage(payload);
       setState("success");
       setFeedback(t.contact.success);
       setForm({ name: "", email: "", message: "" });

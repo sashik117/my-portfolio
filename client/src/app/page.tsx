@@ -7,9 +7,9 @@ import InteractiveBackground from "@/components/portfolio/InteractiveBackground"
 import { LanguageProvider } from "@/components/portfolio/LanguageProvider";
 import Loader from "@/components/portfolio/Loader";
 import Navbar from "@/components/portfolio/Navbar";
-import Projects from "@/components/portfolio/Projects";
 import Skills from "@/components/portfolio/Skills";
 import TerminalPanel from "@/components/portfolio/TerminalPanel";
+import ProjectsSection from "@/features/portfolio/components/projects/ProjectsSection";
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Projects />
+        <ProjectsSection />
         <TerminalPanel />
         <Contact />
       </main>
