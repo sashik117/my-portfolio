@@ -1,5 +1,6 @@
 import multer from "multer";
 import { ZodError } from "zod";
+import { logger } from "../utils/logger.js";
 
 export function notFound(req, res) {
   res.status(404).json({
@@ -7,13 +8,25 @@ export function notFound(req, res) {
   });
 }
 
-export function errorHandler(error, _req, res, _next) {
+export function errorHandler(error, req, res, _next) {
   const statusCode = error.statusCode || 500;
 
   if (statusCode >= 500) {
-    console.error(error);
+    logger.error("request_failed", {
+      error: error.message,
+      method: req.method,
+      path: req.originalUrl,
+      requestId: req.id,
+      stack: error.stack
+    });
   } else {
-    console.warn(error.message);
+    logger.warn("request_rejected", {
+      message: error.message,
+      method: req.method,
+      path: req.originalUrl,
+      requestId: req.id,
+      statusCode
+    });
   }
 
   if (error instanceof multer.MulterError) {
@@ -36,6 +49,7 @@ export function errorHandler(error, _req, res, _next) {
   }
 
   res.status(statusCode).json({
+    requestId: req.id,
     message: error.message || "Server error."
   });
 }

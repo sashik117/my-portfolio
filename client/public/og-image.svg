@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="cyanGlow" cx="18%" cy="20%" r="58%">
+      <stop offset="0%" stop-color="#5ee7ff" stop-opacity="0.55"/>
+      <stop offset="52%" stop-color="#5ee7ff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mintGlow" cx="88%" cy="18%" r="54%">
+      <stop offset="0%" stop-color="#7cffd4" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" x2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#151b2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#07090f"/>
+  <rect width="1200" height="630" fill="url(#cyanGlow)"/>
+  <rect width="1200" height="630" fill="url(#mintGlow)"/>
+  <g opacity="0.28" stroke="#5ee7ff" stroke-width="1">
+    <path d="M95 142C220 88 350 170 454 122s205-38 302 30 211 23 340-26"/>
+    <path d="M150 468c150-92 244-28 358-86s216-44 348 12 206 28 284-38"/>
+    <circle cx="95" cy="142" r="4" fill="#5ee7ff"/>
+    <circle cx="454" cy="122" r="4" fill="#7cffd4"/>
+    <circle cx="756" cy="152" r="4" fill="#ffd166"/>
+    <circle cx="856" cy="394" r="4" fill="#5ee7ff"/>
+    <circle cx="1096" cy="126" r="4" fill="#7cffd4"/>
+  </g>
+  <rect x="74" y="72" width="1052" height="486" rx="38" fill="url(#card)" stroke="#ffffff" stroke-opacity="0.13"/>
+  <circle cx="128" cy="122" r="8" fill="#ff5c8a"/>
+  <circle cx="154" cy="122" r="8" fill="#ffd166"/>
+  <circle cx="180" cy="122" r="8" fill="#7cffd4"/>
+  <text x="924" y="129" fill="#ffffff" opacity="0.54" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">portfolio.dev</text>
+  <text x="104" y="222" fill="#5ee7ff" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="3">JUNIOR FULLSTACK · MOBILE FIRST</text>
+  <text x="104" y="315" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="900">Oleksandra</text>
+  <text x="104" y="397" fill="#d7dde8" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900">Web, Mobile &amp; Backend Builder</text>
+  <text x="104" y="462" fill="#aeb8c8" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="600">React · Next.js · Node.js · Laravel · Flutter · AI · CMS</text>
+  <g transform="translate(104 504)">
+    <rect width="150" height="42" rx="21" fill="#5ee7ff"/>
+    <text x="75" y="28" text-anchor="middle" fill="#071017" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900">Clean UI</text>
+    <rect x="164" width="170" height="42" rx="21" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="249" y="28" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Admin CMS</text>
+    <rect x="348" width="170" height="42" rx="21" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="433" y="28" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Production UX</text>
+  </g>
+</svg>

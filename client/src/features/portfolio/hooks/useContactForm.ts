@@ -14,12 +14,14 @@ type ContactForm = {
   name: string;
   email: string;
   message: string;
+  website: string;
 };
 
 const initialForm: ContactForm = {
   name: "",
   email: "",
-  message: ""
+  message: "",
+  website: ""
 };
 
 export function useContactForm(messages: ContactFormMessages) {
@@ -39,7 +41,8 @@ export function useContactForm(messages: ContactFormMessages) {
     const payload = {
       name: form.name.trim(),
       email: form.email.trim(),
-      message: form.message.trim()
+      message: form.message.trim(),
+      website: form.website.trim()
     };
 
     if (payload.name.length < 2 || payload.message.length < 10) {

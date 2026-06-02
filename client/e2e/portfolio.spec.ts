@@ -76,7 +76,7 @@ test("portfolio user flow opens projects and validates contact form", async ({ p
   await expect(closeModalButton).toBeHidden();
 
   await page.goto("/#contact");
-  const nameInput = page.locator("#contact input").first();
+  const nameInput = page.locator("#contact input[required]").first();
   await nameInput.fill("O");
   await page.locator('#contact input[type="email"]').fill("client@example.com");
   await page.locator("#contact textarea").fill("short");

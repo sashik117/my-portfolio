@@ -13,7 +13,9 @@
     "build": "npm run build -w client",
     "start": "npm run start -w client",
     "lint": "npm run lint -w client",
+    "audit:env": "npm run audit:env -w server",
     "test:e2e": "npm run test:e2e -w client",
+    "test:e2e:production": "npm run test:e2e:production -w client",
     "test:server": "npm test -w server",
     "verify:cloudinary": "npm run verify:cloudinary -w server",
     "verify:smtp": "npm run verify:smtp -w server"

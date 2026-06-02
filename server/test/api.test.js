@@ -279,6 +279,16 @@ describe("portfolio API", () => {
       })
       .expect(201);
 
+    await request(app)
+      .post("/api/messages")
+      .send({
+        name: "Spam Bot",
+        email: "bot@example.com",
+        message: "This should look successful but stay out of the CMS inbox.",
+        website: "https://spam.example"
+      })
+      .expect(201);
+
     const token = await loginAsAdmin();
     const inbox = await request(app)
       .get("/api/messages")

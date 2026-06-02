@@ -80,6 +80,7 @@ export const fallbackProjects: Project[] = [
     longDescription:
       "PajamaTalk is a cozy language learning tool with a Kotlin Compose Multiplatform frontend, powered by a FastAPI backend. It features JWT authentication, Spaced Repetition scheduling, word storage, AI enrichment direction, and WebSockets for real-time speech practice.",
     technologies: ["Kotlin", "Compose", "FastAPI", "Python", "JWT", "WebSocket"],
+    githubUrl: "https://github.com/sashik117/pajama-talk",
     imageUrl: "/assets/pajamatalk.svg",
     category: "Language App",
     featured: false,
