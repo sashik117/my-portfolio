@@ -32,6 +32,9 @@ jobs:
       - name: Client typecheck
         run: npm run lint -w client
 
+      - name: SEO assets check
+        run: npm run verify:seo
+
       - name: Client production build
         run: npm run build -w client
 

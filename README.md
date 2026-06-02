@@ -116,6 +116,9 @@ E2E_CONTACT_EMAIL=you@example.com
 
 ## Production Checklist
 
+- Full deployment runbook: [docs/deployment.md](docs/deployment.md).
+- Compact launch checklist: [docs/production-checklist.md](docs/production-checklist.md).
+
 - Set `NEXT_PUBLIC_SITE_URL` for correct canonical, sitemap, OpenGraph, and social previews.
 - Set `NEXT_PUBLIC_API_URL` to the deployed API URL ending in `/api`.
 - Set `CLIENT_URL` or `CLIENT_URLS` on the backend so production CORS allows only known frontend origins.

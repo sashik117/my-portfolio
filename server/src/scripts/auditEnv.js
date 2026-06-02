@@ -11,6 +11,15 @@ function requireValue(name, value, hint) {
   }
 }
 
+function isUrl(value) {
+  try {
+    new URL(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function warnValue(name, value, hint) {
   if (!value) {
     warnings.push(`${name} is missing${hint ? `: ${hint}` : "."}`);
@@ -28,11 +37,28 @@ if (env.nodeEnv === "production") {
     env.clientOrigins.length > 0,
     "production CORS must allow only explicit frontend origins."
   );
+  env.clientOrigins.forEach((origin) => {
+    if (!isUrl(origin)) {
+      errors.push(`CLIENT_URLS contains an invalid origin: ${origin}`);
+    }
+  });
   requireValue(
     "REFRESH_COOKIE_SECURE",
     env.refreshCookieSecure,
     "refresh cookies must be secure in production."
   );
+}
+
+if (!["lax", "strict", "none"].includes(String(env.refreshCookieSameSite).toLowerCase())) {
+  errors.push("REFRESH_COOKIE_SAMESITE must be lax, strict, or none.");
+}
+
+if (!Number.isFinite(env.refreshTokenExpiresDays) || env.refreshTokenExpiresDays < 1) {
+  errors.push("REFRESH_TOKEN_EXPIRES_DAYS must be a positive number.");
+}
+
+if (/d$/.test(env.adminTokenExpiresIn)) {
+  warnings.push("ADMIN_TOKEN_EXPIRES_IN looks long. Prefer a short value such as 15m with refresh rotation.");
 }
 
 if (env.fileStorageDriver === "cloudinary") {

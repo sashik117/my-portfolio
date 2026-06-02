@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
+import mongoose from "mongoose";
 import morgan from "morgan";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,6 +20,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 app.disable("x-powered-by");
+app.set("trust proxy", 1);
 app.use(requestId);
 app.use(
   helmet({
@@ -80,7 +82,22 @@ app.use(
 );
 
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, service: "portfolio-api" });
+  res.json({
+    ok: true,
+    service: "portfolio-api",
+    uptime: Math.round(process.uptime()),
+    storage: process.env.FILE_STORAGE_DRIVER || "local"
+  });
+});
+
+app.get("/api/ready", (_req, res) => {
+  const connected = mongoose.connection.readyState === 1;
+
+  res.status(connected ? 200 : 503).json({
+    ok: connected,
+    database: connected ? "connected" : "disconnected",
+    service: "portfolio-api"
+  });
 });
 
 app.use(notFound);

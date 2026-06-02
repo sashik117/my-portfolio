@@ -1,0 +1,5 @@
+Contact: mailto:sanyoklolik@gmail.com
+Contact: https://github.com/sashik117
+Preferred-Languages: uk, en
+Expires: 2027-06-02T00:00:00.000Z
+Policy: https://github.com/sashik117/my-portfolio/blob/main/SECURITY.md

@@ -14,6 +14,7 @@
     "start": "npm run start -w client",
     "lint": "npm run lint -w client",
     "audit:env": "npm run audit:env -w server",
+    "verify:seo": "npm run verify:seo -w client",
     "test:e2e": "npm run test:e2e -w client",
     "test:e2e:production": "npm run test:e2e:production -w client",
     "test:server": "npm test -w server",

@@ -113,6 +113,13 @@ describe("portfolio API", () => {
       .expect("access-control-allow-origin", "http://localhost:3178")
       .expect(200);
 
+    const readiness = await request(app)
+      .get("/api/ready")
+      .set("Origin", "http://localhost:3178")
+      .expect(200);
+
+    assert.equal(readiness.body.database, "connected");
+
     const blocked = await request(app)
       .get("/api/health")
       .set("Origin", "http://evil.example")
