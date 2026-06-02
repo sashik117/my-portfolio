@@ -172,6 +172,36 @@ button {
   background: rgba(110, 231, 249, 0.12);
 }
 
+.premium-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-line::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(110, 231, 249, 0.55), transparent);
+  transform: translateX(-100%);
+  animation: premium-line-sweep 4.8s ease-in-out infinite;
+}
+
+.touch-premium {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes premium-line-sweep {
+  0%,
+  45% {
+    transform: translateX(-100%);
+  }
+  70%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
