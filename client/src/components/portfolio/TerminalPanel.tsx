@@ -1,16 +1,9 @@
 "use client";
 
+import { terminalBadges, terminalLineThemes } from "@/features/portfolio/data/terminal";
 import { motion } from "framer-motion";
 import { BadgeCheck, Terminal } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
-
-const lineThemes = [
-  "text-electric border-electric/[0.22] bg-electric/[0.06]",
-  "text-mint border-mint/[0.22] bg-mint/[0.06]",
-  "text-solar border-solar/[0.22] bg-solar/[0.06]",
-  "text-coral border-coral/[0.22] bg-coral/[0.06]",
-  "text-white border-white/[0.14] bg-white/[0.05]"
-];
 
 export default function TerminalPanel() {
   const { t } = useLanguage();
@@ -32,7 +25,7 @@ export default function TerminalPanel() {
             {t.terminal.copy}
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {["CMS ready", "Mobile QA", "Form validation"].map((item, index) => (
+            {terminalBadges.map((item, index) => (
               <motion.span
                 key={item}
                 className="rounded-full border border-white/[0.10] bg-white/[0.05] px-3 py-2 text-xs font-bold text-white/[0.66]"
@@ -64,7 +57,7 @@ export default function TerminalPanel() {
             {lines.map(([prompt, text], index) => (
               <motion.div
                 key={text}
-                className={`group flex gap-3 rounded-2xl border p-3 transition hover:translate-x-1 ${lineThemes[index % lineThemes.length]}`}
+                className={`group flex gap-3 rounded-2xl border p-3 transition hover:translate-x-1 ${terminalLineThemes[index % terminalLineThemes.length]}`}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

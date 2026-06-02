@@ -1,54 +1,27 @@
 "use client";
 
-import { sendContactMessage } from "@/features/portfolio/services/contactService";
+import { contactSocials, type ContactSocialIcon } from "@/features/portfolio/data/contact";
+import { useContactForm } from "@/features/portfolio/hooks/useContactForm";
 import { motion } from "framer-motion";
 import { Github, Instagram, Mail, MessageCircle, Send, SendHorizonal, ShieldCheck, Sparkles } from "lucide-react";
-import { FormEvent, useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
-const socials = [
-  { label: "GitHub", href: "https://github.com/sashik117", icon: Github },
-  { label: "Telegram", href: "https://t.me/Cinnamonroll69", icon: Send },
-  { label: "Email", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
-  { label: "Instagram", href: "https://www.instagram.com/_o.suhova/", icon: Instagram }
-];
-
+const socialIcons: Record<ContactSocialIcon, LucideIcon> = {
+  email: Mail,
+  github: Github,
+  instagram: Instagram,
+  telegram: Send
+};
 const badgeIcons = [Sparkles, ShieldCheck, MessageCircle];
 
 export default function Contact() {
   const { t } = useLanguage();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [feedback, setFeedback] = useState("");
-
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setState("loading");
-    setFeedback("");
-
-    const payload = {
-      name: form.name.trim(),
-      email: form.email.trim(),
-      message: form.message.trim()
-    };
-
-    if (payload.name.length < 2 || payload.message.length < 10) {
-      setState("error");
-      setFeedback(t.contact.error);
-      return;
-    }
-
-    try {
-      await sendContactMessage(payload);
-      setState("success");
-      setFeedback(t.contact.success);
-      setForm({ name: "", email: "", message: "" });
-    } catch (error) {
-      setState("error");
-      setFeedback(error instanceof Error ? error.message : t.contact.error);
-    }
-  };
+  const { feedback, form, state, submit, updateField } = useContactForm({
+    error: t.contact.error,
+    success: t.contact.success
+  });
 
   return (
     <section id="contact" className="section-shell pb-16">
@@ -65,19 +38,23 @@ export default function Contact() {
             {t.contact.copy}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                className="icon-button"
-                title={social.label}
-                aria-label={social.label}
-              >
-                <social.icon size={18} />
-              </a>
-            ))}
+            {contactSocials.map((social) => {
+              const Icon = socialIcons[social.icon];
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-button"
+                  title={social.label}
+                  aria-label={social.label}
+                >
+                  <Icon size={18} />
+                </a>
+              );
+            })}
           </div>
           <div className="group relative mt-5 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.05] p-4 text-sm leading-6 text-white/[0.66] transition hover:border-electric/[0.30] hover:bg-electric/[0.07]">
             <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-electric/[0.10] blur-2xl transition group-hover:bg-mint/[0.12]" />
@@ -132,9 +109,7 @@ export default function Contact() {
                 minLength={2}
                 maxLength={80}
                 value={form.name}
-                onChange={(event) =>
-                  setForm((value) => ({ ...value, name: event.target.value }))
-                }
+                onChange={(event) => updateField("name", event.target.value)}
                 placeholder={t.contact.namePlaceholder}
               />
             </motion.label>
@@ -150,9 +125,7 @@ export default function Contact() {
                 type="email"
                 maxLength={160}
                 value={form.email}
-                onChange={(event) =>
-                  setForm((value) => ({ ...value, email: event.target.value }))
-                }
+                onChange={(event) => updateField("email", event.target.value)}
                 placeholder={t.contact.emailPlaceholder}
               />
             </motion.label>
@@ -169,9 +142,7 @@ export default function Contact() {
               minLength={10}
               maxLength={1800}
               value={form.message}
-              onChange={(event) =>
-                setForm((value) => ({ ...value, message: event.target.value }))
-              }
+              onChange={(event) => updateField("message", event.target.value)}
               placeholder={t.contact.messagePlaceholder}
             />
           </motion.label>

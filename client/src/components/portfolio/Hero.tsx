@@ -1,5 +1,6 @@
 "use client";
 
+import { heroIdentityThemes, heroWorkWords } from "@/features/portfolio/data/hero";
 import { motion } from "framer-motion";
 import { Code2, Database, Layers3, Server, Smartphone, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -7,28 +8,8 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import MagneticButton from "./MagneticButton";
 
-const workWords = ["React", "Laravel", "Flutter", "FastAPI", "Node.js", "Tailwind", "PostgreSQL", "Gemini AI"];
 const stackIcons: LucideIcon[] = [Server, Database, Smartphone, Code2];
-const identityStyles: { Icon: LucideIcon; accent: string; hover: string; line: string }[] = [
-  {
-    Icon: Sparkles,
-    accent: "text-electric",
-    hover: "hover:border-electric/[0.38] hover:bg-electric/[0.08]",
-    line: "from-electric via-mint to-transparent"
-  },
-  {
-    Icon: Smartphone,
-    accent: "text-mint",
-    hover: "hover:border-mint/[0.38] hover:bg-mint/[0.08]",
-    line: "from-mint via-electric to-transparent"
-  },
-  {
-    Icon: Layers3,
-    accent: "text-coral",
-    hover: "hover:border-coral/[0.38] hover:bg-coral/[0.08]",
-    line: "from-coral via-solar to-transparent"
-  }
-];
+const identityIcons: LucideIcon[] = [Sparkles, Smartphone, Layers3];
 
 function PreviewPanel({
   letters,
@@ -138,7 +119,7 @@ export default function Hero() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const word = workWords[wordIndex];
+    const word = heroWorkWords[wordIndex];
     const finishedTyping = !deleting && letters === word;
     const finishedDeleting = deleting && letters === "";
     const delay = finishedTyping ? 1400 : deleting ? 42 : 88;
@@ -151,7 +132,7 @@ export default function Hero() {
 
       if (finishedDeleting) {
         setDeleting(false);
-        setWordIndex((index) => (index + 1) % workWords.length);
+        setWordIndex((index) => (index + 1) % heroWorkWords.length);
         return;
       }
 
@@ -234,8 +215,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.58 }}
           >
             {t.hero.identity.map(([label, value], index) => {
-              const style = identityStyles[index];
-              const Icon = style.Icon;
+              const style = heroIdentityThemes[index];
+              const Icon = identityIcons[index];
 
               return (
               <motion.article

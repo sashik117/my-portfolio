@@ -1,15 +1,17 @@
 "use client";
 
+import { contactSocials, type ContactSocialIcon } from "@/features/portfolio/data/contact";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Instagram, Mail, Send, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
-const socials = [
-  { label: "GitHub", href: "https://github.com/sashik117", icon: Github },
-  { label: "Telegram", href: "https://t.me/Cinnamonroll69", icon: Send },
-  { label: "Email", href: "mailto:sanyoklolik@gmail.com", icon: Mail },
-  { label: "Instagram", href: "https://www.instagram.com/_o.suhova/", icon: Instagram }
-];
+const socialIcons: Record<ContactSocialIcon, LucideIcon> = {
+  email: Mail,
+  github: Github,
+  instagram: Instagram,
+  telegram: Send
+};
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -55,19 +57,23 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 md:justify-end">
-          {socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noreferrer"
-              className="icon-button"
-              title={social.label}
-              aria-label={social.label}
-            >
-              <social.icon size={17} />
-            </a>
-          ))}
+          {contactSocials.map((social) => {
+            const Icon = socialIcons[social.icon];
+
+            return (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="icon-button"
+                title={social.label}
+                aria-label={social.label}
+              >
+                <Icon size={17} />
+              </a>
+            );
+          })}
           <a
             href="#top"
             className="group inline-flex h-11 w-fit items-center gap-2 rounded-xl border border-white/[0.10] bg-white/[0.06] px-4 text-sm font-bold text-white/[0.72] transition hover:border-electric/[0.42] hover:bg-electric/[0.10] hover:text-white"
