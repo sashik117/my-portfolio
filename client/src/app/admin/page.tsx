@@ -1,4 +1,4 @@
-import AdminApp from "@/components/admin/AdminApp";
+import { AdminApp } from "@/features/admin";
 
 export const metadata = {
   title: "Admin CMS | Portfolio"
